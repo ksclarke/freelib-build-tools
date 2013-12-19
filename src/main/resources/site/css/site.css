@@ -65,3 +65,7 @@ pre {
 .main-body {
   margin-top: -20px;
 }
+
+.externalLink:after {
+  content: " ↗";
+}
