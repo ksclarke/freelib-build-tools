@@ -4,10 +4,15 @@
     "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 
 <module name="Checker">
-  <!-- Suppress -->
-<!--  <module name="SuppressionFilter">
-    <property name="file" value="${checkstyle.suppressions.file}"/>
-  </module>-->
+  <!--
+        Suppressions not used until this bug is fixed:
+          http://jira.codehaus.org/browse/MCHECKSTYLE-169
+  -->
+  <!--
+    <module name="SuppressionFilter">
+      <property name="file" value="${checkstyle.suppressions.file}"/>
+    </module>
+  -->
   <!-- Checks that there are no tab characters ('\t') in the source code. -->
   <module name="FileTabCharacter">
     <property name="eachLine" value="true"/>
