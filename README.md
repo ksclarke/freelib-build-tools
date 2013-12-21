@@ -1,8 +1,8 @@
 # FreeLib-Build-Tools
 
-This project is a collection of resources files which are imported into and used by other FreeLibrary projects.  Included in the bundle are Checkstyle configuration files, Code Formatter settings files for Eclipse, and site template files for FreeLibrary projects.
+This project is a collection of resources files which are imported into, and used by, other FreeLibrary projects.  Included in this bundle are [Checkstyle](http://maven.apache.org/plugins/maven-checkstyle-plugin/) configuration files, [Code Formatter](http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcodestyle%2Fref-preferences-formatter.htm) settings files for Eclipse, and site template files for projects built using the [reflow-maven-skin](http://andriusvelykis.github.io/reflow-maven-skin/).
 
-Another project that wants to use these build tools would unpack the tools using the `maven-dependency-plugin`; to do this, the other project's pom.xml file would include:
+Other projects that want to use these tools would unpack them using the [maven-dependency-plugin](http://maven.apache.org/plugins/maven-dependency-plugin/).  To do this, the other project's `pom.xml` file would include:
 
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
@@ -41,7 +41,7 @@ Another project that wants to use these build tools would unpack the tools using
       </executions>
     </plugin>
 
-The other project would also need to make sure the site template files were passed through a resource filter so that the name of that project would be inserted into the site's templates.  This is accomplished by including the following resource configuration in the other project:
+The other project would also need to make sure the site template files were passed through a resource filter so that the name of that project would be inserted into them.  This is accomplished by including the following resource configuration in the other project:
 
     <resources>
       <resource>
@@ -53,7 +53,7 @@ The other project would also need to make sure the site template files were pass
       </resource>
     </resources>
 
-Lastly, the `maven-checkstyle-plugin` would need to be configured to use the Checkstyle configuration files included in the FreeLib-Build-Tools jar.  This is done by including and configuring the `maven-checkstyle-plugin`:
+Lastly, the [maven-checkstyle-plugin](http://maven.apache.org/plugins/maven-checkstyle-plugin/) would need to be configured to use the Checkstyle configuration files included in the FreeLib-Build-Tools jar.  This is done by including the following configuration in the `pom.xml`:
 
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
@@ -84,8 +84,8 @@ Lastly, the `maven-checkstyle-plugin` would need to be configured to use the Che
         </executions>
       </plugin>
 
-That's about it.  I don't know if this project if of use to anyone else, but it makes maintaining different FreeLibrary projects much easier.
+That's about it.  I don't know if this project will be of use to anyone else (perhaps as an example?), but it makes maintaining the different FreeLibrary projects much easier.
 
-### Contact
+### Contact Information
 
-Feel free to send any questions to Kevin S. Clarke at ksclarke@gmail.com
+Feel free to send any questions or comments to Kevin S. Clarke at ksclarke@gmail.com
