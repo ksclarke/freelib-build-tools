@@ -2,7 +2,7 @@
 
 This project is a collection of resources files which are imported into, and used by, other FreeLibrary projects.  Included in this bundle are [Checkstyle](http://maven.apache.org/plugins/maven-checkstyle-plugin/) configuration files, [Code Formatter](http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcodestyle%2Fref-preferences-formatter.htm) settings files for Eclipse, and site template files for FreeLibrary projects built using the [reflow-maven-skin](http://andriusvelykis.github.io/reflow-maven-skin/).
 
-Other projects that want to use these tools would unpack them using the [maven-dependency-plugin](http://maven.apache.org/plugins/maven-dependency-plugin/).  To do this, the other project's pom.xml file would include the following configuration:
+Other projects that want to use these tools can unpack them using the [maven-dependency-plugin](http://maven.apache.org/plugins/maven-dependency-plugin/).  To do this, the other project's pom.xml file needs to include the following configuration:
 
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
@@ -41,7 +41,7 @@ Other projects that want to use these tools would unpack them using the [maven-d
       </executions>
     </plugin>
 
-The other project would also need to make sure the site template files are passed through a resource filter so that the name of that project is inserted into them.  This is accomplished by including the following resource configuration:
+The other project also needs to ensure that the site template files are passed through a resource filter (so that the name of that project is inserted into them).  This is accomplished by including the following resource configuration:
 
     <resources>
       <resource>
