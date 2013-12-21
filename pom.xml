@@ -47,7 +47,19 @@
     <prerequisites>
         <maven>3.0.0</maven>
     </prerequisites>
-    <build/>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.16</version>
+                <configuration>
+                    <!-- no need to have tests, this is a jar of resource files -->
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <profiles>
         <profile>
             <id>release-sign-artifacts</id>
