@@ -1,8 +1,8 @@
 # FreeLib-Build-Tools
 
-This project is a collection of resources files which are imported into, and used by, other FreeLibrary projects.  Included in this bundle are [Checkstyle](http://maven.apache.org/plugins/maven-checkstyle-plugin/) configuration files, [Code Formatter](http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcodestyle%2Fref-preferences-formatter.htm) settings files for Eclipse, and site template files for projects built using the [reflow-maven-skin](http://andriusvelykis.github.io/reflow-maven-skin/).
+This project is a collection of resources files which are imported into, and used by, other FreeLibrary projects.  Included in this bundle are [Checkstyle](http://maven.apache.org/plugins/maven-checkstyle-plugin/) configuration files, [Code Formatter](http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcodestyle%2Fref-preferences-formatter.htm) settings files for Eclipse, and site template files for FreeLibrary projects built using the [reflow-maven-skin](http://andriusvelykis.github.io/reflow-maven-skin/).
 
-Other projects that want to use these tools would unpack them using the [maven-dependency-plugin](http://maven.apache.org/plugins/maven-dependency-plugin/).  To do this, the other project's pom.xml file would include:
+Other projects that want to use these tools would unpack them using the [maven-dependency-plugin](http://maven.apache.org/plugins/maven-dependency-plugin/).  To do this, the other project's pom.xml file would include the following configuration:
 
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
@@ -41,7 +41,7 @@ Other projects that want to use these tools would unpack them using the [maven-d
       </executions>
     </plugin>
 
-The other project would also need to make sure the site template files were passed through a resource filter so that the name of that project would be inserted into them.  This is accomplished by including the following resource configuration in the other project:
+The other project would also need to make sure the site template files are passed through a resource filter so that the name of that project is inserted into them.  This is accomplished by including the following resource configuration:
 
     <resources>
       <resource>
@@ -53,7 +53,7 @@ The other project would also need to make sure the site template files were pass
       </resource>
     </resources>
 
-The [maven-checkstyle-plugin](http://maven.apache.org/plugins/maven-checkstyle-plugin/) referenced in the other project needs to be configured to use FreeLib-Build-Tools' Checkstyle configuration.  This is done by including the following configuration in the pom.xml:
+The [maven-checkstyle-plugin](http://maven.apache.org/plugins/maven-checkstyle-plugin/) referenced in the other project needs to be configured to use FreeLib-Build-Tools' Checkstyle configuration.  This is done by including the following configuration in the other project's pom.xml file:
 
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
@@ -84,7 +84,7 @@ The [maven-checkstyle-plugin](http://maven.apache.org/plugins/maven-checkstyle-p
         </executions>
       </plugin>
 
-You might also want to use the [maven-clean-plugin](http://maven.apache.org/plugins/maven-clean-plugin/) to clean up dynamically created build artifacts in the other project:
+Using the [maven-clean-plugin](http://maven.apache.org/plugins/maven-clean-plugin/) will help clean up dynamically created build artifacts in the other project:
 
     <plugin>
       <artifactId>maven-clean-plugin</artifactId>
