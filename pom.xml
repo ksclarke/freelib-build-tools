@@ -19,7 +19,7 @@
     <scm>
         <connection>scm:git:git@github.com:ksclarke/freelib-build-tools.git</connection>
         <developerConnection>scm:git:git@github.com:ksclarke/freelib-build-tools.git</developerConnection>
-        <url>git@github.com:ksclarke/freelib-built-tools.git</url>
+        <url>git@github.com:ksclarke/freelib-build-tools.git</url>
     </scm>
     <issueManagement>
         <system>GitHub</system>
