@@ -41,7 +41,7 @@ Other projects that want to use these tools can unpack them using the [maven-dep
       </executions>
     </plugin>
 
-The other project also needs to ensure that the site template files are passed through a resource filter (so that the name of that project is inserted into them).  This is accomplished by including the following resource configuration:
+The other project also needs to ensure that the site template files are passed through a resource filter (so that that project's name is inserted into them).  This is accomplished through the following resource configuration:
 
     <resources>
       <resource>
