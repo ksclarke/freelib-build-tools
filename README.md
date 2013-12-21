@@ -53,7 +53,7 @@ The other project would also need to make sure the site template files were pass
       </resource>
     </resources>
 
-Lastly, the [maven-checkstyle-plugin](http://maven.apache.org/plugins/maven-checkstyle-plugin/) would need to be configured to use the Checkstyle configuration files included in the FreeLib-Build-Tools jar.  This is done by including the following configuration in the `pom.xml`:
+The [maven-checkstyle-plugin](http://maven.apache.org/plugins/maven-checkstyle-plugin/) referenced in the other project needs to be configured to use FreeLib-Build-Tools' Checkstyle configuration.  This is done by including the following configuration in the `pom.xml`:
 
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
@@ -84,7 +84,27 @@ Lastly, the [maven-checkstyle-plugin](http://maven.apache.org/plugins/maven-chec
         </executions>
       </plugin>
 
-That's about it.  I don't know if this project will be of use to anyone else (perhaps as an example?), but it makes maintaining the different FreeLibrary projects much easier.
+You might also want to use the [maven-clean-plugin](http://maven.apache.org/plugins/maven-clean-plugin/) to clean up dynamically created build artifacts in the other project:
+
+    <plugin>
+      <artifactId>maven-clean-plugin</artifactId>
+      <version>2.5</version>
+      <configuration>
+        <filesets>
+          <fileset>
+            <directory>${basedir}/src</directory>
+            <includes>
+              <include>**/coders-welcome.md</include>
+              <include>**/testers-welcome.md</include>
+              <include>**/translators-welcome.md</include>
+              <include>**/documentors-welcome.md</include>
+            </includes>
+          </fileset>
+        </filesets>
+      </configuration>
+    </plugin>
+
+That's about it.  I don't know if this project will be of use to anyone else (perhaps as an example?), but it does make maintaining the different FreeLibrary projects much easier.
 
 ### Contact Information
 

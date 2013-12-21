@@ -61,7 +61,8 @@
       />
     </module>
     <module name="Indentation">
-      <property name="throwsIndent" value="8"/>
+      <!-- Commented out until the upstream supports it -->
+      <!-- <property name="throwsIndent" value="8"/> -->
     </module>
   </module>
   <!-- No Trailing Whitespace, except on lines that only have an asterisk (e.g. Javadoc comments) -->

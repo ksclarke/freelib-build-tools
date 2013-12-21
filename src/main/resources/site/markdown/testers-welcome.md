@@ -4,7 +4,7 @@ There are many ways to contribute to an open source project.  One way is to down
 
 ## Report an Issue
 
-If you do discover an area of the project that could use some improvement, please <a href="https://github.com/ksclarke/freelib-utils/issues" title="Issues" target="_blank">report an issue</a>.  This will alert the developer(s) to the work that needs to be done.  When you're reporting an issue, try to be as specific as you can.  It's helpful if you can provide a series of steps that developers can follow to reproduce the issue that you're reporting.  Any issue report is useful, but a more detailed one is more likely to be able to be acted on.
+If you do discover an area of the project that could use some improvement, please <a href="https://github.com/ksclarke/freelib-utils/issues" title="Issues" target="_blank">report an issue</a>.  This will alert developers to the work that needs to be done.  When you're reporting an issue, try to be as specific as you can.  It's helpful if you can document a series of steps that developers can use to reproduce the issue, but any issue report is useful.
 
 ## Coders Welcome, Too
 
