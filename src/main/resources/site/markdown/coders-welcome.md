@@ -1,6 +1,6 @@
 ## Coders Welcome
 
-If you're a programmer and you find a bug, or think of a feature that would be a nice addition to the project, feel free to <a href="https://github.com/ksclarke/freelib-utils">fork the project</a> and submit a pull request.
+If you're a programmer and you find a bug, or think of a feature that would be a nice addition to the project, feel free to <a href="https://github.com/ksclarke/${project.artifactId}">fork the project</a> and submit a pull request.
 
 When you do (and build the project in the process), you'll probably notice that [Checkstyle](http://maven.apache.org/plugins/maven-checkstyle-plugin/) is used to validate the project's code.  Coding styles are pretty arbitrary, but they do make merging new code (and patches to existing code) easier.  To make adherence to these style guidelines easier, FreeLibrary's Java projects supply a [Checkstyle configuration for Maven](https://github.com/ksclarke/freelib-build-tools/tree/master/src/main/resources/checkstyle) and [Code Formatter settings for Eclipse](https://github.com/ksclarke/freelib-build-tools/tree/master/src/main/resources/eclipse) (as an optional convenience for those who use Eclipse).
 <br/><br/>
