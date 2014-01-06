@@ -3,4 +3,7 @@
      "-//Puppy Crawl//DTD Suppressions 1.1//EN"
      "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
 <suppressions>
+     <!-- have to ignore indentation checks until upstream checkstyle is fixed -->
+     <!-- Cf. https://github.com/checkstyle/checkstyle/pull/80 -->
+     <suppress checks="IndentationCheck" files=".*\.java" />
 </suppressions>
