@@ -1,6 +1,6 @@
-## Documenters Welcome
+## Help Improve the Docs
 
-One of the most important (and frequently overlooked) parts of a small open source project is its documentation.  It's important because documentation is often the first exposure potential users have to a project.  When a project's documentation is lacking, these people may get discouraged and avoid using the project.
+One of the most important (and frequently overlooked) parts of a small open source project is its documentation.  It's important because documentation is often the first exposure potential users have to a project.  When a project's documentation is lacking, potential users may get discouraged and decide not to use the project.
 
 Even experienced users get frustrated when the documentation for a particular feature is lacking.  Enough frustrating experiences can cause even the most ardent supporter to shy away from using a project.
 

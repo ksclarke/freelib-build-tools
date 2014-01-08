@@ -35,6 +35,15 @@ Other projects that want to use these tools can unpack them using the [maven-dep
                 <includes>**/*.md</includes>
                 <outputDirectory>${basedir}/src/main/resources</outputDirectory>
               </artifactItem>
+              <!-- copies checkstyle configs so we can filter them -->
+              <artifactItem>
+                <groupId>info.freelibrary</groupId>
+                <artifactId>freelib-build-tools</artifactId>
+                <version>${freelib.build.tools.version}</version>
+                <type>jar</type>
+                <includes>checkstyle/*.xml</includes>
+                <outputDirectory>${basedir}/src/main/resources</outputDirectory>
+              </artifactItem>
             </artifactItems>
           </configuration>
         </execution>
@@ -44,6 +53,16 @@ Other projects that want to use these tools can unpack them using the [maven-dep
 The other project also needs to ensure that the site template files are passed through a resource filter (so that that project's name is inserted into them).  This is accomplished through the following resource configuration:
 
     <resources>
+      <!-- site's markdown template resources -->
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*.md</include>
+        </includes>
+        <targetPath>${basedir}/src</targetPath>
+      </resource>
+      <!-- normal types of project resources -->
       <resource>
         <directory>${basedir}/src/main/resources</directory>
         <filtering>true</filtering>
@@ -59,19 +78,9 @@ The [maven-checkstyle-plugin](http://maven.apache.org/plugins/maven-checkstyle-p
       <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>${maven.checkstyle.version}</version>
-        <dependencies>
-          <dependency>
-            <groupId>info.freelibrary</groupId>
-            <artifactId>freelib-build-tools</artifactId>
-            <version>${freelib.build.tools.version}</version>
-          </dependency>
-        </dependencies>
         <configuration>
-          <failsOnError>true</failsOnError>
           <consoleOutput>true</consoleOutput>
-          <!-- these are loaded from the freelib-build-tools jar -->
-          <configLocation>checkstyle/checkstyle.xml</configLocation>
-          <suppressionsLocation>checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+          <configLocation>${basedir}/target/classes/checkstyle/checkstyle.xml</configLocation>
         </configuration>
         <executions>
           <execution>
@@ -100,9 +109,20 @@ Using the [maven-clean-plugin](http://maven.apache.org/plugins/maven-clean-plugi
               <include>**/documentors-welcome.md</include>
             </includes>
           </fileset>
+          <fileset>
+            <directory>${basedir}/src/main/resources/checkstyle</directory>
+          </fileset>
         </filesets>
       </configuration>
     </plugin>
+
+Finally, the following property will need to be included in the pom.xml's properties configuration:
+
+    <properties>
+      <!-- used for finding the unpacked checkstyle-suppressions.xml file -->
+      <!-- built-in for eclipse-cs tool so we make it work with maven too -->
+      <config_loc>${project.basedir}/target/classes/checkstyle</config_loc>
+    </properties>
 
 That's about it.  I don't know if this project will be of use to anyone else (perhaps as an example?), but it does make maintaining the different FreeLibrary projects much easier.
 
