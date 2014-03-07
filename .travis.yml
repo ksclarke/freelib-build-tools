@@ -1,0 +1,23 @@
+language: java
+
+jdk:
+  - openjdk7
+
+branches:
+  only:
+    - master
+
+script:
+  - xmllint --valid --noout src/main/resources/checkstyle/checkstyle.xml
+  - xmllint --valid --noout src/main/resources/checkstyle/checkstyle-suppressions.xml
+  - mvn install
+  - unzip -d target/zipout target/freelib-build-tools-*.jar
+  - test "0" == $([ -f target/zipout/checkstyle/checkstyle.xml ] && echo "0" || echo "1")
+  - test "0" == $([ -f target/zipout/checkstyle/checkstyle-suppressions.xml ] && echo "0" || echo "1")
+
+notifications:
+  irc:
+    channels:
+      - irc.freenode.org#freelibrary
+    on_failure: always
+    on_success: always

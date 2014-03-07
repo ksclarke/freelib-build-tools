@@ -2,9 +2,6 @@
 <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN" "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
 
 <!--
-    This configuration file was written by the eclipse-cs plugin configuration editor
--->
-<!--
     Checkstyle-Configuration: FreeLibrary
     Description: none
 -->
@@ -45,11 +42,11 @@
   </module>
   <module name="FileTabCharacter">
     <property name="eachLine" value="true"/>
-    <property name="fileExtensions" value="java,css,js"/>
+    <property name="fileExtensions" value="java,css,js,xml"/>
   </module>
   <module name="RegexpSingleline">
     <property name="format" value="(?&lt;!\*)\s+$|\*\s\s+$"/>
     <property name="message" value="Trailing whitespace"/>
-    <property name="fileExtensions" value="java,css,js"/>
+    <property name="fileExtensions" value="java,css,js,xml"/>
   </module>
 </module>
