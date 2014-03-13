@@ -82,6 +82,12 @@ The [maven-checkstyle-plugin](http://maven.apache.org/plugins/maven-checkstyle-p
           <consoleOutput>true</consoleOutput>
           <configLocation>${basedir}/target/classes/checkstyle/checkstyle.xml</configLocation>
         </configuration>
+        <!-- add the newer checkstyle with throwsIndent support -->
+        <dependency>
+          <groupId>com.puppycrawl.tools</groupId>
+          <artifactId>checkstyle</artifactId>
+          <version>5.7</version>
+        </dependency>
         <executions>
           <execution>
             <id>checkstyle</id>
