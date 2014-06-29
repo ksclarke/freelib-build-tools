@@ -36,6 +36,7 @@
     <module name="Indentation">
       <property name="throwsIndent" value="8"/>
     </module>
+    <module name="SuppressWarningsHolder"/>
   </module>
   <module name="SuppressionFilter">
     <property name="file" value="${config_loc}/checkstyle-suppressions.xml"/>
@@ -49,4 +50,5 @@
     <property name="message" value="Trailing whitespace"/>
     <property name="fileExtensions" value="java,css,js,xml"/>
   </module>
+  <module name="SuppressWarningsFilter"/>
 </module>
