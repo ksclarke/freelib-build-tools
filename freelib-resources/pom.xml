@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>info.freelibrary</groupId>
+  <artifactId>freelib-resources</artifactId>
+  <packaging>jar</packaging>
+
+  <name>FreeLibrary Build Resources</name>
+  <description>Resources, like Checkstyle rules and site templates, for FreeLibrary projects.</description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.16</version>
+        <configuration>
+          <skipTests>true</skipTests>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <parent>
+    <groupId>info.freelibrary</groupId>
+    <artifactId>freelib-build-tools</artifactId>
+    <version>0.0.8-SNAPSHOT</version>
+  </parent>
+
+</project>

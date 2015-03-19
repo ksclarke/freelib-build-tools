@@ -1,11 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>info.freelibrary</groupId>
   <artifactId>freelib-build-tools</artifactId>
   <version>0.0.8-SNAPSHOT</version>
-  <packaging>jar</packaging>
-  <name>freelib-build-tools</name>
-  <description>Build tools for FreeLibrary projects (such as checkstyle rules and site stylesheets).</description>
+  <packaging>pom</packaging>
+  <name>FreeLibrary Build Tools</name>
+  <description>Build tools for FreeLibrary projects.</description>
+
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -13,6 +16,7 @@
       <comments>Copyright (c) 2013 Kevin S. Clarke</comments>
     </license>
   </licenses>
+
   <scm>
     <connection>scm:git:git@github.com:ksclarke/freelib-build-tools.git</connection>
     <developerConnection>scm:git:git@github.com:ksclarke/freelib-build-tools.git</developerConnection>
@@ -22,9 +26,10 @@
     <system>GitHub</system>
     <url>https://github.com/ksclarke/freelib-build-tools/issues</url>
   </issueManagement>
+
   <organization>
     <name>FreeLibrary</name>
-    <url>http://freelibrary.info</url>
+    <url>http://projects.freelibrary.info</url>
   </organization>
   <developers>
     <developer>
@@ -37,26 +42,32 @@
       <timezone>America/New_York</timezone>
     </developer>
   </developers>
+
   <properties>
+    <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
-  <prerequisites>
-    <maven>3.0.0</maven>
-  </prerequisites>
+
+  <modules>
+    <module>freelib-resources</module>
+    <module>freelib-parent</module>
+  </modules>
+
   <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.16</version>
+        <version>${maven.surefire.plugin.version}</version>
         <configuration>
-          <!-- no need to have tests, this is a jar of resource files -->
           <skipTests>true</skipTests>
         </configuration>
       </plugin>
     </plugins>
   </build>
+
   <profiles>
     <profile>
       <id>release-sign-artifacts</id>
@@ -85,9 +96,11 @@
       </build>
     </profile>
   </profiles>
+
   <parent>
     <groupId>org.sonatype.oss</groupId>
     <artifactId>oss-parent</artifactId>
     <version>7</version>
   </parent>
+
 </project>
