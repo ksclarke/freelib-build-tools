@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>freelib-parent</artifactId>
@@ -316,7 +315,7 @@
             <nonavbar>true</nonavbar>
             <nosince>true</nosince>
             <notimestamp>true</notimestamp>
-            <bottom>&#160;</bottom>
+            <bottom> </bottom>
             <detectLinks>true</detectLinks>
             <links>
               <link>http://www.xmlunit.org/api/java/master</link>
@@ -472,6 +471,6 @@
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>0.0.8-SNAPSHOT</version>
+    <version>0.0.8</version>
   </parent>
 </project>
