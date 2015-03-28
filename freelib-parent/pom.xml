@@ -63,10 +63,6 @@
     <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>
   </properties>
 
-  <prerequisites>
-    <maven>3.2.2</maven>
-  </prerequisites>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -127,10 +123,10 @@
   <build>
     <pluginManagement>
       <plugins>
-      <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-install-plugin</artifactId>
-            <version>${maven.install.plugin.version}</version>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>${maven.install.plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -266,6 +262,10 @@
               <configuration>
                 <failFast>true</failFast>
                 <rules>
+                  <requireMavenVersion>
+                    <version>[3.2.2,)</version>
+                    <message>Sorry, but to build this project you must use Maven version 3.2.2 or later.</message>
+                  </requireMavenVersion>
                   <requireReleaseDeps>
                     <onlyWhenRelease>false</onlyWhenRelease>
                     <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
@@ -471,6 +471,6 @@
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>0.0.9-SNAPSHOT</version>
+    <version>0.0.8</version>
   </parent>
 </project>
