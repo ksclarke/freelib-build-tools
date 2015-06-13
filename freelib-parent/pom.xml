@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>freelib-parent</artifactId>
@@ -11,13 +12,15 @@
     <freelib.resources.version>${project.parent.version}</freelib.resources.version>
 
     <!-- Dependencies managed through this parent project -->
-    <junit.version>4.11</junit.version>
+    <junit.version>4.12</junit.version>
     <xom.version>1.2.5</xom.version>
-    <slf4j.version>1.7.5</slf4j.version>
+    <slf4j.version>1.7.10</slf4j.version>
     <xmlunit.version>1.6</xmlunit.version>
     <groovy.version>2.3.6</groovy.version>
     <logback.version>1.1.2</logback.version>
-    <pegdown.version>1.4.2</pegdown.version>
+    <pegdown.version>1.5.0</pegdown.version>
+    <phantomjs.version>1.9.7</phantomjs.version>
+    <ghostdriver.version>1.1.0</ghostdriver.version>
 
     <!-- Maven plugin dependencies managed through this parent project -->
     <maven.core.version>3.2.5</maven.core.version>
@@ -29,13 +32,14 @@
     <jetty.version>9.2.10.v20150310</jetty.version>
     <maven.verifier.version>1.4</maven.verifier.version>
     <maven.filtering.version>1.3</maven.filtering.version>
+    <phantomjs.plugin.version>0.4</phantomjs.plugin.version>
     <exec.maven.plugin.version>1.3.2</exec.maven.plugin.version>
     <maven.plugin.plugin.version>3.4</maven.plugin.plugin.version>
     <maven.clean.plugin.version>2.6.1</maven.clean.plugin.version>
     <maven.install.plugin.version>2.3.1</maven.install.plugin.version>
     <maven.failsafe.plugin.version>2.17</maven.failsafe.plugin.version>
     <maven.enforcer.plugin.version>1.4</maven.enforcer.plugin.version>
-    <maven.javadoc.plugin.version>2.10.1</maven.javadoc.plugin.version>
+    <maven.javadoc.plugin.version>2.10.2</maven.javadoc.plugin.version>
     <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
     <maven.resources.plugin.version>2.7</maven.resources.plugin.version>
     <maven.dependency.plugin.version>2.10</maven.dependency.plugin.version>
@@ -57,7 +61,7 @@
     <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>${project.basedir}/target/site/checkstyle</config_loc>
-    <maven.checkstyle.version>2.12.1</maven.checkstyle.version>
+    <maven.checkstyle.version>2.15</maven.checkstyle.version>
 
     <!-- The extension we use to push site productions up to an S3 bucket -->
     <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>
@@ -92,6 +96,12 @@
         <groupId>xmlunit</groupId>
         <artifactId>xmlunit</artifactId>
         <version>${xmlunit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.github.detro.ghostdriver</groupId>
+        <artifactId>phantomjsdriver</artifactId>
+        <version>${ghostdriver.version}</version>
         <scope>test</scope>
       </dependency>
       <!-- Dependencies for Maven plugins -->
@@ -138,14 +148,30 @@
           <artifactId>properties-maven-plugin</artifactId>
           <version>${properties.maven.plugin.version}</version>
         </plugin>
+        <!-- Installs PhantomJS so it doesn't have to be pre-installed -->
+        <plugin>
+          <groupId>com.github.klieber</groupId>
+          <artifactId>phantomjs-maven-plugin</artifactId>
+          <version>${phantomjs.plugin.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>install</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <version>${phantomjs.version}</version>
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>${build.helper.maven.plugin.version}</version>
           <configuration>
             <portNames>
-              <portName>jetty.port</portName>
-              <portName>jetty.port.stop</portName>
+              <portName>http.port</portName>
+              <portName>http.port.stop</portName>
             </portNames>
           </configuration>
           <executions>
