@@ -1,6 +1,6 @@
 # FreeLib-Build-Tools
 
-This project is a collection of resources which are imported into, and used by, other projects.  Included are [Checkstyle](http://maven.apache.org/plugins/maven-checkstyle-plugin/) configuration files, [Code Formatter](http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcodestyle%2Fref-preferences-formatter.htm) settings files for Eclipse, [JBake](http://jbake.org/) site template files, a core set of dependencies.
+This project is a collection of resources which are imported into, and used by, other projects.  Included are [Checkstyle](http://maven.apache.org/plugins/maven-checkstyle-plugin/) configuration files, [Code Formatter](http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcodestyle%2Fref-preferences-formatter.htm) settings files for Eclipse, [JBake](http://jbake.org/) site template files, and a core set of dependencies.
 
 Projects that want to take advantage of these resources (probably just other FreeLibrary projects) can configure this project as their parent in their `pom.xml` file. For instance:
 
