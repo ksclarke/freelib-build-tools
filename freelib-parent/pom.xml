@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>freelib-parent</artifactId>
@@ -13,10 +14,10 @@
     <!-- Dependencies managed through this parent project -->
     <junit.version>4.12</junit.version>
     <xom.version>1.2.5</xom.version>
-    <slf4j.version>1.7.10</slf4j.version>
+    <slf4j.version>1.7.12</slf4j.version>
     <xmlunit.version>1.6</xmlunit.version>
     <groovy.version>2.3.6</groovy.version>
-    <logback.version>1.1.2</logback.version>
+    <logback.version>1.1.3</logback.version>
     <pegdown.version>1.5.0</pegdown.version>
     <phantomjs.version>1.9.7</phantomjs.version>
     <ghostdriver.version>1.1.0</ghostdriver.version>
