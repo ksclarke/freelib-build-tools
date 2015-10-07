@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>freelib-parent</artifactId>
@@ -27,7 +28,7 @@
     <maven.plugin.annotations.version>3.4</maven.plugin.annotations.version>
 
     <!-- Plugins managed through/in pluginManagement section -->
-    <sonar.plugin.version>2.5</sonar.plugin.version>
+    <sonar.plugin.version>2.6</sonar.plugin.version>
     <jetty.version>9.2.10.v20150310</jetty.version>
     <maven.verifier.version>1.4</maven.verifier.version>
     <maven.filtering.version>1.3</maven.filtering.version>
@@ -36,8 +37,9 @@
     <maven.plugin.plugin.version>3.4</maven.plugin.plugin.version>
     <maven.clean.plugin.version>2.6.1</maven.clean.plugin.version>
     <maven.install.plugin.version>2.3.1</maven.install.plugin.version>
+    <enforce.victims.rule.version>1.3.4</enforce.victims.rule.version>
     <maven.failsafe.plugin.version>2.17</maven.failsafe.plugin.version>
-    <maven.enforcer.plugin.version>1.4</maven.enforcer.plugin.version>
+    <maven.enforcer.plugin.version>1.4.1</maven.enforcer.plugin.version>
     <maven.javadoc.plugin.version>2.10.2</maven.javadoc.plugin.version>
     <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
     <maven.resources.plugin.version>2.7</maven.resources.plugin.version>
@@ -64,6 +66,14 @@
 
     <!-- The extension we use to push site productions up to an S3 bucket -->
     <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>
+    
+    <!-- Jacoco and Sonar configuration -->
+    <jacoco.outputDir>${project.build.directory}</jacoco.outputDir>
+    <jacoco.out.unit.file>jacoco-ut.exec</jacoco.out.unit.file>
+    <jacoco.out.it.file>jacoco-it.exec</jacoco.out.it.file>
+    <sonar.jacoco.reportPath>${jacoco.outputDir}/${jacoco.out.unit.file}</sonar.jacoco.reportPath>
+    <sonar.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.jacoco.itReportPath>
+    <jacoco.maven.plugin.version>0.7.4.201502262128</jacoco.maven.plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -278,7 +288,30 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
           <version>${maven.enforcer.plugin.version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>com.redhat.victims</groupId>
+              <artifactId>enforce-victims-rule</artifactId>
+              <version>${enforce.victims.rule.version}</version>
+              <type>jar</type>
+            </dependency>
+          </dependencies>
           <executions>
+            <execution>
+              <id>enforce-victims-rule</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <rule implementation="com.redhat.victims.VictimsRule">
+                    <metadata>fatal</metadata>
+                    <fingerprint>fatal</fingerprint>
+                    <updates>daily</updates>
+                  </rule>
+                </rules>
+              </configuration>
+            </execution>
             <execution>
               <id>enforce-no-snapshots</id>
               <goals>
@@ -287,10 +320,6 @@
               <configuration>
                 <failFast>true</failFast>
                 <rules>
-                  <requireMavenVersion>
-                    <version>[3.2.2,)</version>
-                    <message>Sorry, but to build this project you must use Maven version 3.2.2 or later.</message>
-                  </requireMavenVersion>
                   <requireReleaseDeps>
                     <onlyWhenRelease>false</onlyWhenRelease>
                     <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
@@ -301,6 +330,32 @@
                   </requireReleaseDeps>
                 </rules>
                 <fail>true</fail>
+              </configuration>
+            </execution>
+            <execution>
+              <id>enforce-java</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <requireJavaVersion>
+                    <version>[1.8.0,)</version>
+                  </requireJavaVersion>
+                </rules>
+              </configuration>
+            </execution>
+            <execution>
+              <id>enforce-maven</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <requireMavenVersion>
+                    <version>[3.2.2,)</version>
+                  </requireMavenVersion>
+                </rules>
               </configuration>
             </execution>
           </executions>
@@ -411,11 +466,13 @@
           <configuration>
             <!-- Our integration tests shouldn't be run as unit tests -->
             <excludes>
+              <exclude>**/*IT.java</exclude>
               <exclude>**/*IntegrationTest.java</exclude>
               <exclude>**/*FunctionalTest.java</exclude>
             </excludes>
             <forkCount>3</forkCount>
             <reuseForks>true</reuseForks>
+            <argLine>-XX:MaxMetaspaceSize=512m ${jacoco.agent.unit.arg}</argLine>
           </configuration>
         </plugin>
         <plugin>
@@ -443,6 +500,7 @@
           <artifactId>maven-failsafe-plugin</artifactId>
           <version>${maven.failsafe.plugin.version}</version>
           <configuration>
+            <argLine>-XX:MaxMetaspaceSize=128m ${jacoco.agent.it.arg}</argLine>
             <includes>
               <include>**/*IT.java</include>
               <include>**/*IntegrationTest.java</include>
@@ -457,8 +515,57 @@
             </execution>
           </executions>
         </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco.maven.plugin.version}</version>
+          <executions>
+            <execution>
+              <id>default-prepare-agent</id>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+              
+              <configuration>
+                <destFile>${sonar.jacoco.reportPath}</destFile>
+                <propertyName>jacoco.agent.unit.arg</propertyName>
+                <append>true</append>
+              </configuration>
+            </execution>
+            <execution>
+              <id>default-prepare-agent-integration</id>
+              <goals>
+                <goal>prepare-agent-integration</goal>
+              </goals>
+              <configuration>
+                <destFile>${sonar.jacoco.itReportPath}</destFile>
+                <propertyName>jacoco.agent.it.arg</propertyName>
+                <append>true</append>
+              </configuration>
+            </execution>
+            <execution>
+              <id>default-report</id>
+              <goals>
+                <goal>report</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>default-report-integration</id>
+              <goals>
+                <goal>report-integration</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>${maven.enforcer.plugin.version}</version>
+      </plugin>
+    </plugins>
     <extensions>
       <extension>
         <groupId>org.kuali.maven.wagons</groupId>
@@ -502,6 +609,6 @@
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>0.0.10-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
   </parent>
 </project>

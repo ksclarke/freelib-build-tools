@@ -34,7 +34,6 @@
                 <li><a href="https://raw.githubusercontent.com/ksclarke/${config.project_name.toLowerCase()}/master/LICENSE.txt"
                 target="_blank">License↗</a></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Feedback/Questions</li>
                 <li><a href="http://github.com/ksclarke/${config.project_name.toLowerCase()}/issues"
                 target="_blank">Issues Queue↗</a></li>
                 <li><a href="https://groups.google.com/forum/#!forum/freelibrary-projects" target="_blank">Mailing List↗</a></li>

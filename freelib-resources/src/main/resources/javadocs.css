@@ -2,13 +2,13 @@
 /*
 Overall document style
 */
-@import url('http://fonts.googleapis.com/css?family=Cabin:400,700');
+@import url('http://fonts.googleapis.com/css?family=Droid+Sans');
 @import url('http://fonts.googleapis.com/css?family=Droid+Sans+Mono');
 
 body {
   background-color: #ffffff;
   color: #353833;
-  font-family: Cabin, sans-serif;
+  font-family: Droid Sans, sans-serif;
   font-size: 18px;
   margin: 0;
 }
@@ -611,7 +611,7 @@ ul.blockList ul.blockList ul.blockList li.blockList h3 {
 
 div.block {
   font-size: 16px;
-  font-family: Cabin, sans-serif;
+  font-family: Droid Sans, sans-serif;
 }
 
 td.colLast div {
