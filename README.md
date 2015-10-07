@@ -12,4 +12,4 @@ Projects that want to take advantage of these resources (probably just other Fre
 
 ### Contact Information
 
-Feel free to send any questions or comments about this project to Kevin S. Clarke (ksclarke@gmail.com)
+Feel free to send any questions or comments about this project to <a href="mailto:ksclarke@ksclarke.io">Kevin S. Clarke</a>.
