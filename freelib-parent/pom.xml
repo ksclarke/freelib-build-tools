@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>freelib-parent</artifactId>
@@ -61,11 +62,12 @@
     <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>${project.basedir}/target/site/checkstyle</config_loc>
-    <maven.checkstyle.version>2.15</maven.checkstyle.version>
+    <maven.checkstyle.version>2.17</maven.checkstyle.version>
+    <checkstyle.version>6.15</checkstyle.version>
 
     <!-- The extension we use to push site productions up to an S3 bucket -->
     <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>
-    
+
     <!-- Jacoco and Sonar configuration -->
     <jacoco.outputDir>${project.build.directory}</jacoco.outputDir>
     <jacoco.out.unit.file>jacoco-ut.exec</jacoco.out.unit.file>
@@ -325,7 +327,7 @@
                     <message>
                       <![CDATA[Sorry, dependency snapshots are not allowed! To temporarily ignore this]]>
                       <![CDATA[restriction add the following to the command line: -Denforcer.skip=true]]>
-                    </message>
+          </message>
                   </requireReleaseDeps>
                 </rules>
                 <fail>true</fail>
@@ -368,6 +370,13 @@
             <violationSeverity>warning</violationSeverity>
             <configLocation>${basedir}/target/site/checkstyle/checkstyle.xml</configLocation>
           </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle</artifactId>
+              <version>${checkstyle.version}</version>
+            </dependency>
+          </dependencies>
           <executions>
             <execution>
               <id>checkstyle</id>
@@ -524,7 +533,7 @@
               <goals>
                 <goal>prepare-agent</goal>
               </goals>
-              
+
               <configuration>
                 <destFile>${sonar.jacoco.reportPath}</destFile>
                 <propertyName>jacoco.agent.unit.arg</propertyName>
