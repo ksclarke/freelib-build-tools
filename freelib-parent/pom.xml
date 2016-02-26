@@ -366,6 +366,7 @@
           <version>${maven.checkstyle.version}</version>
           <configuration>
             <consoleOutput>true</consoleOutput>
+            <logViolationsToConsole>false</logViolationsToConsole>
             <violationSeverity>warning</violationSeverity>
             <configLocation>${basedir}/target/site/checkstyle/checkstyle.xml</configLocation>
           </configuration>
