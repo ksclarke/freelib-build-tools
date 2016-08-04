@@ -13,10 +13,10 @@
     <!-- Dependencies managed through this parent project -->
     <junit.version>4.12</junit.version>
     <xom.version>1.2.5</xom.version>
-    <slf4j.version>1.7.12</slf4j.version>
+    <slf4j.version>1.7.20</slf4j.version>
     <xmlunit.version>1.6</xmlunit.version>
     <groovy.version>2.3.6</groovy.version>
-    <logback.version>1.1.3</logback.version>
+    <logback.version>1.1.7</logback.version>
     <pegdown.version>1.5.0</pegdown.version>
     <phantomjs.version>1.9.7</phantomjs.version>
     <ghostdriver.version>1.1.0</ghostdriver.version>
@@ -32,7 +32,7 @@
     <maven.verifier.version>1.4</maven.verifier.version>
     <maven.filtering.version>1.3</maven.filtering.version>
     <phantomjs.plugin.version>0.4</phantomjs.plugin.version>
-    <exec.maven.plugin.version>1.4.0</exec.maven.plugin.version>
+    <exec.maven.plugin.version>1.5.0</exec.maven.plugin.version>
     <maven.plugin.plugin.version>3.4</maven.plugin.plugin.version>
     <maven.clean.plugin.version>2.6.1</maven.clean.plugin.version>
     <maven.install.plugin.version>2.3.1</maven.install.plugin.version>
@@ -43,8 +43,9 @@
     <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
     <maven.resources.plugin.version>2.7</maven.resources.plugin.version>
     <maven.dependency.plugin.version>2.10</maven.dependency.plugin.version>
-    <build.helper.maven.plugin.version>1.6</build.helper.maven.plugin.version>
-    <properties.maven.plugin.version>1.0-alpha-2</properties.maven.plugin.version>
+    <build.helper.maven.plugin.version>1.12</build.helper.maven.plugin.version>
+    <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
+    <coveralls.plugin.version>4.2.0</coveralls.plugin.version>
 
     <!-- Configure the project's character encodings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -62,7 +63,7 @@
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>${project.basedir}/target/site/checkstyle</config_loc>
     <maven.checkstyle.version>2.17</maven.checkstyle.version>
-    <checkstyle.version>6.16</checkstyle.version>
+    <checkstyle.version>7.1</checkstyle.version>
 
     <!-- The extension we use to push site productions up to an S3 bucket -->
     <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>
@@ -326,7 +327,7 @@
                     <message>
                       <![CDATA[Sorry, dependency snapshots are not allowed! To temporarily ignore this]]>
                       <![CDATA[restriction add the following to the command line: -Denforcer.skip=true]]>
-          </message>
+                    </message>
                   </requireReleaseDeps>
                 </rules>
                 <fail>true</fail>
@@ -526,7 +527,6 @@
               <goals>
                 <goal>prepare-agent</goal>
               </goals>
-
               <configuration>
                 <destFile>${sonar.jacoco.reportPath}</destFile>
                 <propertyName>jacoco.agent.unit.arg</propertyName>
@@ -557,6 +557,14 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.eluder.coveralls</groupId>
+          <artifactId>coveralls-maven-plugin</artifactId>
+          <version>${coveralls.plugin.version}</version>
+          <configuration>
+            <repoToken>${coveralls.token}</repoToken>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
