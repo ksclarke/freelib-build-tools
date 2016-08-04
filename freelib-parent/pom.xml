@@ -549,12 +549,18 @@
               <goals>
                 <goal>report</goal>
               </goals>
+              <configuration>
+                <dataFile>${sonar.jacoco.reportPath}</dataFile>
+              </configuration>
             </execution>
             <execution>
               <id>default-report-integration</id>
               <goals>
                 <goal>report-integration</goal>
               </goals>
+              <configuration>
+                <dataFile>${sonar.jacoco.itReportPath}</dataFile>
+              </configuration>
             </execution>
           </executions>
         </plugin>
