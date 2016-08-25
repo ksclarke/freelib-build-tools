@@ -19,13 +19,13 @@
             data-toggle="tooltip" data-placement="bottom" data-original-title="View project's source code">GitHub↗</a></li>
             <li><a href="http://github.com/ksclarke/${config.project_name.toLowerCase()}/releases" target="_blank"
             data-toggle="tooltip" data-placement="bottom" data-original-title="Download a stable release">Releases↗</a></li>
-            <li><a href="http://sonar.freelibrary.info/dashboard/index/info.freelibrary:${config.project_name.toLowerCase()}"
+            <li><a href="https://www.codacy.com/app/ksclarke/${config.project_name.toLowerCase()}/dashboard"
             target="_blank" data-toggle="tooltip" data-placement="bottom"
-            data-original-title="View Sonar&apos;s code metrics">Metrics↗</a></li>
+            data-original-title="View source code metrics">Metrics↗</a></li>
             <li><a href="https://travis-ci.org/ksclarke/${config.project_name.toLowerCase()}" target="_blank"
-            data-toggle="tooltip" data-placement="bottom" data-original-title="View Travis builds">CI↗</a></li>
+            data-toggle="tooltip" data-placement="bottom" data-original-title="View build history">Travis↗</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation<b class="caret"></b></a>
               <ul class="dropdown-menu"><%
                 for (index in config.project_docs.tokenize( '|' )) { %>
                   <li><a href="${index.toLowerCase()}.html">${index}</a></li>
@@ -39,9 +39,6 @@
                 <li><a href="https://groups.google.com/forum/#!forum/freelibrary-projects" target="_blank">Mailing List↗</a></li>
               </ul>
             </li>
-            <li><a href="<%if (content.rootpath) {%>${content.rootpath}<% } else { %><% }%>${config.feed_file}" target="_blank"
-              data-toggle="tooltip" data-placement="bottom" data-original-title="Subscribe to project updates">
-              <img style="margin: 0px;" width="70%" height="70%" src="images/rss.png"/></a></li>
           </ul>
         </div>
       </div>
