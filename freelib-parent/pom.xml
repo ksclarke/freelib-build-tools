@@ -12,44 +12,46 @@
 
     <!-- Dependencies managed through this parent project -->
     <junit.version>4.12</junit.version>
-    <xom.version>1.2.5</xom.version>
     <slf4j.version>1.7.20</slf4j.version>
     <xmlunit.version>1.6</xmlunit.version>
     <groovy.version>2.3.6</groovy.version>
     <logback.version>1.1.7</logback.version>
-    <pegdown.version>1.5.0</pegdown.version>
+    <pegdown.version>1.6.0</pegdown.version>
     <phantomjs.version>1.9.7</phantomjs.version>
     <ghostdriver.version>1.1.0</ghostdriver.version>
+    <freelib.utils.version>0.7.0</freelib.utils.version>
 
     <!-- Maven plugin dependencies managed through this parent project -->
-    <maven.core.version>3.2.5</maven.core.version>
-    <maven.plugin.api.version>3.2.5</maven.plugin.api.version>
+    <maven.version>3.3.9</maven.version>
     <maven.plugin.annotations.version>3.4</maven.plugin.annotations.version>
 
     <!-- Plugins managed through/in pluginManagement section -->
-    <sonar.plugin.version>2.6</sonar.plugin.version>
     <jetty.version>9.2.10.v20150310</jetty.version>
-    <maven.verifier.version>1.4</maven.verifier.version>
-    <maven.filtering.version>1.3</maven.filtering.version>
+    <maven.verifier.version>1.6</maven.verifier.version>
+    <maven.filtering.version>3.1.1</maven.filtering.version>
     <phantomjs.plugin.version>0.4</phantomjs.plugin.version>
     <exec.maven.plugin.version>1.5.0</exec.maven.plugin.version>
     <maven.plugin.plugin.version>3.4</maven.plugin.plugin.version>
-    <maven.clean.plugin.version>2.6.1</maven.clean.plugin.version>
-    <maven.install.plugin.version>2.3.1</maven.install.plugin.version>
+    <maven.clean.plugin.version>3.0.0</maven.clean.plugin.version>
+    <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
     <enforce.victims.rule.version>1.3.4</enforce.victims.rule.version>
     <maven.failsafe.plugin.version>2.17</maven.failsafe.plugin.version>
     <maven.enforcer.plugin.version>1.4.1</maven.enforcer.plugin.version>
-    <maven.javadoc.plugin.version>2.10.2</maven.javadoc.plugin.version>
-    <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
-    <maven.resources.plugin.version>2.7</maven.resources.plugin.version>
+    <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
+    <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
+    <maven.resources.plugin.version>3.0.1</maven.resources.plugin.version>
     <maven.dependency.plugin.version>2.10</maven.dependency.plugin.version>
     <build.helper.maven.plugin.version>1.12</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
-    <coveralls.plugin.version>4.2.0</coveralls.plugin.version>
+    <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
 
     <!-- Configure the project's character encodings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <!-- Default compiler settings -->
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
 
     <!-- Disable the default site generation; we'll use jbake instead -->
     <maven.site.skip>true</maven.site.skip>
@@ -68,26 +70,22 @@
     <!-- The extension we use to push site productions up to an S3 bucket -->
     <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>
 
-    <!-- Jacoco and Sonar configuration -->
-    <jacoco.outputDir>${project.build.directory}</jacoco.outputDir>
-    <jacoco.out.unit.file>jacoco-ut.exec</jacoco.out.unit.file>
-    <jacoco.out.it.file>jacoco-it.exec</jacoco.out.it.file>
-    <sonar.jacoco.reportPath>${jacoco.outputDir}/${jacoco.out.unit.file}</sonar.jacoco.reportPath>
-    <sonar.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.jacoco.itReportPath>
-    <jacoco.maven.plugin.version>0.7.4.201502262128</jacoco.maven.plugin.version>
+    <!-- Jacoco configuration -->
+    <jacoco.dataFile>${project.build.directory}/jacoco.exec</jacoco.dataFile>
+    <jacoco.maven.plugin.version>0.7.7.201606060606</jacoco.maven.plugin.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>info.freelibrary</groupId>
+        <artifactId>freelib-utils</artifactId>
+        <version>${freelib.utils.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
         <version>${slf4j.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>xom</groupId>
-        <artifactId>xom</artifactId>
-        <version>${xom.version}</version>
       </dependency>
       <!-- Below dependencies are only used for testing -->
       <dependency>
@@ -118,7 +116,7 @@
       <dependency>
         <groupId>org.apache.maven</groupId>
         <artifactId>maven-plugin-api</artifactId>
-        <version>${maven.plugin.api.version}</version>
+        <version>${maven.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.maven.plugin-tools</groupId>
@@ -129,7 +127,7 @@
       <dependency>
         <groupId>org.apache.maven</groupId>
         <artifactId>maven-core</artifactId>
-        <version>${maven.core.version}</version>
+        <version>${maven.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.maven.shared</groupId>
@@ -143,6 +141,20 @@
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>info.freelibrary</groupId>
+          <artifactId>freelib-utils</artifactId>
+          <version>${freelib.utils.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven.compiler.plugin.version}</version>
+          <configuration>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
+            <generatedSourcesDirectory>${project.basedir}/src/main/generated</generatedSourcesDirectory>
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-install-plugin</artifactId>
@@ -455,20 +467,6 @@
           </executions>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>sonar-maven-plugin</artifactId>
-          <version>${sonar.plugin.version}</version>
-          <executions>
-            <execution>
-              <id>sonar-metrics</id>
-              <phase>post-site</phase>
-              <goals>
-                <goal>sonar</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${maven.surefire.plugin.version}</version>
@@ -481,7 +479,7 @@
             </excludes>
             <forkCount>3</forkCount>
             <reuseForks>true</reuseForks>
-            <argLine>-XX:MaxMetaspaceSize=512m ${jacoco.agent.unit.arg}</argLine>
+            <argLine>-XX:MaxMetaspaceSize=512m ${jacoco.agent.arg}</argLine>
           </configuration>
         </plugin>
         <plugin>
@@ -502,7 +500,7 @@
           <artifactId>maven-failsafe-plugin</artifactId>
           <version>${maven.failsafe.plugin.version}</version>
           <configuration>
-            <argLine>-XX:MaxMetaspaceSize=128m ${jacoco.agent.it.arg}</argLine>
+            <argLine>-XX:MaxMetaspaceSize=128m ${jacoco.agent.arg}</argLine>
             <includes>
               <include>**/*IT.java</include>
               <include>**/*IntegrationTest.java</include>
@@ -528,8 +526,8 @@
                 <goal>prepare-agent</goal>
               </goals>
               <configuration>
-                <destFile>${sonar.jacoco.reportPath}</destFile>
-                <propertyName>jacoco.agent.unit.arg</propertyName>
+                <destFile>${jacoco.dataFile}</destFile>
+                <propertyName>jacoco.agent.arg</propertyName>
                 <append>true</append>
               </configuration>
             </execution>
@@ -539,8 +537,8 @@
                 <goal>prepare-agent-integration</goal>
               </goals>
               <configuration>
-                <destFile>${sonar.jacoco.itReportPath}</destFile>
-                <propertyName>jacoco.agent.it.arg</propertyName>
+                <destFile>${jacoco.dataFile}</destFile>
+                <propertyName>jacoco.agent.arg</propertyName>
                 <append>true</append>
               </configuration>
             </execution>
@@ -550,27 +548,10 @@
                 <goal>report</goal>
               </goals>
               <configuration>
-                <dataFile>${sonar.jacoco.reportPath}</dataFile>
-              </configuration>
-            </execution>
-            <execution>
-              <id>default-report-integration</id>
-              <goals>
-                <goal>report-integration</goal>
-              </goals>
-              <configuration>
-                <dataFile>${sonar.jacoco.itReportPath}</dataFile>
+                <dataFile>${jacoco.dataFile}</dataFile>
               </configuration>
             </execution>
           </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.eluder.coveralls</groupId>
-          <artifactId>coveralls-maven-plugin</artifactId>
-          <version>${coveralls.plugin.version}</version>
-          <configuration>
-            <repoToken>${coveralls.token}</repoToken>
-          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -624,6 +605,6 @@
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>0.1.7-SNAPSHOT</version>
+    <version>0.1.7</version>
   </parent>
 </project>
