@@ -480,6 +480,9 @@
             <forkCount>3</forkCount>
             <reuseForks>true</reuseForks>
             <argLine>-XX:MaxMetaspaceSize=512m ${jacoco.agent.arg}</argLine>
+            <systemPropertyVariables>
+              <http.agent>Maven</http.agent>
+            </systemPropertyVariables>
           </configuration>
         </plugin>
         <plugin>
