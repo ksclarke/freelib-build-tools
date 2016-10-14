@@ -484,6 +484,7 @@
             <systemPropertyVariables>
               <http.agent>Maven</http.agent>
             </systemPropertyVariables>
+            <trimStackTrace>false</trimStackTrace>
           </configuration>
         </plugin>
         <plugin>
