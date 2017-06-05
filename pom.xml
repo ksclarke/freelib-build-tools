@@ -3,7 +3,7 @@
 
   <groupId>info.freelibrary</groupId>
   <artifactId>freelib-build-tools</artifactId>
-  <version>0.1.11</version>
+  <version>0.1.12-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>FreeLibrary Build Tools</name>
   <description>Build tools for FreeLibrary projects.</description>
