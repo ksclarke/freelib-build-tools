@@ -36,7 +36,6 @@
                 <li class="divider"></li>
                 <li><a href="http://github.com/ksclarke/${config.project_name.toLowerCase()}/issues"
                 target="_blank">Issues Queue↗</a></li>
-                <li><a href="https://groups.google.com/forum/#!forum/freelibrary-projects" target="_blank">Mailing List↗</a></li>
               </ul>
             </li>
           </ul>
