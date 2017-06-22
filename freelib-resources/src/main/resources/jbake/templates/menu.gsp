@@ -31,8 +31,7 @@
                   <li><a href="${index.toLowerCase()}.html">${index}</a></li>
                 <% } %>
                 <li><a href="javadocs.html">Javadocs</a></li>
-                <li><a href="https://raw.githubusercontent.com/ksclarke/${config.project_name.toLowerCase()}/master/LICENSE.txt"
-                target="_blank">License↗</a></li>
+                <li><a href="https://github.com/ksclarke/${config.project_name.toLowerCase()}/blob/master/LICENSE.txt" target="_blank">License↗</a></li>
                 <li class="divider"></li>
                 <li><a href="http://github.com/ksclarke/${config.project_name.toLowerCase()}/issues"
                 target="_blank">Issues Queue↗</a></li>
