@@ -29,7 +29,7 @@
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>0.1.15</version>
+    <version>0.1.16-SNAPSHOT</version>
   </parent>
 
 </project>
