@@ -19,7 +19,7 @@
     <pegdown.version>1.6.0</pegdown.version>
     <phantomjs.version>1.9.7</phantomjs.version>
     <ghostdriver.version>1.1.0</ghostdriver.version>
-    <freelib.utils.version>0.8.2</freelib.utils.version>
+    <freelib.utils.version>0.8.3</freelib.utils.version>
 
     <!-- Maven plugin dependencies managed through this parent project -->
     <maven.version>3.5.0</maven.version>
