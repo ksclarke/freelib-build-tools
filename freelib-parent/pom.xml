@@ -26,7 +26,6 @@
     <maven.plugin.annotations.version>3.5</maven.plugin.annotations.version>
 
     <!-- Plugins managed through/in pluginManagement section -->
-    <jetty.version>9.2.10.v20150310</jetty.version>
     <maven.verifier.version>1.6</maven.verifier.version>
     <maven.filtering.version>3.1.1</maven.filtering.version>
     <phantomjs.plugin.version>0.4</phantomjs.plugin.version>
@@ -65,7 +64,7 @@
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>${project.basedir}/src/main/tools/checkstyle</config_loc>
     <maven.checkstyle.version>2.17</maven.checkstyle.version>
-    <checkstyle.version>7.8.1</checkstyle.version>
+    <checkstyle.version>8.1</checkstyle.version>
 
     <!-- The extension we use to push site productions up to an S3 bucket -->
     <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>
