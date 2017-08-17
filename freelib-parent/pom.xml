@@ -63,7 +63,7 @@
 
     <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
-    <config_loc>${project.basedir}/target/site/checkstyle</config_loc>
+    <config_loc>${project.basedir}/src/main/tools/checkstyle</config_loc>
     <maven.checkstyle.version>2.17</maven.checkstyle.version>
     <checkstyle.version>7.8.1</checkstyle.version>
 
@@ -270,7 +270,7 @@
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <outputDirectory>${basedir}/target/site</outputDirectory>
+                <outputDirectory>${basedir}/src/main/tools</outputDirectory>
                 <resources>
                   <resource>
                     <directory>${basedir}/target/build-resources</directory>
@@ -381,7 +381,7 @@
             <consoleOutput>true</consoleOutput>
             <logViolationsToConsole>false</logViolationsToConsole>
             <violationSeverity>warning</violationSeverity>
-            <configLocation>${basedir}/target/site/checkstyle/checkstyle.xml</configLocation>
+            <configLocation>${basedir}/src/main/tools/checkstyle/checkstyle.xml</configLocation>
           </configuration>
           <dependencies>
             <dependency>
