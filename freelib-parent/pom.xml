@@ -608,6 +608,6 @@
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>0.1.16</version>
+    <version>0.1.17-SNAPSHOT</version>
   </parent>
 </project>
