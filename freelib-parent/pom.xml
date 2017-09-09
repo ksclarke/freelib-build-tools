@@ -19,7 +19,6 @@
     <pegdown.version>1.6.0</pegdown.version>
     <phantomjs.version>1.9.7</phantomjs.version>
     <ghostdriver.version>1.1.0</ghostdriver.version>
-    <freelib.utils.version>0.8.3</freelib.utils.version>
 
     <!-- Maven plugin dependencies managed through this parent project -->
     <maven.version>3.5.0</maven.version>
@@ -64,7 +63,7 @@
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>${project.basedir}/src/main/tools/checkstyle</config_loc>
     <maven.checkstyle.version>2.17</maven.checkstyle.version>
-    <checkstyle.version>8.1</checkstyle.version>
+    <checkstyle.version>8.2</checkstyle.version>
 
     <!-- The extension we use to push site productions up to an S3 bucket -->
     <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>
@@ -76,11 +75,6 @@
 
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>info.freelibrary</groupId>
-        <artifactId>freelib-utils</artifactId>
-        <version>${freelib.utils.version}</version>
-      </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
@@ -140,11 +134,6 @@
   <build>
     <pluginManagement>
       <plugins>
-        <plugin>
-          <groupId>info.freelibrary</groupId>
-          <artifactId>freelib-utils</artifactId>
-          <version>${freelib.utils.version}</version>
-        </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${maven.compiler.plugin.version}</version>
