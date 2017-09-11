@@ -77,7 +77,6 @@
     <module name="IllegalThrows" />
     <module name="HideUtilityClassConstructor" />
     <module name="MultipleVariableDeclarations" />
-    <module name="FileContentsHolder" />
     <module name="SuppressionCommentFilter">
       <property name="offCommentFormat" value="BEGIN GENERATED CODE" />
       <property name="onCommentFormat" value="END GENERATED CODE" />
