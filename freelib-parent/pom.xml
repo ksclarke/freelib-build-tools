@@ -42,6 +42,7 @@
     <build.helper.maven.plugin.version>3.0.0</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.6.1</maven.compiler.plugin.version>
+    <pmd.plugin.version>3.8</pmd.plugin.version>
 
     <!-- Configure the project's character encodings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -141,6 +142,17 @@
             <source>${maven.compiler.source}</source>
             <target>${maven.compiler.target}</target>
             <generatedSourcesDirectory>${project.basedir}/src/main/generated</generatedSourcesDirectory>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <version>${pmd.plugin.version}</version>
+          <configuration>
+            <rulesets>
+              <ruleset>src/main/tools/pmd/pmd-rules.xml</ruleset>
+            </rulesets>
+            <targetJdk>1.8</targetJdk>
           </configuration>
         </plugin>
         <plugin>
