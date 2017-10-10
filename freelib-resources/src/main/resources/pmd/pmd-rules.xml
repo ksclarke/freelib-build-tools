@@ -5,6 +5,7 @@
   <description>FreeLibrary PMD Rules</description>
 
   <exclude-pattern>.*/test/.*</exclude-pattern>
+  <exclude-pattern>.*/generated/.*</exclude-pattern>
   <rule ref="rulesets/java/android.xml" />
   <rule ref="rulesets/java/basic.xml">
     <exclude name="AvoidUsingOctalValues" />
