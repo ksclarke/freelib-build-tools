@@ -149,6 +149,7 @@
           <artifactId>maven-pmd-plugin</artifactId>
           <version>${pmd.plugin.version}</version>
           <configuration>
+            <linkXRef>false</linkXRef>
             <rulesets>
               <ruleset>src/main/tools/pmd/pmd-rules.xml</ruleset>
             </rulesets>
