@@ -610,6 +610,6 @@
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>0.2.6-SNAPSHOT</version>
+    <version>0.2.6</version>
   </parent>
 </project>
