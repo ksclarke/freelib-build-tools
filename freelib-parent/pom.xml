@@ -401,38 +401,41 @@
             </execution>
           </executions>
         </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>${maven.javadoc.plugin.version}</version>
-          <dependencies>
-            <dependency>
-              <groupId>info.freelibrary</groupId>
-              <artifactId>freelib-resources</artifactId>
-              <version>${freelib.resources.version}</version>
-            </dependency>
-          </dependencies>
-          <configuration>
-            <stylesheetfile>javadocs.css</stylesheetfile>
-            <nonavbar>true</nonavbar>
-            <nosince>true</nosince>
-            <notimestamp>true</notimestamp>
-            <bottom> </bottom>
-            <detectLinks>false</detectLinks>
-            <links>
-              <link>http://www.xmlunit.org/api/java/master</link>
-            </links>
-          </configuration>
-          <executions>
-            <execution>
-              <id>site-javadocs</id>
-              <phase>site</phase>
-              <goals>
-                <goal>javadoc</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>info.freelibrary</groupId>
+            <artifactId>freelib-resources</artifactId>
+            <version>${freelib.resources.version}</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <stylesheetfile>javadocs.css</stylesheetfile>
+          <nonavbar>true</nonavbar>
+          <show>public</show>
+          <nosince>true</nosince>
+          <notimestamp>true</notimestamp>
+          <bottom> </bottom>
+          <detectLinks>false</detectLinks>
+          <additionalJOptions>
+            <additionalJOption>-J-Dhttp.agent=maven-javadoc-plugin-${project.name}</additionalJOption>
+          </additionalJOptions>
+          <links>
+            <link>http://javadoc.io/page/io.airlift/airline/${airline.version}</link>
+            <link>https://docs.oracle.com/javase/8/docs/api/</link>
+          </links>
+        </configuration>
+        <executions>
+          <execution>
+            <id>site-javadocs</id>
+            <phase>site</phase>
+            <goals>
+              <goal>javadoc</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
         <plugin>
           <groupId>br.com.ingenieux</groupId>
           <artifactId>jbake-maven-plugin</artifactId>
