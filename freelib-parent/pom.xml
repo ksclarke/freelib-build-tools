@@ -418,7 +418,7 @@
             <nosince>true</nosince>
             <notimestamp>true</notimestamp>
             <bottom> </bottom>
-            <detectLinks>true</detectLinks>
+            <detectLinks>false</detectLinks>
             <links>
               <link>http://www.xmlunit.org/api/java/master</link>
             </links>
