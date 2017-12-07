@@ -425,6 +425,7 @@
             <link>http://javadoc.io/page/io.airlift/airline/${airline.version}</link>
             <link>https://docs.oracle.com/javase/8/docs/api/</link>
           </links>
+          <sourcepath>src/main/java:src/main/generated</sourcepath>
         </configuration>
         <executions>
           <execution>
