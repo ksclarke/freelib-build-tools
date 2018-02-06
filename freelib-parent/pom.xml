@@ -63,8 +63,8 @@
     <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>${project.basedir}/src/main/tools/checkstyle</config_loc>
-    <maven.checkstyle.version>2.17</maven.checkstyle.version>
-    <checkstyle.version>8.2</checkstyle.version>
+    <maven.checkstyle.version>3.0.0</maven.checkstyle.version>
+    <checkstyle.version>8.7</checkstyle.version>
 
     <!-- The extension we use to push site productions up to an S3 bucket -->
     <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>
@@ -142,6 +142,7 @@
             <source>${maven.compiler.source}</source>
             <target>${maven.compiler.target}</target>
             <generatedSourcesDirectory>${project.basedir}/src/main/generated</generatedSourcesDirectory>
+            <generatedTestSourcesDirectory>${project.basedir}/src/main/generated</generatedTestSourcesDirectory>
           </configuration>
         </plugin>
         <plugin>
