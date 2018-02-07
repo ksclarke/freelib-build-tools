@@ -152,7 +152,7 @@
           <configuration>
             <linkXRef>false</linkXRef>
             <rulesets>
-              <ruleset>src/main/tools/pmd/pmd-rules.xml</ruleset>
+              <ruleset>${project.basedir}/src/main/tools/pmd/pmd-rules.xml</ruleset>
             </rulesets>
             <targetJdk>1.8</targetJdk>
           </configuration>
@@ -426,7 +426,7 @@
             <link>http://javadoc.io/page/io.airlift/airline/${airline.version}</link>
             <link>https://docs.oracle.com/javase/8/docs/api/</link>
           </links>
-          <sourcepath>src/main/java:src/main/generated</sourcepath>
+          <sourcepath>${project.basedir}/src/main/java:src/main/generated</sourcepath>
         </configuration>
         <executions>
           <execution>
@@ -500,7 +500,7 @@
             <systemProperties>
               <systemProperty>
                 <key>logback.configurationFile</key>
-                <value>src/main/resources/logback.xml</value>
+                <value>${project.basedir}/src/main/resources/logback.xml</value>
               </systemProperty>
             </systemProperties>
           </configuration>
