@@ -12,6 +12,9 @@ addons:
     packages:
       - libxml2-utils
 
+before_script:
+  - mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -v
+
 script:
   - xmllint --valid --noout freelib-resources/src/main/resources/checkstyle/checkstyle.xml
   - xmllint --valid --noout freelib-resources/src/main/resources/checkstyle/checkstyle-suppressions.xml
