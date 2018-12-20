@@ -9,7 +9,6 @@
     <meta name="keywords" content="<%if (config.project_keywords) {%>${config.project_keywords.join(', ')}<% } else { %><% }%>">
     <meta name="generator" content="JBake">
 
-    <!-- Le styles -->
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
     <link href="<%if (content.rootpath) {%>${content.rootpath}<% } else { %><% }%>css/bootstrap.min.css" rel="stylesheet">
