@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>freelib-parent</artifactId>
@@ -14,7 +15,7 @@
     <junit.version>4.12</junit.version>
     <slf4j.version>1.7.25</slf4j.version>
     <xmlunit.version>1.6</xmlunit.version>
-    <groovy.version>2.5.1</groovy.version>
+    <groovy.version>2.5.4</groovy.version>
     <logback.version>1.2.3</logback.version>
     <pegdown.version>1.6.0</pegdown.version>
     <phantomjs.version>1.9.7</phantomjs.version>
@@ -432,6 +433,12 @@
             </dependency>
             <dependency>
               <groupId>org.codehaus.groovy</groupId>
+              <artifactId>groovy-dateutil</artifactId>
+              <version>${groovy.version}</version>
+              <classifier>indy</classifier>
+            </dependency>
+            <dependency>
+              <groupId>org.codehaus.groovy</groupId>
               <artifactId>groovy-templates</artifactId>
               <version>${groovy.version}</version>
             </dependency>
@@ -492,6 +499,10 @@
               <include>**/*IT.java</include>
               <include>**/*IntegrationTest.java</include>
             </includes>
+            <excludes>
+              <exclude>**/*.xml</exclude>
+              <exclude>**/*.md</exclude>
+            </excludes>
           </configuration>
           <executions>
             <execution>
