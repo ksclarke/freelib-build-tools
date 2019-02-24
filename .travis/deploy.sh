@@ -12,5 +12,9 @@ if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then
   if [[ "$PROJECT_VERSION" == *"SNAPSHOT"* ]]; then
     echo "[INFO] Deploying Jar(s) to the snapshot repository defined in the settings.xml file"
     mvn deploy -s "$SETTINGS_FILE" -Pdeploy -Dmaven.main.skip -Dmaven.test.skip=true | grep Uploaded.*jar
+  else
+    echo "Building $TRAVIS_BRANCH $PROJECT_VERSION"
   fi
+elif [[ "$TRAVIS_BRANCH" == "TRAVIS_TAG" ]]; then
+  echo "Building a tag: $TRAVIS_TAG"
 fi
