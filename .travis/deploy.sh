@@ -7,7 +7,7 @@
 
 if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then
   PROJECT_VERSION=$(mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec)
-  SETTINGS_FILE=$(find . -name settings.xml)
+  SETTINGS_FILE=$(find . -name settings.xml | grep -v target)
 
   if [[ "$PROJECT_VERSION" == *"SNAPSHOT"* ]]; then
     echo "[INFO] Deploying Jar(s) to the snapshot repository defined in the settings.xml file"
