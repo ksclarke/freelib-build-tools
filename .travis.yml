@@ -22,6 +22,9 @@ script:
   - test "0" -eq $([ -f freelib-resources/target/zipout/checkstyle/checkstyle.xml ] && echo "0" || echo "1")
   - test "0" -eq $([ -f freelib-resources/target/zipout/checkstyle/checkstyle-suppressions.xml ] && echo "0" || echo "1")
 
+after_success:
+- .travis/deploy.sh
+
 notifications:
   irc:
     channels:
