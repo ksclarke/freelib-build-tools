@@ -5,16 +5,20 @@
 # Publishes snapshots or, if our version isn't a snapshot, stable artifacts.
 #
 
-if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]]; then
-  PROJECT_VERSION=$(mvn -q -Dexec.executable="echo" -Dexec.args='${project.version}' --non-recursive exec:exec)
+# Get the directory from which this script is running
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TRAVIS_BRANCH" == "TRAVIS_TAG" || "$TRAVIS_BRANCH" == "master") ]]; then
+  # Find the settings file that we'll use to release
   SETTINGS_FILE=$(find . -name settings.xml | grep -v target)
 
-  if [[ "$PROJECT_VERSION" == *"SNAPSHOT"* ]]; then
-    echo "[INFO] Deploying Jar(s) to the snapshot repository defined in the settings.xml file"
-    mvn deploy -s "$SETTINGS_FILE" -Pdeploy -Dmaven.main.skip -Dmaven.test.skip=true | grep Uploaded.*jar
-  else
-    echo "Building $TRAVIS_BRANCH $PROJECT_VERSION"
+  # Add the release key we'll use to publish through Sonatype
+  gpg --import src/main/resources/build-key.gpg
+
+  # If we have a tag, we're doing a real release
+  if [[ "$TRAVIS_BRANCH" == "TRAVIS_TAG" ]]; then
+    mvn versions:set -DnewVersion="${TRAVIS_TAG}"
   fi
-elif [[ "$TRAVIS_BRANCH" == "TRAVIS_TAG" ]]; then
-  echo "Building a tag: $TRAVIS_TAG"
+
+  "$DIR/release" "$SETTINGS_FILE" | grep Uploaded.*jar
 fi

@@ -8,6 +8,11 @@ addons:
     packages:
       - libxml2-utils
 
+before_install:
+  - >
+    openssl aes-256-cbc -K $encrypted_c39593dffbcc_key -iv $encrypted_c39593dffbcc_iv \
+      -in src/main/resources/build-key.gpg.enc -out src/main/resources/build-key.gpg -d
+
 before_script:
   - mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version
 

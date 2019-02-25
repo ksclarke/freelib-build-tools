@@ -1,0 +1,8 @@
+#! /bin/bash
+
+# We can supply a settings.xml file for custom settings
+if [ -z "$1" ]; then
+  mvn clean deploy -P release
+else
+  mvn clean deploy -P release -s "$1"
+fi
