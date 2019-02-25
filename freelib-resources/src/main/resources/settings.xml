@@ -28,6 +28,7 @@
       </activation>
       <properties>
         <dev.tools>JDWP_AGENTLIB JMX_REMOTE</dev.tools>
+        <gpg.passphrase>env.BUILD_PASSPHRASE</gpg.passphrase>
       </properties>
     </profile>
   </profiles>

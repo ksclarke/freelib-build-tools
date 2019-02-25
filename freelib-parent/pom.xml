@@ -23,8 +23,9 @@
     <!-- Maven plugin dependencies managed through this parent project -->
     <maven.version>3.5.4</maven.version>
     <maven.plugin.annotations.version>3.5.2</maven.plugin.annotations.version>
-
-    <!-- Plugins managed through/in pluginManagement section -->
+    <gpg.plugin.version>1.5</gpg.plugin.version>
+    <maven.source.plugin.version>2.2.1</maven.source.plugin.version>
+    <nexus.staging.plugin.version>1.6.3</nexus.staging.plugin.version>
     <maven.verifier.version>1.6</maven.verifier.version>
     <maven.filtering.version>3.1.1</maven.filtering.version>
     <phantomjs.plugin.version>0.7</phantomjs.plugin.version>
@@ -572,18 +573,39 @@
   <profiles>
     <!-- The release-sign-artifacts profile allows for the publishing of project artifact -->
     <profile>
-      <id>release-sign-artifacts</id>
-      <activation>
-        <property>
-          <name>performRelease</name>
-          <value>true</value>
-        </property>
-      </activation>
+      <id>release</id>
       <build>
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${maven.source.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${maven.javadoc.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
+            <version>${gpg.plugin.version}</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
@@ -593,6 +615,17 @@
                 </goals>
               </execution>
             </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>${nexus.staging.plugin.version}</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>sonatype-nexus-staging</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
           </plugin>
         </plugins>
       </build>
@@ -709,6 +742,7 @@
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>0.3.5-SNAPSHOT</version>
+    <version>3.5.0</version>
   </parent>
+
 </project>
