@@ -14,7 +14,7 @@ before_install:
       -in src/main/resources/build-key.gpg.enc -out src/main/resources/build-key.gpg -d
 
 install:
-  - mvn install -qq -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - mvn install -q -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
 script:
   - xmllint --noout freelib-resources/src/main/resources/checkstyle/checkstyle.xml
