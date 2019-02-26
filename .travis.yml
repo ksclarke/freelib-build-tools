@@ -17,7 +17,7 @@ script:
   - xmllint --noout freelib-resources/src/main/resources/checkstyle/checkstyle.xml
   - xmllint --noout freelib-resources/src/main/resources/checkstyle/checkstyle-suppressions.xml
   - mvn -q install
-  - export JAR_VERSION=`mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version |grep -Ev '(^\[|Download\w+:)'`
+  - export JAR_VERSION=$(.travis/get_version)
   - echo "Testing resource packaging for ${JAR_VERSION}"
   - unzip -qq -o -d freelib-resources/target/zipout "freelib-resources/target/freelib-resources-${JAR_VERSION}.jar"
   - echo "Unpacked resources successfully"
