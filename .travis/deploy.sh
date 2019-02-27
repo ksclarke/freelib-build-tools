@@ -8,7 +8,7 @@
 # Get the directory from which this script is running
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TRAVIS_BRANCH" == "TRAVIS_TAG" || "$TRAVIS_BRANCH" == "master") ]]; then
+if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TRAVIS_BRANCH" == "$TRAVIS_TAG" || "$TRAVIS_BRANCH" == "master") ]]; then
   # Find the settings file that we'll use to release
   SETTINGS_FILE=$(find . -name settings.xml | grep -v target)
 
