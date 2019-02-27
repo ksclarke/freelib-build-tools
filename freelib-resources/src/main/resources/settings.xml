@@ -29,8 +29,8 @@
       <properties>
         <dev.tools>JDWP_AGENTLIB JMX_REMOTE</dev.tools>
         <gpg.executable>gpg</gpg.executable>
-        <gpg.keyname>env.BUILD_KEYNAME</gpg.keyname>
-        <gpg.passphrase>env.BUILD_PASSPHRASE</gpg.passphrase>
+        <gpg.keyname>${env.BUILD_KEYNAME}</gpg.keyname>
+        <gpg.passphrase>${env.BUILD_PASSPHRASE}</gpg.passphrase>
       </properties>
     </profile>
   </profiles>
