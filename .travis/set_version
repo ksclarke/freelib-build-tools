@@ -1,3 +1,3 @@
 #! /bin/bash
 
-mvn versions:set -DnewVersion="$1"
+mvn -q versions:set -DnewVersion="$1"

@@ -17,7 +17,7 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TRAVIS_BRANCH" == "TRAVIS_TAG" || 
 
   # If we have a tag, we're doing a real release
   if [[ "$TRAVIS_BRANCH" == "TRAVIS_TAG" ]]; then
-    mvn versions:set -DnewVersion="${TRAVIS_TAG}"
+    mvn -q versions:set -DnewVersion="${TRAVIS_TAG}"
   fi
 
   "$DIR/release" "$SETTINGS_FILE"
