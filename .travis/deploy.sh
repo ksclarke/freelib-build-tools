@@ -20,5 +20,6 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TRAVIS_BRANCH" == "TRAVIS_TAG" || 
     mvn versions:set -DnewVersion="${TRAVIS_TAG}"
   fi
 
+  "$DIR/release" "$SETTINGS_FILE"
   "$DIR/release" "$SETTINGS_FILE" | grep Uploaded.*jar
 fi
