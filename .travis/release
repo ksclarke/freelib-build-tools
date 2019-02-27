@@ -1,5 +1,10 @@
 #! /bin/bash
 
+#
+# A simple script to perform a release. It can be run locally or from a CI server.
+# From CI, a settings.xml file must be supplied.
+#
+
 # We can supply a settings.xml file for custom settings
 if [ -z "$1" ]; then
   mvn clean deploy -P release

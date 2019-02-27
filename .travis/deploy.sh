@@ -15,10 +15,11 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TRAVIS_BRANCH" == "TRAVIS_TAG" || 
   # Add the release key we'll use to publish through Sonatype
   gpg --import src/main/resources/build-key.gpg
 
-  # If we have a tag, we're doing a real release
+  # If we have a tag, we're doing a real release; otherwise it is a snapshot build
   if [[ "$TRAVIS_BRANCH" == "TRAVIS_TAG" ]]; then
     mvn -q versions:set -DnewVersion="${TRAVIS_TAG}"
   fi
 
+  # Do a release and note which jar files are uploaded
   "$DIR/release" "$SETTINGS_FILE" | grep Uploaded.*jar
 fi
