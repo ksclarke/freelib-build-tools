@@ -16,7 +16,7 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TRAVIS_BRANCH" == "$TRAVIS_TAG" ||
   gpg --import src/main/resources/build-key.gpg
 
   # If we have a tag, we're doing a real release; otherwise it is a snapshot build
-  if [[ "$TRAVIS_BRANCH" == "TRAVIS_TAG" ]]; then
+  if [[ "$TRAVIS_BRANCH" == "$TRAVIS_TAG" ]]; then
     mvn -q versions:set -DnewVersion="${TRAVIS_TAG}"
   fi
 

@@ -16,3 +16,5 @@ else
 fi
 
 git tag -s "$TAG" -m "Tagging \"$TAG\" for release"
+
+echo "Created new tag: $TAG"
