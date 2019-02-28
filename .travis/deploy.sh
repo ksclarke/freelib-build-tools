@@ -7,8 +7,9 @@
 
 # Get the directory from which this script is running
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+TAG="$($DIR/next_tag)"
 
-if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TRAVIS_BRANCH" == "$TRAVIS_TAG" || "$TRAVIS_BRANCH" == "master") ]]; then
+if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TAG" == "$TRAVIS_TAG" || "$TRAVIS_BRANCH" == "master") ]]; then
   # Find the settings file that we'll use to release
   SETTINGS_FILE=$(find . -name settings.xml | grep -v target)
 
@@ -17,7 +18,7 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TRAVIS_BRANCH" == "$TRAVIS_TAG" ||
 
   # If we have a tag, we're doing a real release; otherwise it is a snapshot build
   if [[ "$TRAVIS_BRANCH" == "$TRAVIS_TAG" ]]; then
-    mvn -q versions:set -DnewVersion="$TRAVIS_TAG"
+    mvn -q versions:set -DnewVersion="$($DIR/next_version)"
   fi
 
   # Do a release and note which jar files are uploaded
