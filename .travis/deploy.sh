@@ -23,6 +23,5 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TAG" == "$TRAVIS_TAG" || "$TRAVIS_
   fi
 
   # Do a release and note which jar files are uploaded
-  "$DIR/release" "$SETTINGS_FILE"
-# | grep Uploaded.*jar
+  "$DIR/release" "$SETTINGS_FILE" | grep -E 'Uploaded.*(pom|jar)$'
 fi

@@ -3,12 +3,32 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 TAG="$($DIR/next_tag)"
 
+commit_snapshot () {
+  $DIR/clean
+
+  git commit -am "Creating new snapshot: $($DIR/get_version)"
+  git push
+}
+
 echo "Preparing $($DIR/get_version)"
 
 $DIR/version
+$DIR/clean
 
 git commit -am "Creating new version: $($DIR/get_version)"
 git push
 
 $DIR/tag "$TAG"
 $DIR/push_tag
+
+if [ "$1" == 'M' ]; then
+  $DIR/set_version "$($DIR/increment_version -M $($DIR/get_version))"
+  commit_snapshot
+elif [ "$1" == 'm' ]; then
+  $DIR/set_version "$($DIR/increment_version -m $($DIR/get_version))"
+  commit_snapshot
+elif [ "$1" == 'p' ]; then
+  $DIR/set_version "$($DIR/increment_vresion -p $($DIR/get_version))"
+  commit_snapshot
+fi
+
