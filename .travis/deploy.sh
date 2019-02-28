@@ -9,6 +9,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 TAG="$($DIR/next_tag)"
 
+# If we're building a stable release, check that next tag matches requested tag
 if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TAG" == "$TRAVIS_TAG" || "$TRAVIS_BRANCH" == "master") ]]; then
   # Find the settings file that we'll use to release
   SETTINGS_FILE=$(find . -name settings.xml | grep -v target)
@@ -22,5 +23,6 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TAG" == "$TRAVIS_TAG" || "$TRAVIS_
   fi
 
   # Do a release and note which jar files are uploaded
-  "$DIR/release" "$SETTINGS_FILE" | grep Uploaded.*jar
+  "$DIR/release" "$SETTINGS_FILE"
+# | grep Uploaded.*jar
 fi
