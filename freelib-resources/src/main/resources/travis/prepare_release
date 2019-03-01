@@ -28,7 +28,9 @@ elif [ "$1" == 'm' ]; then
   $DIR/set_version "$($DIR/increment_version -m $($DIR/get_version))"
   commit_snapshot
 elif [ "$1" == 'p' ]; then
-  $DIR/set_version "$($DIR/increment_vresion -p $($DIR/get_version))"
+  $DIR/set_version "$($DIR/increment_version -p $($DIR/get_version))"
   commit_snapshot
+else
+  echo "No version increment arg give so you must manually increment"
 fi
 
