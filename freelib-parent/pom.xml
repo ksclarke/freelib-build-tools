@@ -226,7 +226,7 @@
                     <artifactId>freelib-resources</artifactId>
                     <version>${freelib.resources.version}</version>
                     <type>jar</type>
-                    <includes>eclipse/**/*,checkstyle/**/*,pmd/**/*</includes>
+                    <includes>eclipse/**/*,checkstyle/**/*,pmd/**/*,travis/**/*</includes>
                     <outputDirectory>${basedir}/target/build-resources</outputDirectory>
                   </artifactItem>
                 </artifactItems>

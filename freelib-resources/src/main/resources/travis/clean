@@ -4,4 +4,4 @@
 # A simple script to remove ephemeral files created during a Maven release.
 #
 
-find . -name *versionsBackup | xargs rm
+find . -name *versionsBackup | xargs rm -f
