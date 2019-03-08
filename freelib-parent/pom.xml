@@ -48,10 +48,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <!-- Default compiler settings -->
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-
     <!-- Disable the default site generation; we'll use jbake instead -->
     <maven.site.skip>true</maven.site.skip>
     <jbake.outputDirectory>target/site</jbake.outputDirectory>
@@ -139,8 +135,7 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${maven.compiler.plugin.version}</version>
           <configuration>
-            <source>${maven.compiler.source}</source>
-            <target>${maven.compiler.target}</target>
+            <release>8</release>
             <generatedSourcesDirectory>${project.basedir}/src/main/generated</generatedSourcesDirectory>
             <generatedTestSourcesDirectory>${project.basedir}/src/main/generated</generatedTestSourcesDirectory>
           </configuration>
@@ -400,10 +395,6 @@
             <additionalJOptions>
               <additionalJOption>-J-Dhttp.agent=maven-javadoc-plugin-${project.name}</additionalJOption>
             </additionalJOptions>
-            <links>
-              <link>http://javadoc.io/page/io.airlift/airline/${airline.version}</link>
-              <link>https://docs.oracle.com/javase/8/docs/api/</link>
-            </links>
             <sourcepath>${project.basedir}/src/main/java:src/main/generated</sourcepath>
           </configuration>
           <executions>
@@ -742,7 +733,7 @@
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>3.5.4</version>
+    <version>3.5.5-SNAPSHOT</version>
   </parent>
 
 </project>
