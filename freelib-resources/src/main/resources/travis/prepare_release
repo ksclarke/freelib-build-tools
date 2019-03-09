@@ -28,13 +28,13 @@ $DIR/tag "$TAG"
 $DIR/push_tag
 
 if [ "$1" == 'major' ]; then
-  $DIR/set_version "$($DIR/increment_version -M $($DIR/get_version))"
+  $DIR/set_version "$($DIR/increment_version -M $($DIR/get_version))-SNAPSHOT"
   commit_snapshot
 elif [ "$1" == 'minor' ]; then
-  $DIR/set_version "$($DIR/increment_version -m $($DIR/get_version))"
+  $DIR/set_version "$($DIR/increment_version -m $($DIR/get_version))-SNAPSHOT"
   commit_snapshot
 elif [ "$1" == 'patch' ]; then
-  $DIR/set_version "$($DIR/increment_version -p $($DIR/get_version))"
+  $DIR/set_version "$($DIR/increment_version -p $($DIR/get_version))-SNAPSHOT"
   commit_snapshot
 else
   echo "Error: unrecognized version increment argument"
