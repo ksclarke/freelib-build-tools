@@ -21,7 +21,7 @@ echo "Preparing $($DIR/get_version)"
 $DIR/version
 $DIR/clean
 
-mvn clean install
+mvn -q clean install
 
 git commit -am "Creating new version: $($DIR/get_version)"
 git push
