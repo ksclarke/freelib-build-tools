@@ -237,6 +237,14 @@
                     <includes>eclipse/**/*,checkstyle/**/*,pmd/**/*,travis/**/*</includes>
                     <outputDirectory>${basedir}/target/build-resources</outputDirectory>
                   </artifactItem>
+                  <artifactItem>
+                    <groupId>info.freelibrary</groupId>
+                    <artifactId>freelib-resources</artifactId>
+                    <version>${freelib.resources.version}</version>
+                    <type>jar</type>
+                    <includes>settings.xml</includes>
+                    <outputDirectory>${basedir}/src/test/resources</outputDirectory>
+                  </artifactItem>
                 </artifactItems>
               </configuration>
             </execution>
