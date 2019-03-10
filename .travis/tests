@@ -1,0 +1,17 @@
+#! /bin/bash
+
+set -e
+
+# Test for formatting of the Checkstyle configuration files
+xmllint --noout freelib-resources/src/main/resources/checkstyle/checkstyle.xml
+xmllint --noout freelib-resources/src/main/resources/checkstyle/checkstyle-suppressions.xml
+
+# Run a test build and make sure it works
+mvn -q clean install
+
+export JAR_VERSION=$(freelib-resources/src/main/resources/travis/get_version)
+
+echo "Testing resource packaging for ${JAR_VERSION}"
+unzip -qq -o -d freelib-resources/target/zipout "freelib-resources/target/freelib-resources-${JAR_VERSION}.jar"
+test "0" -eq $([ -f freelib-resources/target/zipout/checkstyle/checkstyle.xml ] && echo "0" || echo "1")
+test "0" -eq $([ -f freelib-resources/target/zipout/checkstyle/checkstyle-suppressions.xml ] && echo "0" || echo "1")
