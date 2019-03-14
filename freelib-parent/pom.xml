@@ -35,7 +35,7 @@
     <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
     <maven.failsafe.plugin.version>3.0.0-M1</maven.failsafe.plugin.version>
     <maven.enforcer.plugin.version>3.0.0-M2</maven.enforcer.plugin.version>
-    <maven.javadoc.plugin.version>2.10.4</maven.javadoc.plugin.version>
+    <maven.javadoc.plugin.version>3.1.0</maven.javadoc.plugin.version>
     <maven.surefire.plugin.version>3.0.0-M1</maven.surefire.plugin.version>
     <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
     <maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
@@ -417,6 +417,9 @@
               <additionalJOption>-J-Dhttp.agent=maven-javadoc-plugin-${project.name}</additionalJOption>
             </additionalJOptions>
             <sourcepath>${project.basedir}/src/main/java:src/main/generated</sourcepath>
+            <links>
+              <link>${javadocs.jdk.url}</link>
+            </links>
           </configuration>
           <executions>
             <execution>
@@ -592,6 +595,7 @@
       <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <javadocs.jdk.url>https://docs.oracle.com/javase/8/docs/api/</javadocs.jdk.url>
       </properties>
     </profile>
     <profile>
@@ -601,6 +605,7 @@
       </activation>
       <properties>
         <maven.compiler.release>9</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/javase/9/docs/api/</javadocs.jdk.url>
       </properties>
     </profile>
     <profile>
@@ -610,6 +615,7 @@
       </activation>
       <properties>
         <maven.compiler.release>10</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/javase/10/docs/api/</javadocs.jdk.url>
       </properties>
     </profile>
     <profile>
@@ -619,6 +625,7 @@
       </activation>
       <properties>
         <maven.compiler.release>11</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/11/docs/api/</javadocs.jdk.url>
       </properties>
     </profile>
     <!-- The release-sign-artifacts profile allows for the publishing of project artifact -->

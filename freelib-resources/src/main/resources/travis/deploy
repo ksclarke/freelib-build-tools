@@ -22,7 +22,14 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false" && ("$TAG" == "$TRAVIS_TAG" || "$TRAVIS_
     mvn -q versions:set -DnewVersion="$($DIR/next_version)"
   fi
 
+  OUTPUT="$($DIR/release $SETTINGS_FILE)"
+
   # Do a release and note which jar files are uploaded
-#  "$DIR/release" "$SETTINGS_FILE" | grep 'Uploaded.*\.\(pom\|jar\) '
-  "$DIR/release" "$SETTINGS_FILE"
+  if [[ $(echo "$OUTPUT" | grep -c 'ERROR') == "0" ]]; then
+    echo -e "$OUTPUT" | grep 'Uploaded.*\.\(pom\|jar\) '
+  else
+    echo -e "$OUTPUT"
+    exit 1
+  fi
+
 fi
