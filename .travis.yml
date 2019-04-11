@@ -23,6 +23,11 @@ script:
 after_success:
   - freelib-resources/src/main/resources/travis/deploy
 
+# The only branch we build on is master; all other builds are done on PRs to master
+branches:
+  only:
+  - master
+
 notifications:
   irc:
     channels:
