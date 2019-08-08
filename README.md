@@ -51,38 +51,25 @@ Once this is done, your private key will be publicly accessible from your GitHub
 
 To be able to publish your Jar file automatically from within your Travis build, you will need to add some additional Environment Variables in your Travis configuration. This can be done in the .travis.yml file, but I'd recommend doing it in Travis' online user interface.
 
-The environmental variables that you will need to add are: `BUILD_KEYNAME`, `BUILD_PASSPHRASE`, `SONATYPE_PASSWORD`, and `SONATYPE_USERNAME`. You should make sure that all are set to NOT display their values in Travis' build log. This is an option at the point of creating these variables in the user interface and it's a **very important detail**.
+The environmental variables that you will need to add are: `BUILD_KEYNAME`, `BUILD_PASSPHRASE`, `CODACY_API_TOKEN`, `CODACY_PROJECT_TOKEN`, `SONATYPE_PASSWORD`, and `SONATYPE_USERNAME`. You should make sure that all are set to NOT display their values in Travis' build log. This is an option at the point of creating these variables in the user interface and it's a **very important detail**.
 
 The `BUILD_KEYNAME` is the GPG key ID from above. The `BUILD_PASSPHRASE` is the passphrase you created for the GPG key.
+
+The `CODACY_PROJECT_TOKEN` and `CODACY_API_TOKEN` variables are used to send code coverage reports to [Codacy](https://codacy.com). You need to create a Codacy account and add a project before you'll have those values.
 
 The `SONATYPE_USERNAME` and `SONATYPE_PASSWORD` are your login information for the OSS Sonatype site. These instructions will assume you are familiar with Sonatype and already using it to publish Jars in a manual fashion. If you're not, you have some more research to do before you will be able to use these instructions.
 
 You will notice, when you are creating these environmental variables in Travis' online user interface, that at least two variables already exist. These two were shown to you when you ran `travis encrypt-file ~/build-key.gpg` command (you're supposed to be remembering them). You will not be able to see these variables' values and that's okay.
 
-The next step you'll need to do is to configure your .travis.yml file with `before_install` and `after_success` sections. The `before_install` section should include, at least, the following:
-
-    before_install:
-      - >
-        openssl aes-256-cbc -K $encrypted_SOMETHING_key -iv $encrypted_SOMETHING_iv \
-          -in src/main/resources/build-key.gpg.enc -out src/main/resources/build-key.gpg -d
-
-Notice that this contains the two outputs from the `travis encrypt-file` command (the two that you're remembering)? The SOMETHINGs above are just placeholder values. The ones you're remembering, and insert into the placeholders, will be the real values.
-
-After the `before_install`, you'll also need to add a `after_success` section that should have, at least, the following:
+The next step you'll need to do is to configure your .travis.yml file with an `after_success` section. This section should include the following:
 
     after_success:
+      - mvn com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml
+      - chmod 755 src/main/tools/travis/*
+      - src/main/tools/travis/get_build_key $encrypted_SOMETHING_key $encrypted_SOMETHING_iv
       - src/main/tools/travis/deploy
 
-It can also contain Codacy submission information if you're using the Codacy plugin that's defined in `freelib-parent`:
-
-    after_success:
-      - >
-        mvn -q com.gavinmogan:codacy-maven-plugin:coverage -DcoverageReportFile=target/site/jacoco/jacoco.xml \
-          -DprojectToken="${PROJECT_TOKEN}" -DapiToken="${API_TOKEN}"
-      - >
-        src/main/tools/travis/deploy
-
-Using the Codacy submission will of course require that you have a Codacy account, that you've registered this project, and that you've configured Codacy's `API_TOKEN` and `PROJECT_TOKEN` in your project's Travis configuration.
+Notice that this contains the two outputs from the `travis encrypt-file` command above (i.e., the two that you're remembering). The SOMETHINGs in the sample code above are just placeholder values. Insert the ones you're remembering into those placeholders.
 
 Okay, so in summary, so far you've configured Travis to perform a deploy on a successful build, you've configured authentication and signing information in Travis' Environment Variables, and you've added a private key to your GitHub repository. So, what will happen now that you've done all this?
 

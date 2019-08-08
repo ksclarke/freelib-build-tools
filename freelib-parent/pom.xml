@@ -21,7 +21,7 @@
     <phantomjs.version>1.9.7</phantomjs.version>
     <ghostdriver.version>1.1.0</ghostdriver.version>
 
-    <!-- Maven plugin dependencies managed through this parent project -->
+    <!-- Maven plug-in dependencies managed through this parent project -->
     <maven.version>3.5.4</maven.version>
     <maven.plugin.annotations.version>3.5.2</maven.plugin.annotations.version>
     <gpg.plugin.version>1.5</gpg.plugin.version>
@@ -45,12 +45,13 @@
     <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
     <pmd.plugin.version>3.11.0</pmd.plugin.version>
+    <codacy.plugin.version>1.2.0</codacy.plugin.version>
 
     <!-- Configure the project's character encodings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <!-- Disable the default site generation; we'll use jbake instead -->
+    <!-- Disable the default site generation; we'll use JBake instead -->
     <maven.site.skip>true</maven.site.skip>
     <jbake.outputDirectory>target/site</jbake.outputDirectory>
     <jbake.maven.plugin.version>0.0.9</jbake.maven.plugin.version>
@@ -62,7 +63,7 @@
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>${project.basedir}/src/main/tools/checkstyle</config_loc>
     <maven.checkstyle.version>3.0.0</maven.checkstyle.version>
-    <checkstyle.version>8.18</checkstyle.version>
+    <checkstyle.version>8.20</checkstyle.version>
 
     <!-- The extension we use to push site productions up to an S3 bucket -->
     <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>
@@ -104,7 +105,7 @@
         <version>${ghostdriver.version}</version>
         <scope>test</scope>
       </dependency>
-      <!-- Dependencies for Maven plugins -->
+      <!-- Dependencies for Maven plug-ins -->
       <dependency>
         <groupId>org.apache.maven</groupId>
         <artifactId>maven-plugin-api</artifactId>
@@ -141,17 +142,29 @@
             <generatedTestSourcesDirectory>${project.basedir}/src/main/generated</generatedTestSourcesDirectory>
           </configuration>
         </plugin>
+        <!-- Does code analysis; disable plug-in deprecation warnings by running Maven (mvn) with:
+        -Dorg.slf4j.simpleLogger.log.net.sourceforge.pmd=error -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
           <version>${pmd.plugin.version}</version>
           <configuration>
             <linkXRef>false</linkXRef>
+            <printFailingErrors>true</printFailingErrors>
             <rulesets>
               <ruleset>${project.basedir}/src/main/tools/pmd/pmd-rules.xml</ruleset>
             </rulesets>
             <targetJdk>${maven.compiler.source}</targetJdk>
           </configuration>
+          <executions>
+            <execution>
+              <phase>validate</phase>
+              <goals>
+                <goal>pmd</goal>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -387,9 +400,9 @@
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>${maven.checkstyle.version}</version>
           <configuration>
-            <consoleOutput>true</consoleOutput>
-            <logViolationsToConsole>false</logViolationsToConsole>
+            <logViolationsToConsole>true</logViolationsToConsole>
             <violationSeverity>warning</violationSeverity>
+            <includeTestSourceDirectory>true</includeTestSourceDirectory>
             <configLocation>${basedir}/src/main/tools/checkstyle/checkstyle.xml</configLocation>
           </configuration>
           <dependencies>
@@ -641,6 +654,41 @@
         <maven.compiler.release>11</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/11/docs/api/</javadocs.jdk.url>
       </properties>
+    </profile>
+    <!-- Runs code coverage upload on Travis -->
+    <profile>
+      <id>code-coverage</id>
+      <activation>
+        <property>
+          <name>env.TRAVIS</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.gavinmogan</groupId>
+            <artifactId>codacy-maven-plugin</artifactId>
+            <version>${codacy.plugin.version}</version>
+            <configuration>
+              <apiToken>${env.CODACY_API_TOKEN}</apiToken>
+              <projectToken>${env.CODACY_PROJECT_TOKEN}</projectToken>
+              <coverageReportFile>${project.basedir}/target/site/jacoco/jacoco.xml</coverageReportFile>
+              <commit>${env.TRAVIS_COMMIT}</commit>
+              <codacyApiBaseUrl>https://api.codacy.com</codacyApiBaseUrl>
+              <failOnMissingReportFile>false</failOnMissingReportFile>
+            </configuration>
+            <executions>
+              <execution>
+                <id>post-test</id>
+                <phase>post-integration-test</phase>
+                <goals>
+                  <goal>coverage</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <!-- The release-sign-artifacts profile allows for the publishing of project artifact -->
     <profile>
