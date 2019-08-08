@@ -45,6 +45,7 @@
     <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
     <pmd.plugin.version>3.11.0</pmd.plugin.version>
+    <codacy.plugin.version>1.2.0</codacy.plugin.version>
 
     <!-- Configure the project's character encodings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
