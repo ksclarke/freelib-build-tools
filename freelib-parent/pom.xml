@@ -141,17 +141,29 @@
             <generatedTestSourcesDirectory>${project.basedir}/src/main/generated</generatedTestSourcesDirectory>
           </configuration>
         </plugin>
+        <!-- Does code analysis; disable plug-in deprecation warnings by running Maven (mvn) with:
+        -Dorg.slf4j.simpleLogger.log.net.sourceforge.pmd=error -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
           <version>${pmd.plugin.version}</version>
           <configuration>
             <linkXRef>false</linkXRef>
+            <printFailingErrors>true</printFailingErrors>
             <rulesets>
               <ruleset>${project.basedir}/src/main/tools/pmd/pmd-rules.xml</ruleset>
             </rulesets>
             <targetJdk>${maven.compiler.source}</targetJdk>
           </configuration>
+          <executions>
+            <execution>
+              <phase>validate</phase>
+              <goals>
+                <goal>pmd</goal>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -387,7 +399,6 @@
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>${maven.checkstyle.version}</version>
           <configuration>
-            <consoleOutput>true</consoleOutput>
             <logViolationsToConsole>true</logViolationsToConsole>
             <violationSeverity>warning</violationSeverity>
             <includeTestSourceDirectory>true</includeTestSourceDirectory>
