@@ -861,7 +861,7 @@
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>3.7.0</version>
+    <version>3.7.1-SNAPSHOT</version>
   </parent>
 
 </project>
