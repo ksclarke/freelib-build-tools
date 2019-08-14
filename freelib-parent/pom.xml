@@ -142,8 +142,11 @@
             <generatedTestSourcesDirectory>${project.basedir}/src/main/generated</generatedTestSourcesDirectory>
           </configuration>
         </plugin>
-        <!-- Does code analysis; disable plug-in deprecation warnings by running Maven (mvn) with:
-        -Dorg.slf4j.simpleLogger.log.net.sourceforge.pmd=error -->
+        <!-- Does code analysis -->
+        <!--<![CDATA[
+          Disable PMD plug-in deprecation warnings by running Maven (mvn) with the following property:
+            -Dorg.slf4j.simpleLogger.log.net.sourceforge.pmd=error
+        ]]>-->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
@@ -660,7 +663,7 @@
       <id>code-coverage</id>
       <activation>
         <property>
-          <name>env.TRAVIS</name>
+          <name>env.CODACY_API_TOKEN</name>
         </property>
       </activation>
       <build>
@@ -769,15 +772,22 @@
                   <pluginExecutions>
                     <pluginExecution>
                       <pluginExecutionFilter>
-                        <groupId>
-                          com.googlecode.maven-download-plugin
-                        </groupId>
-                        <artifactId>
-                          download-maven-plugin
-                        </artifactId>
-                        <versionRange>
-                          [0.0.1,)
-                        </versionRange>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <versionRange>[3.1.0,)</versionRange>
+                        <goals>
+                          <goal>unpack</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>com.googlecode.maven-download-plugin</groupId>
+                        <artifactId>download-maven-plugin</artifactId>
+                        <versionRange>[0.0.1,)</versionRange>
                         <goals>
                           <goal>wget</goal>
                         </goals>
@@ -788,15 +798,9 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
-                        <groupId>
-                          info.freelibrary
-                        </groupId>
-                        <artifactId>
-                          freelib-utils
-                        </artifactId>
-                        <versionRange>
-                          [0.0.1,)
-                        </versionRange>
+                        <groupId>info.freelibrary</groupId>
+                        <artifactId>freelib-utils</artifactId>
+                        <versionRange>[0.0.1,)</versionRange>
                         <goals>
                           <goal>generate-codes</goal>
                           <goal>read-logging-properties</goal>
@@ -811,15 +815,9 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
-                        <groupId>
-                          org.codehaus.mojo
-                        </groupId>
-                        <artifactId>
-                          keytool-maven-plugin
-                        </artifactId>
-                        <versionRange>
-                          [0.0.1,)
-                        </versionRange>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>keytool-maven-plugin</artifactId>
+                        <versionRange>[0.0.1,)</versionRange>
                         <goals>
                           <goal>generateKeyPair</goal>
                           <goal>generateSecretKey</goal>
@@ -831,17 +829,117 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
-                        <groupId>
-                          com.github.klieber
-                        </groupId>
-                        <artifactId>
-                          phantomjs-maven-plugin
-                        </artifactId>
-                        <versionRange>
-                          [0.0.1,)
-                        </versionRange>
+                        <groupId>com.github.klieber</groupId>
+                        <artifactId>phantomjs-maven-plugin</artifactId>
+                        <versionRange>[0.0.1,)</versionRange>
                         <goals>
                           <goal>install</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>nl.geodienstencentrum.maven</groupId>
+                        <artifactId>sass-maven-plugin</artifactId>
+                        <versionRange>[2.0,)</versionRange>
+                        <goals>
+                          <goal>update-stylesheets</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-plugin-plugin</artifactId>
+                        <versionRange>3.5.2</versionRange>
+                        <goals>
+                          <goal>descriptor</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <versionRange>[1.0,)</versionRange>
+                        <goals>
+                          <goal>reserve-network-port</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <versionRange>[1.0.0,)</versionRange>
+                        <goals>
+                          <goal>exec</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>com.google.code.maven-replacer-plugin</groupId>
+                        <artifactId>replacer</artifactId>
+                        <versionRange>[1.4.0,)</versionRange>
+                        <goals>
+                          <goal>replace</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>com.googlecode.cmake-maven-project</groupId>
+                        <artifactId>cmake-maven-plugin</artifactId>
+                        <versionRange>[3.7.0,)</versionRange>
+                        <goals>
+                          <goal>compile</goal>
+                          <goal>generate</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-clean-plugin</artifactId>
+                        <versionRange>[3.1.0,)</versionRange>
+                        <goals>
+                          <goal>clean</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-pmd-plugin</artifactId>
+                        <versionRange>[3.0.0,)</versionRange>
+                        <goals>
+                          <goal>pmd</goal>
+                          <goal>check</goal>
                         </goals>
                       </pluginExecutionFilter>
                       <action>
