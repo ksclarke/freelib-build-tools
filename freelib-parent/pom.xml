@@ -558,44 +558,6 @@
             </execution>
           </executions>
         </plugin>
-        <plugin>
-          <groupId>org.jacoco</groupId>
-          <artifactId>jacoco-maven-plugin</artifactId>
-          <version>${jacoco.maven.plugin.version}</version>
-          <executions>
-            <execution>
-              <id>default-prepare-agent</id>
-              <goals>
-                <goal>prepare-agent</goal>
-              </goals>
-              <configuration>
-                <destFile>${jacoco.dataFile}</destFile>
-                <propertyName>jacoco.agent.arg</propertyName>
-                <append>true</append>
-              </configuration>
-            </execution>
-            <execution>
-              <id>default-prepare-agent-integration</id>
-              <goals>
-                <goal>prepare-agent-integration</goal>
-              </goals>
-              <configuration>
-                <destFile>${jacoco.dataFile}</destFile>
-                <propertyName>jacoco.agent.arg</propertyName>
-                <append>true</append>
-              </configuration>
-            </execution>
-            <execution>
-              <id>default-report</id>
-              <goals>
-                <goal>report</goal>
-              </goals>
-              <configuration>
-                <dataFile>${jacoco.dataFile}</dataFile>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -669,6 +631,44 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>${jacoco.maven.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>default-prepare-agent</id>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+                <configuration>
+                  <destFile>${jacoco.dataFile}</destFile>
+                  <propertyName>jacoco.agent.arg</propertyName>
+                  <append>true</append>
+                </configuration>
+              </execution>
+              <execution>
+                <id>default-prepare-agent-integration</id>
+                <goals>
+                  <goal>prepare-agent-integration</goal>
+                </goals>
+                <configuration>
+                  <destFile>${jacoco.dataFile}</destFile>
+                  <propertyName>jacoco.agent.arg</propertyName>
+                  <append>true</append>
+                </configuration>
+              </execution>
+              <execution>
+                <id>default-report</id>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+                <configuration>
+                  <dataFile>${jacoco.dataFile}</dataFile>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
             <groupId>com.gavinmogan</groupId>
             <artifactId>codacy-maven-plugin</artifactId>
             <version>${codacy.plugin.version}</version>
@@ -682,8 +682,8 @@
             </configuration>
             <executions>
               <execution>
-                <id>post-test</id>
-                <phase>post-integration-test</phase>
+                <id>codacy-upload</id>
+                <phase>verify</phase>
                 <goals>
                   <goal>coverage</goal>
                 </goals>
