@@ -7,7 +7,7 @@ xmllint --noout freelib-resources/src/main/resources/checkstyle/checkstyle.xml
 xmllint --noout freelib-resources/src/main/resources/checkstyle/checkstyle-suppressions.xml
 
 # Run a test build and make sure it works
-mvn -q clean install
+mvn -s ../freelib-resources/src/main/resources/settings.xml -q clean install
 
 export JAR_VERSION=$(freelib-resources/src/main/resources/travis/get_version)
 
