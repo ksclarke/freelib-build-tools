@@ -54,7 +54,8 @@
     <!-- Disable the default site generation; we'll use JBake instead -->
     <maven.site.skip>true</maven.site.skip>
     <jbake.outputDirectory>target/site</jbake.outputDirectory>
-    <jbake.maven.plugin.version>0.0.9</jbake.maven.plugin.version>
+    <jbake.maven.plugin.version>0.3.1</jbake.maven.plugin.version>
+    <flexmark.version>0.32.18</flexmark.version>
 
     <!-- We want to override the skip tests directive in our parent project -->
     <maven.test.skip>false</maven.test.skip>
@@ -62,8 +63,8 @@
     <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>${project.basedir}/src/main/tools/checkstyle</config_loc>
-    <maven.checkstyle.version>3.0.0</maven.checkstyle.version>
-    <checkstyle.version>8.20</checkstyle.version>
+    <maven.checkstyle.version>3.1.0</maven.checkstyle.version>
+    <checkstyle.version>8.25</checkstyle.version>
 
     <!-- The extension we use to push site productions up to an S3 bucket -->
     <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>
@@ -437,7 +438,11 @@
           </dependencies>
           <configuration>
             <stylesheetfile>javadocs.css</stylesheetfile>
-            <nonavbar>true</nonavbar>
+            <nodeprecatedlist>true</nodeprecatedlist>
+            <noindex>true</noindex>
+            <notree>true</notree>
+            <nohelp>true</nohelp>
+            <nodeprecated>true</nodeprecated>
             <show>public</show>
             <nosince>true</nosince>
             <notimestamp>true</notimestamp>
@@ -462,14 +467,19 @@
           </executions>
         </plugin>
         <plugin>
-          <groupId>br.com.ingenieux</groupId>
+          <groupId>org.jbake</groupId>
           <artifactId>jbake-maven-plugin</artifactId>
           <version>${jbake.maven.plugin.version}</version>
           <dependencies>
             <dependency>
-              <groupId>org.pegdown</groupId>
-              <artifactId>pegdown</artifactId>
-              <version>${pegdown.version}</version>
+              <groupId>com.vladsch.flexmark</groupId>
+              <artifactId>flexmark</artifactId>
+              <version>${flexmark.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>com.vladsch.flexmark</groupId>
+              <artifactId>flexmark-profile-pegdown</artifactId>
+              <version>${flexmark.version}</version>
             </dependency>
             <dependency>
               <groupId>org.codehaus.groovy</groupId>

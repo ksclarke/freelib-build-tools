@@ -153,33 +153,11 @@ Navigation bar styles
 }
 
 .bottomNav {
-  margin-top: 10px;
-  background-color: #834098;
-  color: #FFFFFF;
-  float: left;
-  padding: 0;
-  width: 100%;
-  clear: right;
-  height: 2.8em;
-  padding-top: 10px;
-  overflow: hidden;
-  font-size: 16px;
+  display: none;
 }
 
 .subNav {
-  background-color: #834098;
-  color: #fff;
-  float: left;
-  width: 100%;
-  overflow: hidden;
-  font-size: 16px;
-}
-
-.subNav div {
-  clear: left;
-  float: left;
-  padding: 0 0 5px 6px;
-  text-transform: uppercase;
+  display: none;
 }
 
 ul.navList, ul.subNavList {
@@ -211,8 +189,8 @@ ul.subNavList li {
 }
 
 .navBarCell1Rev {
-  background-color: #834098;
-  color: #fff;
+  background-color: #fff;
+  color: #834098;
   margin: auto 5px;
 }
 
