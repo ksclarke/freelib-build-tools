@@ -162,10 +162,9 @@
           </configuration>
           <executions>
             <execution>
-              <phase>validate</phase>
+              <phase>verify</phase>
               <goals>
                 <goal>pmd</goal>
-                <goal>check</goal>
               </goals>
             </execution>
           </executions>
