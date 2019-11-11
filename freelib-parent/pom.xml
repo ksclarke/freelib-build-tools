@@ -675,6 +675,15 @@
                   <dataFile>${jacoco.dataFile}</dataFile>
                 </configuration>
               </execution>
+              <execution>
+                <id>integration-report</id>
+                <goals>
+                  <goal>report-integration</goal>
+                </goals>
+                <configuration>
+                  <dataFile>${jacoco.dataFile}</dataFile>
+                </configuration>
+              </execution>
             </executions>
           </plugin>
           <plugin>

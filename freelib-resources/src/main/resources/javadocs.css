@@ -542,12 +542,31 @@ td.colOne, th.colOne {
   font-size: 16px;
 }
 
-.overviewSummary td.colFirst, .overviewSummary th.colFirst, .overviewSummary td.colOne, .overviewSummary th.colOne,
-  .memberSummary td.colFirst, .memberSummary th.colFirst, .memberSummary td.colOne, .memberSummary th.colOne,
-  .typeSummary td.colFirst {
+.typeSummary th.colFirst {
   width: 25%;
   vertical-align: top;
 }
+
+.memberSummary td.colFirst, .memberSummary th.colFirst, .memberSummary td.colOne, .memberSummary th.colOne,
+.useSummary td.colFirst, .useSummary th.colFirst, .useSummary td.colOne, .useSummary th.colOne,
+.typeSummary td.colFirst {
+  width: 20%;
+  vertical-align: top;
+}
+
+.memberSummary td.colSecond, .memberSummary th.colSecond, .memberSummary td.colTwo, .memberSummary th.colTwo,
+.useSummary td.colSecond, .useSummary th.colSecond, .useSummary td.colTwo, .useSummary th.colTwo,
+.typeSummary td.colSecond {
+  width: 30%;
+  vertical-align: top;
+}
+
+.overviewSummary td.colFirst, .overviewSummary th.colFirst, .overviewSummary td.colOne, .overviewSummary th.colOne,
+.colConstructorName {
+  width: 40%;
+  vertical-align: top;
+}
+
 
 td.colOne a:link, td.colOne a:active, td.colOne a:visited, td.colOne a:hover, td.colFirst a:link, td.colFirst a:active,
   td.colFirst a:visited, td.colFirst a:hover, td.colLast a:link, td.colLast a:active, td.colLast a:visited, td.colLast a:hover,
