@@ -260,6 +260,7 @@
                     <version>${freelib.resources.version}</version>
                     <type>jar</type>
                     <includes>settings.xml</includes>
+                    <includes>buildlog.properties</includes>
                     <outputDirectory>${basedir}/src/test/resources</outputDirectory>
                   </artifactItem>
                 </artifactItems>
