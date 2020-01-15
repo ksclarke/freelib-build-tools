@@ -53,6 +53,7 @@
 
     <!-- Disable the default site generation; we'll use JBake instead -->
     <maven.site.skip>true</maven.site.skip>
+    <maven.site.plugin.version>3.8.2</maven.site.plugin.version>
     <jbake.outputDirectory>target/site</jbake.outputDirectory>
     <jbake.maven.plugin.version>0.3.1</jbake.maven.plugin.version>
     <flexmark.version>0.32.18</flexmark.version>
@@ -709,6 +710,11 @@
               </execution>
             </executions>
           </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>${maven.site.plugin.version}</version>
+          </plugin>
         </plugins>
       </build>
     </profile>
@@ -717,6 +723,11 @@
       <id>release</id>
       <build>
         <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>${maven.site.plugin.version}</version>
+          </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
