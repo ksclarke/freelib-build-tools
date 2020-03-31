@@ -1,7 +1,7 @@
 #! /bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-TAG="$($DIR/next_tag)"
+TAG="$($DIR/next_version)"
 
 commit_snapshot () {
   $DIR/clean
@@ -9,12 +9,6 @@ commit_snapshot () {
   git commit -am "Creating new snapshot: $($DIR/get_version)"
   git push
 }
-
-if [ -z "$1" ]; then
-  echo "Please supply a version increment argument: major, minor, or patch"
-  echo "  e.g., src/main/tools/travis/prepare_release patch"
-  exit 1
-fi
 
 echo "Preparing $($DIR/get_version)"
 
@@ -29,7 +23,10 @@ git push
 $DIR/tag "$TAG"
 $DIR/push_tag
 
-if [ "$1" == 'major' ]; then
+if [ -z "$1" ]; then
+  $DIR/set_version "$($DIR/increment_version -p $($DIR/get_version))-SNAPSHOT"
+  commit_snapshot
+elif [ "$1" == 'major' ]; then
   $DIR/set_version "$($DIR/increment_version -M $($DIR/get_version))-SNAPSHOT"
   commit_snapshot
 elif [ "$1" == 'minor' ]; then

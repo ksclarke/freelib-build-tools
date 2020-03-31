@@ -9,7 +9,7 @@
 
 # Get the directory from which this script is running
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-TAG="$($DIR/next_tag)"
+TAG="$($DIR/next_version)"
 
 # If we're building a stable release, check that next tag matches requested tag;
 # also, since we could be testing against multiple JDKs, only deploy on OpenJDK 11

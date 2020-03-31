@@ -12,8 +12,8 @@
     <freelib.resources.version>${project.parent.version}</freelib.resources.version>
 
     <!-- Dependencies managed through this parent project -->
-    <junit.version>4.12</junit.version>
-    <slf4j.version>1.7.25</slf4j.version>
+    <junit.version>4.13</junit.version>
+    <slf4j.version>1.7.30</slf4j.version>
     <xmlunit.version>1.6</xmlunit.version>
     <groovy.version>2.5.4</groovy.version>
     <logback.version>1.2.3</logback.version>
@@ -44,7 +44,7 @@
     <build.helper.maven.plugin.version>3.0.0</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
-    <pmd.plugin.version>3.11.0</pmd.plugin.version>
+    <pmd.plugin.version>3.13.0</pmd.plugin.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
 
     <!-- Configure the project's character encodings -->
@@ -64,8 +64,8 @@
     <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>${project.basedir}/src/main/tools/checkstyle</config_loc>
-    <maven.checkstyle.version>3.1.0</maven.checkstyle.version>
-    <checkstyle.version>8.25</checkstyle.version>
+    <maven.checkstyle.version>3.1.1</maven.checkstyle.version>
+    <checkstyle.version>8.31</checkstyle.version>
 
     <!-- The extension we use to push site productions up to an S3 bucket -->
     <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>
