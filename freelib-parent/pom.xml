@@ -655,6 +655,9 @@
                   <destFile>${jacoco.dataFile}</destFile>
                   <propertyName>jacoco.agent.arg</propertyName>
                   <append>true</append>
+                  <excludes>
+                    <exclude>src/test/java/**/*</exclude>
+                  </excludes>
                 </configuration>
               </execution>
               <execution>
@@ -666,6 +669,9 @@
                   <destFile>${jacoco.dataFile}</destFile>
                   <propertyName>jacoco.agent.arg</propertyName>
                   <append>true</append>
+                  <excludes>
+                    <exclude>src/test/java/**/*</exclude>
+                  </excludes>
                 </configuration>
               </execution>
               <execution>
@@ -675,6 +681,9 @@
                 </goals>
                 <configuration>
                   <dataFile>${jacoco.dataFile}</dataFile>
+                  <excludes>
+                    <exclude>src/test/java/**/*</exclude>
+                  </excludes>
                 </configuration>
               </execution>
               <execution>
@@ -684,6 +693,9 @@
                 </goals>
                 <configuration>
                   <dataFile>${jacoco.dataFile}</dataFile>
+                  <excludes>
+                    <exclude>src/test/java/**/*</exclude>
+                  </excludes>
                 </configuration>
               </execution>
             </executions>

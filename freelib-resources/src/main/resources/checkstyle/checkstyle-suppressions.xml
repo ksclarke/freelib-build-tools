@@ -5,5 +5,4 @@
 
 <suppressions>
   <suppress files="src[\\/]main[\\/]generated[\\/]" checks="."/>
-  <suppress files="src[\\/]test[\\/]java[\\/]" checks="."/>
 </suppressions>
