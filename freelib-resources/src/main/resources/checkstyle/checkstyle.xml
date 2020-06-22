@@ -14,8 +14,7 @@
     <module name="RedundantModifier" />
     <module name="UnusedImports" />
     <module name="AvoidStarImport">
-      <property name="excludes" value="j2html.TagCreator"/>
-      <property name="excludes" value="org.junit.Assert"/>
+      <property name="excludes" value="j2html.TagCreator,org.junit.Assert,com.google.common.base.Preconditions"/>
     </module>
     <module name="ConstantName" />
     <module name="EqualsHashCode" />
