@@ -1,4 +1,4 @@
-# freelib-build-tools &nbsp; [![Build Status](https://travis-ci.org/ksclarke/freelib-build-tools.svg?branch=master)](https://travis-ci.org/ksclarke/freelib-build-tools)
+# freelib-build-tools &nbsp; [![Build Status](https://travis-ci.org/ksclarke/freelib-build-tools.svg?branch=main)](https://travis-ci.org/ksclarke/freelib-build-tools)
 
 ### Introduction
 
@@ -89,7 +89,7 @@ What does this script do? This script will change the project's snapshot version
 
 The new tag being pushed to GitHub will trigger a Travis build and the `deploy` script that's been included in the .travis.yml file will do the deployment of a Jar artifact to the Maven Central repository. This process ensures that there is a tag for each version. This ensures code can be rolled back to an earlier version should there be an issue with the newly published Jar file.
 
-To make all this work, make sure that Travis is configured to build on pushes to the master branch only once and that pushes to the master branch aren't auto cancelled. My default Travis configuration is included below:
+To make all this work, make sure that Travis is configured to build on pushes to the main branch only once and that pushes to the main branch aren't auto cancelled. My default Travis configuration is included below:
 
 ![Example Travis configuration](images/travis-config.png?raw=true "Example Travis configuration")
 
