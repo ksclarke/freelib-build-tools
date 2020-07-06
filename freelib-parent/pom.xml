@@ -51,12 +51,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <!-- Disable the default site generation; we'll use JBake instead -->
+    <!-- Disable the default site generation -->
     <maven.site.skip>true</maven.site.skip>
     <maven.site.plugin.version>3.8.2</maven.site.plugin.version>
-    <jbake.outputDirectory>target/site</jbake.outputDirectory>
-    <jbake.maven.plugin.version>0.3.1</jbake.maven.plugin.version>
-    <flexmark.version>0.32.18</flexmark.version>
 
     <!-- We want to override the skip tests directive in our parent project -->
     <maven.test.skip>false</maven.test.skip>
@@ -267,25 +264,6 @@
                 </artifactItems>
               </configuration>
             </execution>
-            <execution>
-              <id>unpack-site-resources</id>
-              <phase>pre-site</phase>
-              <goals>
-                <goal>unpack</goal>
-              </goals>
-              <configuration>
-                <artifactItems>
-                  <artifactItem>
-                    <groupId>info.freelibrary</groupId>
-                    <artifactId>freelib-resources</artifactId>
-                    <version>${freelib.resources.version}</version>
-                    <type>jar</type>
-                    <includes>jbake/**/*</includes>
-                    <outputDirectory>${basedir}/target</outputDirectory>
-                  </artifactItem>
-                </artifactItems>
-              </configuration>
-            </execution>
           </executions>
         </plugin>
         <plugin>
@@ -325,22 +303,6 @@
                     <excludes>
                       <exclude>**/checkstyle/**</exclude>
                     </excludes>
-                  </resource>
-                </resources>
-              </configuration>
-            </execution>
-            <execution>
-              <id>copy-site-resources</id>
-              <phase>pre-site</phase>
-              <goals>
-                <goal>copy-resources</goal>
-              </goals>
-              <configuration>
-                <outputDirectory>${basedir}/target/jbake</outputDirectory>
-                <resources>
-                  <resource>
-                    <directory>${basedir}/src/main/jbake</directory>
-                    <filtering>true</filtering>
                   </resource>
                 </resources>
               </configuration>
@@ -463,51 +425,6 @@
               <phase>site</phase>
               <goals>
                 <goal>javadoc</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.jbake</groupId>
-          <artifactId>jbake-maven-plugin</artifactId>
-          <version>${jbake.maven.plugin.version}</version>
-          <dependencies>
-            <dependency>
-              <groupId>com.vladsch.flexmark</groupId>
-              <artifactId>flexmark</artifactId>
-              <version>${flexmark.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>com.vladsch.flexmark</groupId>
-              <artifactId>flexmark-profile-pegdown</artifactId>
-              <version>${flexmark.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>org.codehaus.groovy</groupId>
-              <artifactId>groovy</artifactId>
-              <version>${groovy.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>org.codehaus.groovy</groupId>
-              <artifactId>groovy-dateutil</artifactId>
-              <version>${groovy.version}</version>
-              <classifier>indy</classifier>
-            </dependency>
-            <dependency>
-              <groupId>org.codehaus.groovy</groupId>
-              <artifactId>groovy-templates</artifactId>
-              <version>${groovy.version}</version>
-            </dependency>
-          </dependencies>
-          <configuration>
-            <inputDirectory>${basedir}/target/jbake</inputDirectory>
-          </configuration>
-          <executions>
-            <execution>
-              <id>site-docs</id>
-              <phase>site</phase>
-              <goals>
-                <goal>generate</goal>
               </goals>
             </execution>
           </executions>

@@ -10,5 +10,4 @@ if [ -z "$1" ]; then
   mvn -U -Dmaven.test.skip=true help:active-profiles clean deploy -P release,!code-coverage
 else
   mvn -U -Dmaven.test.skip=true help:active-profiles clean deploy -P release,!code-coverage -s "$1"
-  mvn -s "$1" site -Djava.util.logging.config.file=src/test/resources/buildlog.properties site:deploy
 fi
