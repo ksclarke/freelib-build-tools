@@ -9,12 +9,13 @@
 
 # Get the directory from which this script is running
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-TAG="$($DIR/next_version)"
+TAG="$("$DIR"/next_version)"
 
 # If we're building a stable release, check that next tag matches requested tag;
 # also, since we could be testing against multiple JDKs, only deploy on OpenJDK 11
 if [[ "$TRAVIS_PULL_REQUEST" == "false"
-    && ("$TAG" == "$TRAVIS_TAG" || "$TRAVIS_BRANCH" == "master")
+    && ("$TAG" == "$TRAVIS_TAG" || "$TRAVIS_BRANCH" == "master" || "$TRAVIS_BRANCH" == "main"
+        || "$TRAVIS_BRANCH" == "$TRAVIS_DEPLOY_BRANCH")
     && "$TRAVIS_JDK_VERSION" == "$DEPLOYMENT_JDK"  ]]; then
   # Find the settings file that we'll use to release
   SETTINGS_FILE=$(find . -name settings.xml | grep -v target)
@@ -24,10 +25,10 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false"
 
   # If we have a tag, we're doing a real release; otherwise it is a snapshot build
   if [[ "$TRAVIS_BRANCH" == "$TRAVIS_TAG" ]]; then
-    mvn -q versions:set -DnewVersion="$($DIR/next_version)"
+    mvn -q versions:set -DnewVersion="$("$DIR"/next_version)"
   fi
 
-  OUTPUT="$($DIR/release $SETTINGS_FILE)"
+  OUTPUT="$("$DIR"/release "$SETTINGS_FILE")"
 
   # Do a release and note which jar files are uploaded
   if [[ $(echo "$OUTPUT" | grep -c 'ERROR') == "0" ]]; then
