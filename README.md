@@ -91,11 +91,11 @@ The new tag being pushed to GitHub will trigger a Travis build and the `deploy` 
 
 To make all this work, make sure that Travis is configured to build on pushes to the main branch only once and that pushes to the main branch aren't auto cancelled. My default Travis configuration is included below:
 
-![Example Travis configuration](images/travis-config.png?raw=true "Example Travis configuration")
+![Example Travis configuration](docs/images/travis-config.png?raw=true "Example Travis configuration")
 
 GitHub also needs to be configured so that an admin can push directly to a branch. This is something someone might limit when setting up Branch Protection Rules. Below is my default GitHub Branch Protection Rules configuration for projects:
 
-![Example GitHub project configuration](images/github-config.png?raw=true "Example GitHub project configuration")
+![Example GitHub project configuration](docs/images/github-config.png?raw=true "Example GitHub project configuration")
 
 With Travis and GitHub configured like the above there shouldn't be any problems. If you try this and do encounter problems though, please feel free to share them with me using the contact information below.
 
