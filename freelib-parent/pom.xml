@@ -154,7 +154,7 @@
             <linkXRef>false</linkXRef>
             <printFailingErrors>true</printFailingErrors>
             <rulesets>
-              <ruleset>${project.basedir}/src/main/tools/pmd/pmd-rules.xml</ruleset>
+              <ruleset>${project.basedir}/src/main/tools/pmd/ruleset.xml</ruleset>
             </rulesets>
             <targetJdk>${maven.compiler.source}</targetJdk>
           </configuration>
