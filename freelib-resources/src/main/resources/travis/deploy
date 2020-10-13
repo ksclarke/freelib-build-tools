@@ -1,7 +1,7 @@
 #! /bin/bash
 
 #
-# A simple script to publish our artifacts on a push to the "master" branch.
+# A simple script to publish our artifacts on a push to the "main" branch.
 # Publishes snapshots or, if our version isn't a snapshot, stable artifacts.
 #
 
@@ -21,7 +21,7 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false"
   SETTINGS_FILE=$(find . -name settings.xml | grep -v target)
 
   # Add the release key we'll use to publish through Sonatype
-  gpg --import src/main/resources/build-key.gpg
+  gpg --import build-key.gpg
 
   # If we have a tag, we're doing a real release; otherwise it is a snapshot build
   if [[ "$TRAVIS_BRANCH" == "$TRAVIS_TAG" ]]; then

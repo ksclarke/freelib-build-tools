@@ -12,7 +12,7 @@ addons:
 before_install:
   - >
     openssl aes-256-cbc -K $encrypted_c39593dffbcc_key -iv $encrypted_c39593dffbcc_iv \
-      -in src/main/resources/build-key.gpg.enc -out src/main/resources/build-key.gpg -d
+      -in src/main/resources/build-key.gpg.enc -out build-key.gpg -d
 
 install:
   - >
@@ -31,10 +31,12 @@ branches:
   - main
 
 notifications:
-  irc:
-    channels:
-      - irc.freenode.org#freelibrary
+  pushover:
+    api_key: "${PUSHOVER_API_KEY}"
+    users:
+      - "${PUSHOVER_USER_KEY}"
+    template: "%{repository_slug} (%{commit}) : %{message} - Build details: %{build_url}"
+    on_success: never
     on_failure: change
-    on_success: change
 
 sudo: false
