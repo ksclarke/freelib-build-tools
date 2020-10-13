@@ -12,7 +12,7 @@
     <freelib.resources.version>${project.parent.version}</freelib.resources.version>
 
     <!-- Dependencies managed through this parent project -->
-    <junit.version>4.13</junit.version>
+    <junit.version>4.13.1</junit.version>
     <slf4j.version>1.7.30</slf4j.version>
     <xmlunit.version>1.6</xmlunit.version>
     <groovy.version>2.5.4</groovy.version>
@@ -924,7 +924,7 @@
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>5.0.0</version>
+    <version>5.0.4-SNAPSHOT</version>
   </parent>
 
 </project>

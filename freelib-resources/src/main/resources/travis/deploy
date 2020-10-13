@@ -25,9 +25,11 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false"
 
   # If we have a tag, we're doing a real release; otherwise it is a snapshot build
   if [[ "$TRAVIS_BRANCH" == "$TRAVIS_TAG" ]]; then
+    echo "Calculating next version..."
     mvn -q versions:set -DnewVersion="$("$DIR"/next_version)"
   fi
 
+  echo "Running release script..."
   OUTPUT="$("$DIR"/release "$SETTINGS_FILE")"
 
   # Do a release and note which jar files are uploaded
@@ -35,7 +37,7 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false"
     echo -e "$OUTPUT" | grep 'Uploaded.*\.\(pom\|jar\) '
   else
     echo -e "ERROR_LOG:\n"
-    echo -e "$OUTPUT" | tail -n 100
+    echo -e "$OUTPUT"
     exit 1
   fi
 
