@@ -11,7 +11,7 @@ addons:
 
 before_install:
   - >
-    openssl aes-256-cbc -K $encrypted_c39593dffbcc_key -iv $encrypted_c39593dffbcc_iv \
+    openssl aes-256-cbc -K $encrypted_1da62148018a_key -iv $encrypted_1da62148018a_iv \
       -in src/main/resources/build-key.gpg.enc -out build-key.gpg -d
 
 install:
