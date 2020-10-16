@@ -30,6 +30,7 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false"
   fi
 
   echo "Running release script..."
+  mvn -U -Dmaven.test.skip=true help:active-profiles clean deploy -P 'release,!code-coverage' -s $SETTINGS_FILE
   OUTPUT="$("$DIR"/release "$SETTINGS_FILE")"
 
   # Do a release and note which jar files are uploaded
