@@ -7,9 +7,7 @@
 
 # We can supply a settings.xml file for custom settings
 if [ -z "$1" ]; then
-  echo "Running deploy without custom settings file"
   mvn -U -Dmaven.test.skip=true help:active-profiles clean deploy -P 'release,!code-coverage'
 else
-  echo "Running deploy with $1"
   mvn -U -Dmaven.test.skip=true help:active-profiles clean deploy -P 'release,!code-coverage' -s "$1"
 fi
