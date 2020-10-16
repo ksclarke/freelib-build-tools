@@ -924,7 +924,7 @@
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>5.0.4-SNAPSHOT</version>
+    <version>5.0.0-SNAPSHOT</version>
   </parent>
 
 </project>
