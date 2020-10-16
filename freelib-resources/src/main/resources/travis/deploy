@@ -37,7 +37,7 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false"
     echo -e "$OUTPUT" | grep 'Uploaded.*\.\(pom\|jar\) '
   else
     echo -e "ERROR_LOG:\n"
-    echo -e "$OUTPUT"
+    echo -e "$OUTPUT" | grep -B5 -A100 'ERROR'
     exit 1
   fi
 
