@@ -29,7 +29,7 @@ if [[ "$TRAVIS_PULL_REQUEST" == "false"
     mvn -q versions:set -DnewVersion="$("$DIR"/next_version)"
   fi
 
-  echo "Running release script..."
+  echo "Running release script... with $SETTINGS_FILE"
   mvn -U -Dmaven.test.skip=true help:active-profiles clean deploy -P 'release,!code-coverage' -s $SETTINGS_FILE
   OUTPUT="$("$DIR"/release "$SETTINGS_FILE")"
 
