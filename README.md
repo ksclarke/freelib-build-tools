@@ -1,10 +1,8 @@
-# freelib-build-tools &nbsp; [![Build Status](https://travis-ci.org/ksclarke/freelib-build-tools.svg?branch=main)](https://travis-ci.org/ksclarke/freelib-build-tools)
+# freelib-build-tools <br>[![Build Status](https://travis-ci.org/ksclarke/freelib-build-tools.svg?branch=main)](https://travis-ci.org/ksclarke/freelib-build-tools)
 
-### Introduction
+This project is comprised of two parts. The first part, `freelib-resources`, contains [Checkstyle](http://maven.apache.org/plugins/maven-checkstyle-plugin/) configuration files, [Code Formatter](http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcodestyle%2Fref-preferences-formatter.htm) settings for Eclipse, and deployment scripts for [Travis](https://travis-ci.com) builds. The second part, `freelib-parent`, contains a set of dependencies, plugins, and other configuration options to simplify the creation of new Maven projects. The second part also makes using the first's resources much easier, because it pulls them in and uses them by default when configuring a new project.
 
-This project is comprised of two parts. The first part, `freelib-resources`, contains [Checkstyle](http://maven.apache.org/plugins/maven-checkstyle-plugin/) configuration files, [Code Formatter](http://help.eclipse.org/indigo/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Freference%2Fpreferences%2Fjava%2Fcodestyle%2Fref-preferences-formatter.htm) settings for Eclipse, [JBake](http://jbake.org/) site templates, and deployment scripts for [Travis](https://travis-ci.com) builds. The second part, `freelib-parent`, contains a set of dependencies, plugins, and other configuration options to simplify the creation of new Maven projects. The second part also makes using the first's resources much easier, because it pulls them in and uses them by default when configuring a new project.
-
-### Using this project
+## Using this project
 
 Projects wanting to take advantage of `freelib-build-tools`' simplified configuration can configure `freelib-parent` as their project's parent. To do this, add the following as the last element in the POM's root element:
 
@@ -18,7 +16,7 @@ Once this is done, all the configuration options in `freelib-parent`, including 
 
 Note that freelib-build-tools is primarily intended for FreeLibrary projects so things like the site templates may not be generally useful to other projects. Even if you do not use freelib-build-tools directly, there may be some tricks, tools, and conventions here that will be useful in the creation of your own build tools project.
 
-### Deploying with freelib-build-tools
+## Deploying with freelib-build-tools
 
 With these build tools, a Travis account, and a Sonatype account, it's easy to publish Jar files to Maven's Central repository. Once a project has `freelib-parent` configured as its parent, and Travis set up to do CI builds, there are just a few additional configuration steps one must take before being able to publish artifacts to Maven Central.
 
@@ -100,6 +98,6 @@ GitHub also needs to be configured so that an admin can push directly to a branc
 With Travis and GitHub configured like the above there shouldn't be any problems. If you try this and do encounter problems though, please feel free to share them with me using the contact information below.
 
 
-### Contact Information
+## Contact Information
 
 Feel free to send any questions or comments about this project to <a href="mailto:ksclarke@ksclarke.io">Kevin S. Clarke</a>. If you notice something that is broken or that needs fixing, please submit a ticket to the project's [issues queue](https://github.com/ksclarke/freelib-build-tools/issues).
