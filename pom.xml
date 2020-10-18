@@ -46,11 +46,11 @@
   <properties>
     <maven.test.skip>true</maven.test.skip>
     <gpg.plugin.version>1.5</gpg.plugin.version>
-    <maven.source.plugin.version>2.2.1</maven.source.plugin.version>
-    <nexus.staging.plugin.version>1.6.3</nexus.staging.plugin.version>
-    <maven.javadoc.plugin.version>3.1.0</maven.javadoc.plugin.version>
-    <maven.surefire.plugin.version>2.20</maven.surefire.plugin.version>
-    <maven.site.plugin.version>3.8.2</maven.site.plugin.version>
+    <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
+    <nexus.staging.plugin.version>1.6.8</nexus.staging.plugin.version>
+    <maven.javadoc.plugin.version>3.2.0</maven.javadoc.plugin.version>
+    <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
+    <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
