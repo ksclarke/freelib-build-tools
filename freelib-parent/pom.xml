@@ -230,6 +230,7 @@
                 <outputDirectory>${basedir}/src/main/tools</outputDirectory>
                 <resources>
                   <resource>
+                    <!-- Checkstyle resources are the only ones filtered -->
                     <directory>${basedir}/target/build-resources</directory>
                     <filtering>true</filtering>
                     <excludes>
@@ -238,7 +239,6 @@
                       <exclude>**/travis/**</exclude>
                     </excludes>
                   </resource>
-                  <!-- We want our checkstyle rules filtered for the checkstyle-suppression.xml -->
                   <resource>
                     <directory>${basedir}/target/build-resources</directory>
                     <filtering>false</filtering>
@@ -403,6 +403,22 @@
               </systemProperty>
             </systemProperties>
           </configuration>
+          <executions>
+            <execution>
+              <id>chmod-travis-scripts</id>
+              <phase>process-resources</phase>
+              <goals>
+                <goal>exec</goal>
+              </goals>
+              <configuration>
+                <executable>bash</executable>
+                <arguments>
+                  <argument>-c</argument>
+                  <argument>chmod -f 755 target/build-resources/travis/*</argument>
+                </arguments>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
