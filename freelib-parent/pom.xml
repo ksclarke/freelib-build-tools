@@ -212,6 +212,9 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
           <version>${maven.resources.plugin.version}</version>
+          <configuration>
+            <propertiesEncoding>ISO-8859-1</propertiesEncoding>
+          </configuration>
           <dependencies>
             <dependency>
               <groupId>org.apache.maven.shared</groupId>
@@ -953,7 +956,7 @@
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>5.1.6-SNAPSHOT</version>
+    <version>5.2.0</version>
   </parent>
 
 </project>
