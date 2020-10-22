@@ -36,8 +36,9 @@
     <build.helper.maven.plugin.version>3.0.0</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
-    <pmd.plugin.version>3.13.0</pmd.plugin.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
+    <pmd.plugin.version>3.13.0</pmd.plugin.version>
+    <jar.plugin.version>3.2.0</jar.plugin.version>
 
     <!-- Configure the project's character encodings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -446,6 +447,16 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${jar.plugin.version}</version>
+          <configuration>
+            <excludes>
+              <exclude>build-key.gpg.enc</exclude>
+            </excludes>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
