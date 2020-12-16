@@ -31,6 +31,7 @@
     <maven.javadoc.plugin.version>3.2.0</maven.javadoc.plugin.version>
     <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
     <maven.resources.plugin.version>3.2.0</maven.resources.plugin.version>
+    <maven.enforcer.plugin.version>3.0.0-M3</maven.enforcer.plugin.version>
     <maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
     <maven.dependency.analyzer.version>1.11.1</maven.dependency.analyzer.version>
     <build.helper.maven.plugin.version>3.0.0</build.helper.maven.plugin.version>
@@ -192,7 +193,7 @@
                     <artifactId>freelib-resources</artifactId>
                     <version>${freelib.resources.version}</version>
                     <type>jar</type>
-                    <includes>eclipse/**/*,checkstyle/**/*,pmd/**/*,travis/**/*</includes>
+                    <includes>eclipse/**/*,checkstyle/**/*,pmd/**/*</includes>
                     <outputDirectory>${basedir}/target/build-resources</outputDirectory>
                   </artifactItem>
                   <artifactItem>
@@ -240,7 +241,6 @@
                     <excludes>
                       <exclude>**/pmd/**</exclude>
                       <exclude>**/eclipse/**</exclude>
-                      <exclude>**/travis/**</exclude>
                     </excludes>
                   </resource>
                   <resource>
@@ -383,8 +383,12 @@
             <!-- Our integration tests shouldn't be run as unit tests -->
             <excludes>
               <exclude>**/*IT.java</exclude>
+              <exclude>**/*FT.java</exclude>
+              <exclude>**/*FfOnT.java</exclude>
+              <exclude>**/*FfOffT.java</exclude>
               <exclude>**/*IntegrationTest.java</exclude>
               <exclude>**/*FunctionalTest.java</exclude>
+              <exclude>**/*FeatureFlagTest.java</exclude>
             </excludes>
             <forkCount>3</forkCount>
             <reuseForks>true</reuseForks>
@@ -396,35 +400,6 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>exec-maven-plugin</artifactId>
-          <version>${exec.maven.plugin.version}</version>
-          <configuration>
-            <systemProperties>
-              <systemProperty>
-                <key>logback.configurationFile</key>
-                <value>${project.basedir}/src/main/resources/logback.xml</value>
-              </systemProperty>
-            </systemProperties>
-          </configuration>
-          <executions>
-            <execution>
-              <id>chmod-travis-scripts</id>
-              <phase>process-resources</phase>
-              <goals>
-                <goal>exec</goal>
-              </goals>
-              <configuration>
-                <executable>bash</executable>
-                <arguments>
-                  <argument>-c</argument>
-                  <argument>chmod -f 755 target/build-resources/travis/*</argument>
-                </arguments>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-failsafe-plugin</artifactId>
           <version>${maven.failsafe.plugin.version}</version>
@@ -432,11 +407,17 @@
             <argLine>-XX:MaxMetaspaceSize=128m ${jacoco.agent.arg}</argLine>
             <includes>
               <include>**/*IT.java</include>
+              <include>**/*FT.java</include>
+              <include>**/*FfOnT.java</include>
+              <include>**/*FfOffT.java</include>
               <include>**/*IntegrationTest.java</include>
+              <include>**/*FunctionalTest.java</include>
+              <include>**/*FeatureFlagTest.java</include>
             </includes>
             <excludes>
               <exclude>**/*.xml</exclude>
               <exclude>**/*.md</exclude>
+              <exclude>**/*Test.java</exclude>
             </excludes>
           </configuration>
           <executions>
@@ -549,7 +530,16 @@
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/14/docs/api/</javadocs.jdk.url>
       </properties>
     </profile>
-    <!-- Runs code coverage upload on Travis -->
+    <profile>
+      <id>java15</id>
+      <activation>
+        <jdk>15</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.release>15</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/15/docs/api/</javadocs.jdk.url>
+      </properties>
+    </profile>
     <profile>
       <id>code-coverage</id>
       <activation>
@@ -626,7 +616,6 @@
               <apiToken>${env.CODACY_API_TOKEN}</apiToken>
               <projectToken>${env.CODACY_PROJECT_TOKEN}</projectToken>
               <coverageReportFile>${project.basedir}/target/site/jacoco/jacoco.xml</coverageReportFile>
-              <commit>${env.TRAVIS_COMMIT}</commit>
               <codacyApiBaseUrl>https://api.codacy.com</codacyApiBaseUrl>
               <failOnMissingReportFile>false</failOnMissingReportFile>
             </configuration>
@@ -703,6 +692,12 @@
                 <goals>
                   <goal>sign</goal>
                 </goals>
+                <configuration>
+                  <gpgArguments>
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                  </gpgArguments>
+                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -712,9 +707,9 @@
             <version>${nexus.staging.plugin.version}</version>
             <extensions>true</extensions>
             <configuration>
-              <serverId>sonatype-nexus-staging</serverId>
+              <serverId>ossrh</serverId>
               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+              <autoReleaseAfterClose>false</autoReleaseAfterClose>
             </configuration>
           </plugin>
         </plugins>
@@ -964,10 +959,17 @@
     </profile>
   </profiles>
 
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>5.2.2-SNAPSHOT</version>
+    <version>6.0.0-alpha-1</version>
   </parent>
 
 </project>

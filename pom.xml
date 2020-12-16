@@ -4,7 +4,7 @@
 
   <groupId>info.freelibrary</groupId>
   <artifactId>freelib-build-tools</artifactId>
-  <version>5.2.2-SNAPSHOT</version>
+  <version>6.0.0-alpha-1</version>
   <packaging>pom</packaging>
   <name>FreeLibrary Build Tools</name>
   <description>Build tools for FreeLibrary projects.</description>
@@ -137,6 +137,12 @@
                 <goals>
                   <goal>sign</goal>
                 </goals>
+                <configuration>
+                  <gpgArguments>
+                    <arg>--pinentry-mode</arg>
+                    <arg>loopback</arg>
+                  </gpgArguments>
+                </configuration>
               </execution>
             </executions>
           </plugin>
@@ -146,15 +152,22 @@
             <version>${nexus.staging.plugin.version}</version>
             <extensions>true</extensions>
             <configuration>
-              <serverId>sonatype-nexus-staging</serverId>
+              <serverId>ossrh</serverId>
               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+              <autoReleaseAfterClose>false</autoReleaseAfterClose>
             </configuration>
           </plugin>
         </plugins>
       </build>
     </profile>
   </profiles>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 
   <parent>
     <groupId>org.sonatype.oss</groupId>
