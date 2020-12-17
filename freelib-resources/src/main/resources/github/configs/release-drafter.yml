@@ -1,6 +1,8 @@
 
+name-template: 'v$RESOLVED_VERSION'
+tag-template: '$RESOLVED_VERSION'
 categories:
-  - title: '🚀 Features and Improvements'
+  - title: '🚀 Features'
     labels:
       - 'feature'
       - 'enhancement'
@@ -11,8 +13,6 @@ categories:
     label: 'breaking'
 change-template: '* $TITLE (#$NUMBER)'
 change-title-escapes: '*_&'
-exclude-labels:
-  - 'skip-changelog'
 template: |
   ## What’s Changed
 
