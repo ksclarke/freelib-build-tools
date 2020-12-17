@@ -1,5 +1,6 @@
 name: Maven Artifact Release
 
+# Performs a release using JDK 11 when a GitHub release has been created
 on:
   release:
     types: [ created ]
@@ -9,7 +10,7 @@ jobs:
     name: Maven Artifact Publisher (JDK 11)
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
+      - name: Check out source code
         uses: actions/checkout@v2
       - name: Install JDK 11 and Maven
         uses: actions/setup-java@v1

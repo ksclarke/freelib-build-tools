@@ -1,4 +1,4 @@
-name: Release Drafter
+name: Draft Release
 
 # Any time new commits hit the 'main' branch, add them to the next release draft
 on:
@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  update_release_draft:
+  draft:
     runs-on: ubuntu-latest
     steps:
       - uses: release-drafter/release-drafter@v5
