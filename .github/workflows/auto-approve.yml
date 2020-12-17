@@ -10,11 +10,11 @@ on:
 
 jobs:
   approve:
+    name: PR Auto-Approver
     runs-on: ubuntu-latest
     env:
       AUTO_PR_APPROVAL: ${{ secrets.AUTO_PR_APPROVAL }}
     steps:
-    - run: echo ${{ env.AUTO_PR_APPROVAL }}
     - uses: hmarr/auto-approve-action@v2.0.0
       if: env.AUTO_PR_APPROVAL != null
       with:
