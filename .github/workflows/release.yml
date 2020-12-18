@@ -1,4 +1,4 @@
-name: Maven Artifact Release
+name: Maven Release
 
 # Performs a release using JDK 11 when a GitHub release has been created
 on:
