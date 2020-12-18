@@ -317,13 +317,18 @@
           </executions>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>${maven.checkstyle.version}</version>
           <configuration>
             <logViolationsToConsole>true</logViolationsToConsole>
             <violationSeverity>warning</violationSeverity>
+            <failOnViolation>true</failOnViolation>
+            <failsOnError>true</failsOnError>
+            <consoleOutput>false</consoleOutput>
             <includeTestSourceDirectory>true</includeTestSourceDirectory>
+            <includeTestResources>true</includeTestResources>
+            <includeResources>true</includeResources>
+            <resourceIncludes>**/*</resourceIncludes>
             <configLocation>${basedir}/src/main/tools/checkstyle/checkstyle.xml</configLocation>
           </configuration>
           <dependencies>
