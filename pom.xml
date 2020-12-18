@@ -4,7 +4,7 @@
 
   <groupId>info.freelibrary</groupId>
   <artifactId>freelib-build-tools</artifactId>
-  <version>6.0.0-alpha-1</version>
+  <version>6.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>FreeLibrary Build Tools</name>
   <description>Build tools for FreeLibrary projects.</description>
@@ -168,12 +168,6 @@
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
-
-  <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
-  </parent>
 
 </project>
 

@@ -193,17 +193,8 @@
                     <artifactId>freelib-resources</artifactId>
                     <version>${freelib.resources.version}</version>
                     <type>jar</type>
-                    <includes>eclipse/**/*,checkstyle/**/*,pmd/**/*</includes>
+                    <includes>eclipse/**/*,checkstyle/**/*,pmd/**/*,github/**/*</includes>
                     <outputDirectory>${basedir}/target/build-resources</outputDirectory>
-                  </artifactItem>
-                  <artifactItem>
-                    <groupId>info.freelibrary</groupId>
-                    <artifactId>freelib-resources</artifactId>
-                    <version>${freelib.resources.version}</version>
-                    <type>jar</type>
-                    <includes>settings.xml</includes>
-                    <includes>buildlog.properties</includes>
-                    <outputDirectory>${basedir}/src/test/resources</outputDirectory>
                   </artifactItem>
                 </artifactItems>
               </configuration>
@@ -216,6 +207,7 @@
           <version>${maven.resources.plugin.version}</version>
           <configuration>
             <propertiesEncoding>ISO-8859-1</propertiesEncoding>
+            <overwrite>true</overwrite>
           </configuration>
           <dependencies>
             <dependency>
@@ -249,6 +241,22 @@
                     <excludes>
                       <exclude>**/checkstyle/**</exclude>
                     </excludes>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+            <execution>
+              <id>copy-github-resources</id>
+              <phase>process-resources</phase>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <configuration>
+                <outputDirectory>${basedir}/.github</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${basedir}/target/build-resources/github</directory>
+                    <filtering>false</filtering>
                   </resource>
                 </resources>
               </configuration>
@@ -309,13 +317,18 @@
           </executions>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>${maven.checkstyle.version}</version>
           <configuration>
             <logViolationsToConsole>true</logViolationsToConsole>
             <violationSeverity>warning</violationSeverity>
+            <failOnViolation>true</failOnViolation>
+            <failsOnError>true</failsOnError>
+            <consoleOutput>false</consoleOutput>
             <includeTestSourceDirectory>true</includeTestSourceDirectory>
+            <includeTestResources>true</includeTestResources>
+            <includeResources>true</includeResources>
+            <resourceIncludes>**/*</resourceIncludes>
             <configLocation>${basedir}/src/main/tools/checkstyle/checkstyle.xml</configLocation>
           </configuration>
           <dependencies>
@@ -969,7 +982,7 @@
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
-    <version>6.0.0-alpha-1</version>
+    <version>6.0.0-SNAPSHOT</version>
   </parent>
 
 </project>
