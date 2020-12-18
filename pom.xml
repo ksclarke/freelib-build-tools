@@ -8,6 +8,7 @@
   <packaging>pom</packaging>
   <name>FreeLibrary Build Tools</name>
   <description>Build tools for FreeLibrary projects.</description>
+  <url>https://github.com/ksclarke/freelib-build-tools</url>
 
   <licenses>
     <license>
