@@ -45,6 +45,9 @@
   </developers>
 
   <properties>
+    <!-- Whether artifacts should be auto-released on OSSRH -->
+    <autorelease.artifact>false</autorelease.artifact>
+
     <revision>0.0.0-SNAPSHOT</revision>
     <maven.test.skip>true</maven.test.skip>
     <gpg.plugin.version>1.5</gpg.plugin.version>
@@ -156,7 +159,7 @@
             <configuration>
               <serverId>ossrh</serverId>
               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>false</autoReleaseAfterClose>
+              <autoReleaseAfterClose>${autorelease.artifact}</autoReleaseAfterClose>
             </configuration>
           </plugin>
         </plugins>

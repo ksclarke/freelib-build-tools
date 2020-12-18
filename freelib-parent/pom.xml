@@ -8,6 +8,9 @@
   <packaging>pom</packaging>
 
   <properties>
+    <!-- Whether artifacts should be auto-released on OSSRH -->
+    <autorelease.artifact>false</autorelease.artifact>
+
     <!-- FreeLibrary projects whose versions are managed through this parent -->
     <freelib.resources.version>${project.parent.version}</freelib.resources.version>
 
@@ -722,7 +725,7 @@
             <configuration>
               <serverId>ossrh</serverId>
               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>false</autoReleaseAfterClose>
+              <autoReleaseAfterClose>${autorelease.artifact}</autoReleaseAfterClose>
             </configuration>
           </plugin>
         </plugins>
