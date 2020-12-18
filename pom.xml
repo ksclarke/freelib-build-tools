@@ -4,7 +4,7 @@
 
   <groupId>info.freelibrary</groupId>
   <artifactId>freelib-build-tools</artifactId>
-  <version>6.0.0-SNAPSHOT</version>
+  <version>${revision}</version>
   <packaging>pom</packaging>
   <name>FreeLibrary Build Tools</name>
   <description>Build tools for FreeLibrary projects.</description>
@@ -45,6 +45,7 @@
   </developers>
 
   <properties>
+    <revision>0.0.0-SNAPSHOT</revision>
     <maven.test.skip>true</maven.test.skip>
     <gpg.plugin.version>1.5</gpg.plugin.version>
     <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
