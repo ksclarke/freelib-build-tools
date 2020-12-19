@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  approve:
+  approve-pr:
     name: PR Auto-Approver
     runs-on: ubuntu-latest
     env:
