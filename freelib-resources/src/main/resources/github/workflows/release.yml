@@ -24,7 +24,7 @@ jobs:
           path: ~/.m2
           key: freelibrary-cache-${{ env.FREELIBRARY_CACHE_KEY }}
       - name: Set auto-release config
-        if: env.AUTORELEASE_ARTIFACT == null
+        if: secrets.AUTORELEASE_ARTIFACT == null
         run: echo "AUTORELEASE_ARTIFACT=false" >> $GITHUB_ENV
       - name: Release with Maven
         uses: samuelmeuli/action-maven-publish@v1
