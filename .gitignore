@@ -1,3 +1,5 @@
 target/
 
 build-key.gpg
+
+**/.flattened-pom.xml
