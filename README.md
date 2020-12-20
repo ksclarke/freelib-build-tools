@@ -1,6 +1,4 @@
-# freelib-build-tools
-
-![Maven Build](https://github.com/ksclarke/freelib-build-tools/workflows/Maven%20Build/badge.svg) [![Known Vulnerabilities](https://snyk.io/test/github/ksclarke/freelib-build-tools/badge.svg)](https://snyk.io/test/github/ksclarke/freelib-build-tools) [![Maven Central](https://img.shields.io/maven-central/v/info.freelibrary/freelib-build-tools?colorB=brightgreen)](https://search.maven.org/artifact/info.freelibrary/freelib-build-tools)
+# freelib-build-tools <br/>![Maven Build](https://github.com/ksclarke/freelib-build-tools/workflows/Maven%20Build/badge.svg) [![Known Vulnerabilities](https://snyk.io/test/github/ksclarke/freelib-build-tools/badge.svg)](https://snyk.io/test/github/ksclarke/freelib-build-tools) [![Maven Central](https://img.shields.io/maven-central/v/info.freelibrary/freelib-build-tools?colorB=brightgreen)](https://search.maven.org/artifact/info.freelibrary/freelib-build-tools)
 
 ### Introduction
 
