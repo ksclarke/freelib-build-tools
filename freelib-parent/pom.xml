@@ -262,6 +262,7 @@
                     <filtering>true</filtering>
                     <excludes>
                       <exclude>**/pmd/**</exclude>
+                      <exclude>**/github/**</exclude>
                       <exclude>**/eclipse/**</exclude>
                     </excludes>
                   </resource>
@@ -269,6 +270,7 @@
                     <directory>${basedir}/target/build-resources</directory>
                     <filtering>false</filtering>
                     <excludes>
+                      <exclude>**/github/**</exclude>
                       <exclude>**/checkstyle/**</exclude>
                     </excludes>
                   </resource>
