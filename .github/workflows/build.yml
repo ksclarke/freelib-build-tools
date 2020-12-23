@@ -27,7 +27,8 @@ jobs:
           FREELIBRARY_CACHE_KEY: ${{ secrets.FREELIBRARY_CACHE_KEY }}
         with:
           path: ~/.m2
-          key: freelibrary-cache-${{ env.FREELIBRARY_CACHE_KEY }}
+          key: freelibrary-cache-${{ env.FREELIBRARY_CACHE_KEY }}-${{ hashFiles('**/*.gradle') }}
+          restore-keys: freelibrary-cache-${{ env.FREELIBRARY_CACHE_KEY }}
       - name: Build with Maven
         uses: samuelmeuli/action-maven-publish@v1
         with:

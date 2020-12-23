@@ -1,0 +1,18 @@
+name: Dependabot Auto-Merge
+
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  merge:
+    name: Dependabot Updater
+    runs-on: ubuntu-latest
+    steps:
+      -  name: Check out code
+         uses: actions/checkout@v2
+      -  name: Merge Dependabot PR
+         uses: ahmadnassri/action-dependabot-auto-merge@v2
+         with:
+           config: .github/configs/dependabot-auto-merge.yml
+           github-token: ${{ secrets.ACTIONS_PAT }}
