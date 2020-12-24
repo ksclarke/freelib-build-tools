@@ -12,8 +12,10 @@ categories:
       - 'bugfix'
   - title: '🧰 Breaking Changes'
     label: 'breaking'
+tag-template: ''
+name-template: ''
 change-template: '* $TITLE (#$NUMBER)'
-change-title-escapes: '*_&#'
+change-title-escapes: ''
 exclude-labels:
   - 'skip-changelog'
 template: |
