@@ -13,7 +13,7 @@ categories:
   - title: '🧰 Breaking Changes'
     label: 'breaking'
 change-template: '* $TITLE (#$NUMBER)'
-change-title-escapes: '*_&#'
+change-title-escapes: ''
 exclude-labels:
   - 'skip-changelog'
 template: |
