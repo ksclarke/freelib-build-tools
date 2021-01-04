@@ -12,8 +12,21 @@ categories:
       - 'bugfix'
   - title: '🧰 Breaking Changes'
     label: 'breaking'
-tag-template: ''
-name-template: ''
+version-resolver:
+  major:
+    labels:
+      - 'breaking'
+  minor:
+    labels:
+      - 'enhancement'
+      - 'feature'
+  patch:
+    labels:
+      - 'bugfix'
+      - 'documentation'
+  default: patch
+tag-template: '$RESOLVED_VERSION'
+name-template: 'v$RESOLVED_VERSION'
 change-template: '* $TITLE (#$NUMBER)'
 change-title-escapes: ''
 exclude-labels:
