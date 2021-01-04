@@ -11,6 +11,13 @@
     <!-- Whether artifacts should be auto-released on OSSRH -->
     <autorelease.artifact>false</autorelease.artifact>
 
+    <!-- Do not, by default, overwrite modified GitHub Actions -->
+    <overwrite.actions>false</overwrite.actions>
+
+    <!-- Skip Maven's default site generation stuff -->
+    <maven.site.skip>true</maven.site.skip>
+    <maven.site.deploy.skip>true</maven.site.deploy.skip>
+
     <!-- FreeLibrary projects whose versions are managed through this parent -->
     <freelib.resources.version>${project.parent.version}</freelib.resources.version>
 
@@ -43,7 +50,6 @@
     <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
     <pmd.plugin.version>3.13.0</pmd.plugin.version>
-    <jar.plugin.version>3.2.0</jar.plugin.version>
 
     <!-- Configure the project's character encodings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -237,7 +243,6 @@
           <version>${maven.resources.plugin.version}</version>
           <configuration>
             <propertiesEncoding>ISO-8859-1</propertiesEncoding>
-            <overwrite>true</overwrite>
           </configuration>
           <dependencies>
             <dependency>
@@ -255,6 +260,7 @@
               </goals>
               <configuration>
                 <outputDirectory>${basedir}/src/main/tools</outputDirectory>
+                <overwrite>true</overwrite>
                 <resources>
                   <resource>
                     <!-- Checkstyle resources are the only ones filtered -->
@@ -285,6 +291,7 @@
               </goals>
               <configuration>
                 <outputDirectory>${basedir}/.github</outputDirectory>
+                <overwrite>${overwrite.actions}</overwrite>
                 <resources>
                   <resource>
                     <directory>${basedir}/target/build-resources/github</directory>
@@ -473,16 +480,6 @@
               </goals>
             </execution>
           </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>${jar.plugin.version}</version>
-          <configuration>
-            <excludes>
-              <exclude>build-key.gpg.enc</exclude>
-            </excludes>
-          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -674,15 +671,6 @@
               </execution>
             </executions>
           </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>${maven.site.plugin.version}</version>
-            <configuration>
-              <skip>true</skip>
-              <skipDeploy>true</skipDeploy>
-            </configuration>
-          </plugin>
         </plugins>
       </build>
     </profile>
@@ -691,15 +679,6 @@
       <id>release</id>
       <build>
         <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>${maven.site.plugin.version}</version>
-            <configuration>
-              <skip>true</skip>
-              <skipDeploy>true</skipDeploy>
-            </configuration>
-          </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>

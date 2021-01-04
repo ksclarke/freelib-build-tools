@@ -48,6 +48,9 @@
     <!-- Whether artifacts should be auto-released on OSSRH -->
     <autorelease.artifact>false</autorelease.artifact>
 
+    <maven.site.skip>true</maven.site.skip>
+    <maven.site.deploy.skip>true</maven.site.deploy.skip>
+
     <revision>0.0.0-SNAPSHOT</revision>
     <maven.test.skip>true</maven.test.skip>
     <gpg.plugin.version>1.5</gpg.plugin.version>
@@ -94,15 +97,6 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <version>${maven.site.plugin.version}</version>
-        <configuration>
-          <skip>true</skip>
-          <skipDeploy>true</skipDeploy>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -154,15 +148,6 @@
       <id>release</id>
       <build>
         <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>${maven.site.plugin.version}</version>
-            <configuration>
-              <skip>true</skip>
-              <skipDeploy>true</skipDeploy>
-            </configuration>
-          </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
