@@ -11,7 +11,7 @@ Projects wanting to take advantage of `freelib-build-tools`' simplified configur
     <parent>
       <groupId>info.freelibrary</groupId>
       <artifactId>freelib-parent</artifactId>
-      <version>6.3.0</version>
+      <version>6.3.2</version>
     </parent>
 
 Once this is done, all the configuration options in `freelib-parent`, including the resources from `freelib-resources`, will be available to the project. One can add them to the child project simply by referencing the plugins, etc., defined in the parent project. To see an example of how this is done, see [freelib-utils](https://github.com/ksclarke/freelib-utils)'s POM file.
