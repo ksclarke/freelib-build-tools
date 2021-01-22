@@ -18,6 +18,9 @@
     <maven.site.skip>true</maven.site.skip>
     <maven.site.deploy.skip>true</maven.site.deploy.skip>
 
+    <!-- Allow a project to override a Jar deployment -->
+    <maven.jar.deploy.skip>false</maven.jar.deploy.skip>
+
     <!-- FreeLibrary projects whose versions are managed through this parent -->
     <freelib.resources.version>${project.parent.version}</freelib.resources.version>
 
@@ -48,16 +51,13 @@
     <build.helper.maven.plugin.version>3.0.0</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+    <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
     <pmd.plugin.version>3.13.0</pmd.plugin.version>
 
     <!-- Configure the project's character encodings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-    <!-- Disable the default site generation -->
-    <maven.site.skip>true</maven.site.skip>
-    <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
 
     <!-- We want to override the skip tests directive in our parent project -->
     <maven.test.skip>false</maven.test.skip>
@@ -734,6 +734,7 @@
               <serverId>ossrh</serverId>
               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
               <autoReleaseAfterClose>${autorelease.artifact}</autoReleaseAfterClose>
+              <skipNexusStagingDeployMojo>${maven.jar.deploy.skip}</skipNexusStagingDeployMojo>
             </configuration>
           </plugin>
         </plugins>
