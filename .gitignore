@@ -1,5 +1,6 @@
+
+# The working directory of the Maven builder
 target/
 
-build-key.gpg
-
+# The collapsed POM created by the 'revision' POM version
 **/.flattened-pom.xml

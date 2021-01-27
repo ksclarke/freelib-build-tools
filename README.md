@@ -24,6 +24,24 @@ This project now uses the [action-maven-publish](https://github.com/marketplace/
 
 When running a build of a project that extends freelib-build-tools, a new `.github` directory will be created in the project's root. Currently, this initialization overwrites any existing Action files with the same names. So, keep that in mind before you start using freelib-build-tools.
 
+### Testing Project's GitHub Actions
+
+This project uses Nektos' [Act](https://github.com/nektos/act) to test GitHub Actions locally. Act spins up a local container with the GitHub Actions environment and runs the GitHub Action in that container. For instance, to run the freelib-build-tools release Action, one would type:
+
+    act "release" -e freelib-resources/src/test/resources/event.json
+
+When Act is run, it uses the `.actrc` file in this project's directory. That file references a `/etc/github/actions/secrets` file, in which environmental variables should be defined. The expected environmental variables for this project's Actions are:
+
+    FREELIBRARY_CACHE_KEY=""
+    AUTORELEASE_ARTIFACT=""
+    SKIP_JAR_DEPLOYMENT=""
+    SONATYPE_USERNAME=""
+    SONATYPE_PASSWORD=""
+    BUILD_PASSPHRASE=""
+    BUILD_KEY=""
+
+The `AUTORELEASE_ARTIFACT` and `SKIP_JAR_DEPLOYMENT` variables expect boolean values. The rest should be string values.
+
 ### Contact Information
 
 If you notice something that is broken or that needs fixing, please submit a ticket to the project's [issues queue](https://github.com/ksclarke/freelib-build-tools/issues). If you have a question or a general comment about the project, please use the project's [discussion board](https://github.com/ksclarke/jiiify-presentation/discussions).
