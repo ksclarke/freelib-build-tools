@@ -8,18 +8,12 @@
   <packaging>pom</packaging>
 
   <properties>
-    <!-- Whether artifacts should be auto-released on OSSRH -->
-    <autorelease.artifact>false</autorelease.artifact>
-
     <!-- Do not, by default, overwrite modified GitHub Actions -->
     <overwrite.actions>false</overwrite.actions>
 
     <!-- Skip Maven's default site generation stuff -->
     <maven.site.skip>true</maven.site.skip>
     <maven.site.deploy.skip>true</maven.site.deploy.skip>
-
-    <!-- Allow a project to override a Jar deployment -->
-    <maven.jar.deploy.skip>false</maven.jar.deploy.skip>
 
     <!-- FreeLibrary projects whose versions are managed through this parent -->
     <freelib.resources.version>${project.parent.version}</freelib.resources.version>
@@ -733,8 +727,6 @@
             <configuration>
               <serverId>ossrh</serverId>
               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>${autorelease.artifact}</autoReleaseAfterClose>
-              <skipNexusStagingDeployMojo>${maven.jar.deploy.skip}</skipNexusStagingDeployMojo>
             </configuration>
           </plugin>
         </plugins>

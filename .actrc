@@ -1,0 +1,4 @@
+
+# The act config for the freelib-build-tools repository
+-W ./freelib-resources/src/main/resources/github/workflows
+--secret-file /etc/github/actions/secrets
