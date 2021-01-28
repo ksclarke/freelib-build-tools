@@ -42,6 +42,8 @@ When Act is run, it uses the `.actrc` file in this project's directory. That fil
 
 The `AUTORELEASE_ARTIFACT` and `SKIP_JAR_DEPLOYMENT` variables expect boolean values. The rest should be string values.
 
+*Note:* Since updating to using commit hashes in this project's GitHub Actions, running `act` no longer works. I've submitted a ticket to request that hashes be supported.
+
 ### Contact Information
 
 If you notice something that is broken or that needs fixing, please submit a ticket to the project's [issues queue](https://github.com/ksclarke/freelib-build-tools/issues). If you have a question or a general comment about the project, please use the project's [discussion board](https://github.com/ksclarke/freelib-build-tools/discussions).
