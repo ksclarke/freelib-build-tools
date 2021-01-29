@@ -25,21 +25,21 @@ This project now uses the [action-maven-publish](https://github.com/marketplace/
 There are several build variables that can be set as Secrets in your project's GitHub configuration:
 
 Secret and value                   | Optional
------------------------------------|-------------------------------
-MAVEN_CACHE_KEY="[string]"         | yes, but will share a cache
+-----------------------------------|------------------------------------
+MAVEN_CACHE_KEY="[string]"         | yes
 AUTORELEASE_ARTIFACT="[boolean]"   | yes
 SKIP_JAR_DEPLOYMENT="[boolean]"    | yes
+AUTO_PR_APPROVAL="[boolean]"       | yes
+BUILD_PROFILES="[string]"          | yes
+BUILD_PROPERTIES="[string]"        | yes
 SONATYPE_USERNAME="[string]"       | when using SKIP_JAR_DEPLOYMENT
 SONATYPE_PASSWORD="[string]"       | when using SKIP_JAR_DEPLOYMENT
 BUILD_PASSPHRASE="[string]"        | when using SKIP_JAR_DEPLOYMENT
 BUILD_KEY="[string]"               | when using SKIP_JAR_DEPLOYMENT
-BUILD_PROFILES="[string]"          | yes
-BUILD_PROPERTIES="[string]"        | yes
-ACTIONS_PAT="[token]"              | only req when using dependabot
-AUTO_PR_APPROVAL="[boolean]"       | yes
-DOCKER_REGISTRY_ACCOUNT="[string]" | only req when using Docker
-DOCKER_USERNAME="[string]"         | only req when using Docker
-DOCKER_PASSWORD="[string]"         | only req when using Docker
+ACTIONS_PAT="[token]"              | only required when using dependabot
+DOCKER_REGISTRY_ACCOUNT="[string]" | only required when using Docker
+DOCKER_USERNAME="[string]"         | only required when using Docker
+DOCKER_PASSWORD="[string]"         | only required when using Docker
 
 If you put any secret values in the BUILD_PROPERTIES variable, you also want to add individual Secrets for those so that GitHub Actions recognizes they should not be displayed in the logs. This is a bit kludgey, but is my current workaround for having a generic Action and no support for string templates in the Maven Action.
 

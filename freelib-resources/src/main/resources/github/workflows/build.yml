@@ -10,6 +10,8 @@ jobs:
   build:
     name: Maven PR Builder (JDK ${{ matrix.java }})
     runs-on: ubuntu-latest
+    env:
+      MAVEN_CACHE_KEY: ${{ secrets.MAVEN_CACHE_KEY }}
     strategy:
       matrix:
         java: [ 11, 12 ]
@@ -29,6 +31,7 @@ jobs:
           maven-version: 3.6.3
       - name: Set up Maven cache
         uses: actions/cache@0781355a23dac32fd3bac414512f4b903437991a # v2
+        if: ${{ env.MAVEN_CACHE_KEY }}
         with:
           path: ~/.m2
           key: freelibrary-cache-${{ secrets.MAVEN_CACHE_KEY }}-${{ hashFiles('**/pom.xml') }}
