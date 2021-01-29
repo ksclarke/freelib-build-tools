@@ -362,7 +362,8 @@
             <includeTestResources>true</includeTestResources>
             <includeResources>true</includeResources>
             <resourceIncludes>**/*</resourceIncludes>
-            <configLocation>${basedir}/src/main/tools/checkstyle/checkstyle.xml</configLocation>
+            <suppressionsLocation>src/main/tools/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+            <configLocation>src/main/tools/checkstyle/checkstyle.xml</configLocation>
           </configuration>
           <dependencies>
             <dependency>
