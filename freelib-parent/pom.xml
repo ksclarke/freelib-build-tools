@@ -60,7 +60,7 @@
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>src/main/tools/checkstyle</config_loc>
     <maven.checkstyle.version>3.1.1</maven.checkstyle.version>
-    <checkstyle.version>8.36.2</checkstyle.version>
+    <checkstyle.version>8.39</checkstyle.version>
 
     <!-- The extension we use to push site productions up to an S3 bucket -->
     <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>

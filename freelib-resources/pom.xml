@@ -10,13 +10,58 @@
   <description>Resources, like Checkstyle rules and site templates, for FreeLibrary projects.</description>
 
   <properties>
+    <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
+    <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
+    <config_loc>${basedir}/target/classes/checkstyle/</config_loc>
+    <maven.checkstyle.version>3.1.1</maven.checkstyle.version>
+    <checkstyle.version>8.39</checkstyle.version>
+
     <maven.site.plugin.version>3.8.2</maven.site.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <plugins>
+      <!-- Checkstyle ensures adherence to coding standards -->
+      <plugin>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>${maven.checkstyle.version}</version>
+        <configuration>
+          <logViolationsToConsole>true</logViolationsToConsole>
+          <violationSeverity>warning</violationSeverity>
+          <failOnViolation>true</failOnViolation>
+          <failsOnError>true</failsOnError>
+          <consoleOutput>false</consoleOutput>
+          <includeTestSourceDirectory>true</includeTestSourceDirectory>
+          <includeTestResources>true</includeTestResources>
+          <includeResources>true</includeResources>
+          <resourceIncludes>**/*</resourceIncludes>
+          <configLocation>${basedir}/target/classes/checkstyle/checkstyle.xml</configLocation>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>${checkstyle.version}</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>checkstyle</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
