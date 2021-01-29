@@ -426,7 +426,6 @@ Table styles
   .constantsSummary caption a:active, .deprecatedSummary caption a:active, .overviewSummary caption a:visited,
   .memberSummary caption a:visited, .typeSummary caption a:visited, .useSummary caption a:visited, .constantsSummary caption a:visited,
   .deprecatedSummary caption a:visited {
-  
 }
 
 .overviewSummary caption span, .memberSummary caption span, .typeSummary caption span, .useSummary caption span,
