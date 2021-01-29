@@ -285,6 +285,7 @@
               </goals>
               <configuration>
                 <outputDirectory>${basedir}/.github</outputDirectory>
+                <filtering>false</filtering>
                 <overwrite>${overwrite.actions}</overwrite>
                 <resources>
                   <resource>
