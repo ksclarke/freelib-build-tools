@@ -669,6 +669,9 @@
         </plugins>
       </build>
     </profile>
+    <profile>
+      <id>default</id>
+    </profile>
     <!-- The release-sign-artifacts profile allows for the publishing of project artifact -->
     <profile>
       <id>release</id>
