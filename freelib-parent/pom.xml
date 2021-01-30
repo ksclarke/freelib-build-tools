@@ -8,8 +8,8 @@
   <packaging>pom</packaging>
 
   <properties>
-    <!-- Do not, by default, overwrite modified GitHub Actions -->
-    <overwrite.actions>false</overwrite.actions>
+    <!-- Do not, by default, overwrite possibly modified local GitHub Actions -->
+    <skip.actions.download>true</skip.actions.download>
 
     <!-- Skip Maven's default site generation stuff -->
     <maven.site.skip>true</maven.site.skip>
@@ -285,8 +285,7 @@
               </goals>
               <configuration>
                 <outputDirectory>${basedir}/.github</outputDirectory>
-                <filtering>false</filtering>
-                <overwrite>${overwrite.actions}</overwrite>
+                <skip>${skip.actions.download}</skip>
                 <resources>
                   <resource>
                     <directory>${basedir}/target/build-resources/github</directory>
