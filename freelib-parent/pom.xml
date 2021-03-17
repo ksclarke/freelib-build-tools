@@ -32,7 +32,6 @@
     <nexus.staging.plugin.version>1.6.8</nexus.staging.plugin.version>
     <maven.filtering.version>3.2.0</maven.filtering.version>
     <exec.maven.plugin.version>1.6.0</exec.maven.plugin.version>
-    <maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
     <maven.install.plugin.version>3.0.0-M1</maven.install.plugin.version>
     <maven.failsafe.plugin.version>3.0.0-M5</maven.failsafe.plugin.version>
     <maven.javadoc.plugin.version>3.2.0</maven.javadoc.plugin.version>
@@ -46,6 +45,7 @@
     <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
     <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
+    <freelib.maven.version>0.1.2</freelib.maven.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
     <pmd.plugin.version>3.13.0</pmd.plugin.version>
 
@@ -129,11 +129,27 @@
           </executions>
         </plugin>
         <plugin>
+          <groupId>info.freelibrary</groupId>
+          <artifactId>freelib-maven-plugins</artifactId>
+          <version>${freelib.maven.version}</version>
+          <executions>
+            <execution>
+              <phase>process-resources</phase>
+              <goals>
+                <goal>generate-codes</goal>
+              </goals>
+              <configuration>
+                <generatedSourcesDirectory>${project.basedir}/src/main/generated</generatedSourcesDirectory>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${maven.compiler.plugin.version}</version>
           <configuration>
             <generatedSourcesDirectory>${project.basedir}/src/main/generated</generatedSourcesDirectory>
-            <generatedTestSourcesDirectory>${project.basedir}/src/main/generated</generatedTestSourcesDirectory>
+            <generatedTestSourcesDirectory>${project.basedir}/src/test/generated</generatedTestSourcesDirectory>
           </configuration>
         </plugin>
         <!-- Does code analysis -->
