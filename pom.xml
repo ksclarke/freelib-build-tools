@@ -23,6 +23,7 @@
     <developerConnection>scm:git:git@github.com:ksclarke/freelib-build-tools.git</developerConnection>
     <url>git@github.com:ksclarke/freelib-build-tools.git</url>
   </scm>
+
   <issueManagement>
     <system>GitHub</system>
     <url>https://github.com/ksclarke/freelib-build-tools/issues</url>
@@ -32,6 +33,7 @@
     <name>FreeLibrary</name>
     <url>http://projects.freelibrary.info</url>
   </organization>
+
   <developers>
     <developer>
       <email>ksclarke@gmail.com</email>
@@ -214,6 +216,10 @@
   </profiles>
 
   <distributionManagement>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
     <snapshotRepository>
       <id>ossrh</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
