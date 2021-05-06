@@ -423,7 +423,7 @@
             <additionalJOptions>
               <additionalJOption>-J-Dhttp.agent=maven-javadoc-plugin-${project.name}</additionalJOption>
             </additionalJOptions>
-            <sourcepath>${project.basedir}/src/main/java:src/main/generated</sourcepath>
+            <sourcepath>src/main/java:src/main/generated</sourcepath>
             <links>
               <link>${javadocs.jdk.url}</link>
             </links>
@@ -770,6 +770,16 @@
               <configuration>
                 <lifecycleMappingMetadata>
                   <pluginExecutions>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-install-plugin</artifactId>
+                        <versionRange>[3.0.0,)</versionRange>
+                        <goals>
+                          <goal>install-file</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                    </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
                         <groupId>org.codehaus.mojo</groupId>
