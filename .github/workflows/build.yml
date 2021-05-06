@@ -22,6 +22,7 @@ jobs:
       - name: Install JDK ${{ matrix.java }}
         uses: actions/setup-java@8764a52df183aa0ccea74521dfd9d506ffc7a19a # v2
         with:
+          distribution: 'adopt'
           java-version: ${{ matrix.java }}
       # If running locally in act, install Maven
       - name: Set up Maven if needed
