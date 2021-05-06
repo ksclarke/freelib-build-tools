@@ -423,7 +423,7 @@
             <additionalJOptions>
               <additionalJOption>-J-Dhttp.agent=maven-javadoc-plugin-${project.name}</additionalJOption>
             </additionalJOptions>
-            <sourcepath>${project.basedir}/src/main/java:src/main/generated</sourcepath>
+            <sourcepath>src/main/java:src/main/generated</sourcepath>
             <links>
               <link>${javadocs.jdk.url}</link>
             </links>
