@@ -784,7 +784,7 @@
                       <pluginExecutionFilter>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>flatten-maven-plugin</artifactId>
-                        <versionRange>[1.0.0,)</versionRange>
+                        <versionRange>[1.1.0,)</versionRange>
                         <goals>
                           <goal>flatten</goal>
                           <goal>clean</goal>
