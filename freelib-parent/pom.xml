@@ -139,7 +139,7 @@
                 <goal>generate-codes</goal>
               </goals>
               <configuration>
-                <generatedSourcesDirectory>${project.basedir}/src/main/generated</generatedSourcesDirectory>
+                <generatedSourcesDirectory>src/main/generated</generatedSourcesDirectory>
               </configuration>
             </execution>
           </executions>
@@ -148,8 +148,8 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${maven.compiler.plugin.version}</version>
           <configuration>
-            <generatedSourcesDirectory>${project.basedir}/src/main/generated</generatedSourcesDirectory>
-            <generatedTestSourcesDirectory>${project.basedir}/src/test/generated</generatedTestSourcesDirectory>
+            <generatedSourcesDirectory>src/main/generated</generatedSourcesDirectory>
+            <generatedTestSourcesDirectory>src/test/generated</generatedTestSourcesDirectory>
           </configuration>
         </plugin>
         <!-- Does code analysis -->
@@ -165,7 +165,7 @@
             <linkXRef>false</linkXRef>
             <printFailingErrors>true</printFailingErrors>
             <rulesets>
-              <ruleset>${project.basedir}/src/main/tools/pmd/ruleset.xml</ruleset>
+              <ruleset>src/main/tools/pmd/ruleset.xml</ruleset>
             </rulesets>
             <targetJdk>${maven.compiler.source}</targetJdk>
           </configuration>
@@ -173,7 +173,7 @@
             <execution>
               <phase>verify</phase>
               <goals>
-                <goal>pmd</goal>
+                <goal>check</goal>
               </goals>
             </execution>
           </executions>
@@ -269,7 +269,7 @@
                 <goal>copy-resources</goal>
               </goals>
               <configuration>
-                <outputDirectory>${basedir}/src/main/tools</outputDirectory>
+                <outputDirectory>src/main/tools</outputDirectory>
                 <overwrite>true</overwrite>
                 <resources>
                   <resource>
