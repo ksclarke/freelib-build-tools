@@ -33,7 +33,7 @@
       <property name="interfacePattern" value="[A-Z][a-zA-Z0-9]*" />
       <property name="enumPattern" value="[A-Z][a-zA-Z0-9]*" />
       <property name="annotationPattern" value="[A-Z][a-zA-Z0-9]*" />
-      <property name="utilityClassPattern" value="[A-Z][a-zA-Z0-9]+(Utils?|Constants)" />
+      <property name="utilityClassPattern" value="[A-Z][a-zA-Z0-9]*" />
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/LinguisticNaming">
