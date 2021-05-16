@@ -47,7 +47,6 @@
     <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
     <freelib.maven.version>0.1.2</freelib.maven.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
-    <pmd.plugin.version>3.13.0</pmd.plugin.version>
 
     <!-- Configure the project's character encodings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -56,11 +55,15 @@
     <!-- We want to override the skip tests directive in our parent project -->
     <maven.test.skip>false</maven.test.skip>
 
+    <!-- PMD plugin configuration overrides the older version to use the latest version of PMD -->
+    <pmd.plugin.version>3.14.0</pmd.plugin.version>
+    <pmd.version>6.34.0</pmd.version>
+
     <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>src/main/tools/checkstyle</config_loc>
-    <maven.checkstyle.version>3.1.1</maven.checkstyle.version>
-    <checkstyle.version>8.39</checkstyle.version>
+    <maven.checkstyle.version>3.1.2</maven.checkstyle.version>
+    <checkstyle.version>8.42</checkstyle.version>
 
     <!-- The extension we use to push site productions up to an S3 bucket -->
     <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>
@@ -161,6 +164,18 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-pmd-plugin</artifactId>
           <version>${pmd.plugin.version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>net.sourceforge.pmd</groupId>
+              <artifactId>pmd-core</artifactId>
+              <version>${pmd.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>net.sourceforge.pmd</groupId>
+              <artifactId>pmd-java8</artifactId>
+              <version>${pmd.version}</version>
+            </dependency>
+          </dependencies>
           <configuration>
             <linkXRef>false</linkXRef>
             <printFailingErrors>true</printFailingErrors>
@@ -411,8 +426,8 @@
           <configuration>
             <stylesheetfile>javadocs.css</stylesheetfile>
             <nodeprecatedlist>true</nodeprecatedlist>
-            <noindex>true</noindex>
-            <notree>true</notree>
+            <noindex>false</noindex>
+            <notree>false</notree>
             <nohelp>true</nohelp>
             <nodeprecated>true</nodeprecated>
             <show>public</show>
@@ -791,7 +806,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore/>
+                        <ignore />
                       </action>
                     </pluginExecution>
                     <pluginExecution>
