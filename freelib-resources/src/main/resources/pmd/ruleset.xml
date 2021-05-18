@@ -17,6 +17,11 @@
         value="com.fasterxml.jackson.annotation.JsonSetter|com.fasterxml.jackson.annotation.JsonGetter" />
     </properties>
   </rule>
+  <rule ref="category/java/bestpractices.xml/ForLoopVariableCount">
+    <properties>
+      <property name="maximumVariables" value="2" />
+    </properties>
+  </rule>
 
   <rule ref="category/java/codestyle.xml">
     <exclude name="OnlyOneReturn" />
