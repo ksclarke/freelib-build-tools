@@ -178,6 +178,8 @@
           </dependencies>
           <configuration>
             <linkXRef>false</linkXRef>
+            <analysisCache>true</analysisCache>
+            <analysisCacheLocation>target/pmd/pmd.cache</analysisCacheLocation>
             <printFailingErrors>true</printFailingErrors>
             <rulesets>
               <ruleset>src/main/tools/pmd/ruleset.xml</ruleset>

@@ -10,7 +10,9 @@
 
   <!-- For details about the Java rules, cf. https://pmd.github.io/pmd/pmd_rules_java -->
 
-  <rule ref="category/java/bestpractices.xml" />
+  <rule ref="category/java/bestpractices.xml">
+    <exclude name="GuardLogStatement" />
+  </rule>
   <rule ref="category/java/bestpractices.xml/UnusedPrivateMethod">
     <properties>
       <property name="ignoredAnnotations"
@@ -72,6 +74,7 @@
 
   <rule ref="category/java/design.xml">
     <exclude name="LawOfDemeter" />
+    <exclude name="LoosePackageCoupling" />
   </rule>
   <rule ref="category/java/design.xml/TooManyMethods">
     <properties>
