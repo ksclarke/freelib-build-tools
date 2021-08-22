@@ -19,10 +19,10 @@
     <freelib.resources.version>${project.parent.version}</freelib.resources.version>
 
     <!-- Dependencies managed through this parent project -->
-    <junit.version>4.13.1</junit.version>
-    <slf4j.version>1.7.30</slf4j.version>
+    <junit.version>4.13.2</junit.version>
+    <slf4j.version>1.7.32</slf4j.version>
     <xmlunit.version>1.6</xmlunit.version>
-    <logback.version>1.2.3</logback.version>
+    <logback.version>1.2.5</logback.version>
 
     <!-- Maven plug-in dependencies managed through this parent project -->
     <maven.version>3.6.3</maven.version>
@@ -45,7 +45,7 @@
     <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
     <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
-    <freelib.maven.version>0.1.2</freelib.maven.version>
+    <freelib.maven.version>0.3.0</freelib.maven.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
 
     <!-- Configure the project's character encodings -->
@@ -148,6 +148,7 @@
           </executions>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>${maven.compiler.plugin.version}</version>
           <configuration>
@@ -211,7 +212,6 @@
           <version>${build.helper.maven.plugin.version}</version>
           <configuration>
             <portNames>
-              <portName>http.port</portName>
               <portName>http.test.port</portName>
             </portNames>
           </configuration>
@@ -362,7 +362,7 @@
               <configuration>
                 <rules>
                   <requireJavaVersion>
-                    <version>[1.8.0,)</version>
+                    <version>[11,)</version>
                   </requireJavaVersion>
                 </rules>
               </configuration>
@@ -383,6 +383,7 @@
           </executions>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>${maven.checkstyle.version}</version>
           <configuration>
@@ -416,6 +417,7 @@
           </executions>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>${maven.javadoc.plugin.version}</version>
           <dependencies>
@@ -608,6 +610,16 @@
       <properties>
         <maven.compiler.release>15</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/15/docs/api/</javadocs.jdk.url>
+      </properties>
+    </profile>
+    <profile>
+      <id>java16</id>
+      <activation>
+        <jdk>16</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.release>16</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/16/docs/api/</javadocs.jdk.url>
       </properties>
     </profile>
     <profile>
