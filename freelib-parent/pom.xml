@@ -47,6 +47,7 @@
     <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
     <freelib.maven.version>0.3.0</freelib.maven.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
+    <snyk.plugin.version>2.0.0</snyk.plugin.version>
 
     <!-- Configure the project's character encodings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -64,9 +65,6 @@
     <config_loc>src/main/tools/checkstyle</config_loc>
     <maven.checkstyle.version>3.1.2</maven.checkstyle.version>
     <checkstyle.version>8.42</checkstyle.version>
-
-    <!-- The extension we use to push site productions up to an S3 bucket -->
-    <maven.s3.wagon.version>1.2.1</maven.s3.wagon.version>
 
     <!-- Jacoco configuration -->
     <jacoco.dataFile>${project.build.directory}/jacoco.exec</jacoco.dataFile>
@@ -519,13 +517,6 @@
         <artifactId>maven-enforcer-plugin</artifactId>
       </plugin>
     </plugins>
-    <extensions>
-      <extension>
-        <groupId>org.kuali.maven.wagons</groupId>
-        <artifactId>maven-s3-wagon</artifactId>
-        <version>${maven.s3.wagon.version}</version>
-      </extension>
-    </extensions>
   </build>
 
   <!-- Profiles that should be inherited by child projects -->
@@ -621,6 +612,55 @@
         <maven.compiler.release>16</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/16/docs/api/</javadocs.jdk.url>
       </properties>
+    </profile>
+    <profile>
+      <id>java17</id>
+      <activation>
+        <jdk>17</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.release>17</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/17/docs/api/</javadocs.jdk.url>
+      </properties>
+    </profile>
+    <profile>
+      <id>synk-check</id>
+      <activation>
+        <property>
+          <name>env.SNYK_TOKEN</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>io.snyk</groupId>
+            <artifactId>snyk-maven-plugin</artifactId>
+            <version>${snyk.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>snyk-test</id>
+                <goals>
+                  <goal>test</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>snyk-monitor</id>
+                <goals>
+                  <goal>monitor</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <apiToken>${env.SNYK_TOKEN}</apiToken>
+              <args>
+                <arg>--all-projects</arg>
+                <arg>--fail-on=all</arg>
+                <arg>--org=${env.SNYK_ORG}</arg>
+              </args>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>code-coverage</id>
