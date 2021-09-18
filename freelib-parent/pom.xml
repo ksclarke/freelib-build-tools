@@ -45,6 +45,7 @@
     <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
     <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
+    <formatter.plugin.version>2.16.0</formatter.plugin.version>
     <freelib.maven.version>0.3.0</freelib.maven.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
     <snyk.plugin.version>2.0.0</snyk.plugin.version>
@@ -259,6 +260,22 @@
                   </artifactItem>
                 </artifactItems>
               </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>net.revelc.code.formatter</groupId>
+          <artifactId>formatter-maven-plugin</artifactId>
+          <version>${formatter.plugin.version}</version>
+          <configuration>
+            <configFile>src/main/tools/eclipse/freelibrary-formatter.xml</configFile>
+            <configJsFile>src/main/tools/eclipse/freelibrary-javascript-formatter.xml</configJsFile>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>format</goal>
+              </goals>
             </execution>
           </executions>
         </plugin>
