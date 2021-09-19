@@ -140,9 +140,6 @@
               <goals>
                 <goal>generate-codes</goal>
               </goals>
-              <configuration>
-                <generatedSourcesDirectory>src/main/generated</generatedSourcesDirectory>
-              </configuration>
             </execution>
           </executions>
         </plugin>
@@ -264,22 +261,6 @@
           </executions>
         </plugin>
         <plugin>
-          <groupId>net.revelc.code.formatter</groupId>
-          <artifactId>formatter-maven-plugin</artifactId>
-          <version>${formatter.plugin.version}</version>
-          <configuration>
-            <configFile>src/main/tools/eclipse/freelibrary-formatter.xml</configFile>
-            <configJsFile>src/main/tools/eclipse/freelibrary-javascript-formatter.xml</configJsFile>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>format</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
           <version>${maven.resources.plugin.version}</version>
@@ -356,6 +337,23 @@
                   </resource>
                 </resources>
               </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>net.revelc.code.formatter</groupId>
+          <artifactId>formatter-maven-plugin</artifactId>
+          <version>${formatter.plugin.version}</version>
+          <configuration>
+            <configFile>src/main/tools/eclipse/freelibrary-formatter.xml</configFile>
+            <configJsFile>src/main/tools/eclipse/freelibrary-javascript-formatter.xml</configJsFile>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>process-resources</phase>
+              <goals>
+                <goal>format</goal>
+              </goals>
             </execution>
           </executions>
         </plugin>
