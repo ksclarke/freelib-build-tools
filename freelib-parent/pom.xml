@@ -350,7 +350,7 @@
           </configuration>
           <executions>
             <execution>
-              <phase>process-resources</phase>
+              <phase>prepare-package</phase>
               <goals>
                 <goal>format</goal>
               </goals>
