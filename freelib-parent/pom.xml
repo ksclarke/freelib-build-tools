@@ -631,31 +631,56 @@
         </property>
       </activation>
       <build>
+        <!-- We make the child project add the plugin explicitly so the ORG can be configured -->
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>io.snyk</groupId>
+              <artifactId>snyk-maven-plugin</artifactId>
+              <version>${snyk.plugin.version}</version>
+              <executions>
+                <execution>
+                  <id>snyk-test</id>
+                  <goals>
+                    <goal>test</goal>
+                  </goals>
+                  <configuration>
+                    <apiToken>${env.SNYK_TOKEN}</apiToken>
+                    <args>
+                      <arg>--all-projects</arg>
+                      <arg>--fail-on=all</arg>
+                    </args>
+                  </configuration>
+                </execution>
+                <execution>
+                  <id>snyk-monitor</id>
+                  <goals>
+                    <goal>monitor</goal>
+                  </goals>
+                  <configuration>
+                    <apiToken>${env.SNYK_TOKEN}</apiToken>
+                    <args>
+                      <arg>--all-projects</arg>
+                      <arg>--fail-on=all</arg>
+                    </args>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    <profile>
+      <id>freelib-build-tools-synk-check</id>
+      <build>
         <plugins>
           <plugin>
             <groupId>io.snyk</groupId>
             <artifactId>snyk-maven-plugin</artifactId>
-            <version>${snyk.plugin.version}</version>
-            <executions>
-              <execution>
-                <id>snyk-test</id>
-                <goals>
-                  <goal>test</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>snyk-monitor</id>
-                <goals>
-                  <goal>monitor</goal>
-                </goals>
-              </execution>
-            </executions>
             <configuration>
-              <apiToken>${env.SNYK_TOKEN}</apiToken>
               <args>
-                <arg>--all-projects</arg>
-                <arg>--fail-on=all</arg>
-                <arg>--org=${env.SNYK_ORG}</arg>
+                <arg>--org=${env.FREELIBRARY_SNYK_ORG}</arg>
               </args>
             </configuration>
           </plugin>
@@ -754,6 +779,7 @@
         </plugins>
       </build>
     </profile>
+    <!-- A default profile for when a profile required; it's a no-op here though -->
     <profile>
       <id>default</id>
     </profile>
@@ -1089,6 +1115,7 @@
     </profile>
   </profiles>
 
+  <!-- Where our releases and snapshots are pushed -->
   <distributionManagement>
     <repository>
       <id>ossrh</id>

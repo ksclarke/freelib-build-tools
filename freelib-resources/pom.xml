@@ -10,10 +10,10 @@
   <description>Resources, like Checkstyle rules and site templates, for FreeLibrary projects.</description>
 
   <properties>
-    <maven.checkstyle.version>3.1.1</maven.checkstyle.version>
-    <checkstyle.version>8.39</checkstyle.version>
+    <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
+    <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
+    <checkstyle.version>9.0.1</checkstyle.version>
 
-    <maven.site.plugin.version>3.8.2</maven.site.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
@@ -23,7 +23,7 @@
       <!-- Checkstyle ensures adherence to coding standards -->
       <plugin>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>${maven.checkstyle.version}</version>
+        <version>${checkstyle.plugin.version}</version>
         <configuration>
           <logViolationsToConsole>true</logViolationsToConsole>
           <violationSeverity>warning</violationSeverity>
