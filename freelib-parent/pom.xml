@@ -45,6 +45,7 @@
     <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
     <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
+    <formatter.plugin.version>2.16.0</formatter.plugin.version>
     <freelib.maven.version>0.3.0</freelib.maven.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
     <snyk.plugin.version>2.0.0</snyk.plugin.version>
@@ -139,9 +140,6 @@
               <goals>
                 <goal>generate-codes</goal>
               </goals>
-              <configuration>
-                <generatedSourcesDirectory>src/main/generated</generatedSourcesDirectory>
-              </configuration>
             </execution>
           </executions>
         </plugin>
@@ -268,6 +266,21 @@
           <version>${maven.resources.plugin.version}</version>
           <configuration>
             <propertiesEncoding>ISO-8859-1</propertiesEncoding>
+            <nonFilteredFileExtensions>
+              <nonFilteredFileExtension>pdf</nonFilteredFileExtension>
+              <nonFilteredFileExtension>tif</nonFilteredFileExtension>
+              <nonFilteredFileExtension>jp2</nonFilteredFileExtension>
+              <nonFilteredFileExtension>jpx</nonFilteredFileExtension>
+              <nonFilteredFileExtension>gif</nonFilteredFileExtension>
+              <nonFilteredFileExtension>jpg</nonFilteredFileExtension>
+              <nonFilteredFileExtension>png</nonFilteredFileExtension>
+              <nonFilteredFileExtension>avi</nonFilteredFileExtension>
+              <nonFilteredFileExtension>mp4</nonFilteredFileExtension>
+              <nonFilteredFileExtension>mp3</nonFilteredFileExtension>
+              <nonFilteredFileExtension>dat</nonFilteredFileExtension>
+              <nonFilteredFileExtension>webp</nonFilteredFileExtension>
+              <nonFilteredFileExtension>swf</nonFilteredFileExtension>
+            </nonFilteredFileExtensions>
           </configuration>
           <dependencies>
             <dependency>
@@ -324,6 +337,23 @@
                   </resource>
                 </resources>
               </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>net.revelc.code.formatter</groupId>
+          <artifactId>formatter-maven-plugin</artifactId>
+          <version>${formatter.plugin.version}</version>
+          <configuration>
+            <configFile>src/main/tools/eclipse/freelibrary-formatter.xml</configFile>
+            <configJsFile>src/main/tools/eclipse/freelibrary-javascript-formatter.xml</configJsFile>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>prepare-package</phase>
+              <goals>
+                <goal>format</goal>
+              </goals>
             </execution>
           </executions>
         </plugin>
