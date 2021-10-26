@@ -654,7 +654,7 @@
       </properties>
     </profile>
     <profile>
-      <id>synk-check</id>
+      <id>snyk-check</id>
       <activation>
         <property>
           <name>env.SNYK_TOKEN</name>
