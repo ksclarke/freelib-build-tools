@@ -22,7 +22,7 @@
     <junit.version>4.13.2</junit.version>
     <slf4j.version>1.7.32</slf4j.version>
     <xmlunit.version>1.6</xmlunit.version>
-    <logback.version>1.2.5</logback.version>
+    <logback.version>1.2.6</logback.version>
 
     <!-- Maven plug-in dependencies managed through this parent project -->
     <maven.version>3.6.3</maven.version>
@@ -34,13 +34,13 @@
     <exec.maven.plugin.version>1.6.0</exec.maven.plugin.version>
     <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
     <maven.failsafe.plugin.version>2.22.2</maven.failsafe.plugin.version>
-    <maven.javadoc.plugin.version>3.2.0</maven.javadoc.plugin.version>
+    <maven.javadoc.plugin.version>3.3.1</maven.javadoc.plugin.version>
     <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
     <maven.resources.plugin.version>3.2.0</maven.resources.plugin.version>
     <maven.enforcer.plugin.version>3.0.0</maven.enforcer.plugin.version>
-    <maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
+    <maven.dependency.plugin.version>3.2.0</maven.dependency.plugin.version>
     <maven.plugin.annotations.version>3.6.0</maven.plugin.annotations.version>
-    <maven.dependency.analyzer.version>1.11.1</maven.dependency.analyzer.version>
+    <maven.dependency.analyzer.version>1.11.3</maven.dependency.analyzer.version>
     <build.helper.maven.plugin.version>3.0.0</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
