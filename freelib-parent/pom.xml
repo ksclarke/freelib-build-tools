@@ -20,35 +20,32 @@
 
     <!-- Dependencies managed through this parent project -->
     <junit.version>4.13.2</junit.version>
-    <slf4j.version>1.7.32</slf4j.version>
+    <slf4j.version>1.7.36</slf4j.version>
     <xmlunit.version>1.6</xmlunit.version>
-    <logback.version>1.2.6</logback.version>
+    <logback.version>1.2.11</logback.version>
 
     <!-- Maven plug-in dependencies managed through this parent project -->
-    <maven.version>3.6.3</maven.version>
+    <maven.version>3.8.5</maven.version>
     <gpg.plugin.version>1.6</gpg.plugin.version>
-    <flatten.plugin.version>1.1.0</flatten.plugin.version>
+    <flatten.plugin.version>1.2.7</flatten.plugin.version>
     <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
     <nexus.staging.plugin.version>1.6.8</nexus.staging.plugin.version>
     <maven.filtering.version>3.2.0</maven.filtering.version>
-    <exec.maven.plugin.version>1.6.0</exec.maven.plugin.version>
     <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
     <maven.failsafe.plugin.version>2.22.2</maven.failsafe.plugin.version>
-    <maven.javadoc.plugin.version>3.3.1</maven.javadoc.plugin.version>
+    <maven.javadoc.plugin.version>3.3.2</maven.javadoc.plugin.version>
     <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
     <maven.resources.plugin.version>3.2.0</maven.resources.plugin.version>
     <maven.enforcer.plugin.version>3.0.0</maven.enforcer.plugin.version>
-    <maven.dependency.plugin.version>3.2.0</maven.dependency.plugin.version>
-    <maven.plugin.annotations.version>3.6.0</maven.plugin.annotations.version>
-    <maven.dependency.analyzer.version>1.11.3</maven.dependency.analyzer.version>
-    <build.helper.maven.plugin.version>3.0.0</build.helper.maven.plugin.version>
-    <properties.maven.plugin.version>1.0.0</properties.maven.plugin.version>
-    <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
-    <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
-    <formatter.plugin.version>2.16.0</formatter.plugin.version>
-    <freelib.maven.version>0.3.0</freelib.maven.version>
+    <maven.dependency.plugin.version>3.3.0</maven.dependency.plugin.version>
+    <maven.dependency.analyzer.version>1.12.0</maven.dependency.analyzer.version>
+    <build.helper.maven.plugin.version>3.3.0</build.helper.maven.plugin.version>
+    <properties.maven.plugin.version>1.1.0</properties.maven.plugin.version>
+    <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
+    <formatter.plugin.version>2.18.0</formatter.plugin.version>
+    <freelib.maven.version>0.3.1</freelib.maven.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
-    <snyk.plugin.version>2.0.0</snyk.plugin.version>
+    <snyk.plugin.version>2.1.1</snyk.plugin.version>
 
     <!-- Configure the project's character encodings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -58,14 +55,14 @@
     <maven.test.skip>false</maven.test.skip>
 
     <!-- PMD plugin configuration overrides the older version to use the latest version of PMD -->
-    <pmd.plugin.version>3.14.0</pmd.plugin.version>
-    <pmd.version>6.34.0</pmd.version>
+    <pmd.plugin.version>3.16.0</pmd.plugin.version>
+    <pmd.version>6.44.0</pmd.version>
 
     <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>src/main/tools/checkstyle</config_loc>
     <maven.checkstyle.version>3.1.2</maven.checkstyle.version>
-    <checkstyle.version>8.42</checkstyle.version>
+    <checkstyle.version>10.1</checkstyle.version>
 
     <!-- Jacoco configuration -->
     <jacoco.dataFile>${project.build.directory}/jacoco.exec</jacoco.dataFile>
