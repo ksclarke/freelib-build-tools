@@ -25,7 +25,7 @@
     <logback.version>1.2.11</logback.version>
 
     <!-- Maven plug-in dependencies managed through this parent project -->
-    <maven.version>3.8.5</maven.version>
+    <maven.version>3.8.6</maven.version>
     <gpg.plugin.version>1.6</gpg.plugin.version>
     <flatten.plugin.version>1.2.7</flatten.plugin.version>
     <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
@@ -55,14 +55,14 @@
     <maven.test.skip>false</maven.test.skip>
 
     <!-- PMD plugin configuration overrides the older version to use the latest version of PMD -->
-    <pmd.plugin.version>3.16.0</pmd.plugin.version>
-    <pmd.version>6.44.0</pmd.version>
+    <pmd.plugin.version>3.17.0</pmd.plugin.version>
+    <pmd.version>6.48.0</pmd.version>
 
     <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>src/main/tools/checkstyle</config_loc>
     <maven.checkstyle.version>3.1.2</maven.checkstyle.version>
-    <checkstyle.version>10.1</checkstyle.version>
+    <checkstyle.version>10.3.2</checkstyle.version>
 
     <!-- Jacoco configuration -->
     <jacoco.dataFile>${project.build.directory}/jacoco.exec</jacoco.dataFile>
@@ -77,6 +77,12 @@
         <version>${slf4j.version}</version>
       </dependency>
       <!-- Below dependencies are only used for testing -->
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+        <scope>test</scope>
+      </dependency>
       <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
