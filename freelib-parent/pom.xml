@@ -43,7 +43,7 @@
     <properties.maven.plugin.version>1.1.0</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
     <formatter.plugin.version>2.18.0</formatter.plugin.version>
-    <freelib.maven.version>0.4.1</freelib.maven.version>
+    <freelib.maven.version>0.4.2</freelib.maven.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
     <snyk.plugin.version>2.1.1</snyk.plugin.version>
 
@@ -657,6 +657,26 @@
       </properties>
     </profile>
     <profile>
+      <id>java18</id>
+      <activation>
+        <jdk>18</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.release>18</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/18/docs/api/</javadocs.jdk.url>
+      </properties>
+    </profile>
+    <profile>
+      <id>java19</id>
+      <activation>
+        <jdk>19</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.release>19</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/19/docs/api/</javadocs.jdk.url>
+      </properties>
+    </profile>
+    <profile>
       <id>snyk-check</id>
       <activation>
         <property>
@@ -674,12 +694,6 @@
                 <id>snyk-test</id>
                 <goals>
                   <goal>test</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>snyk-monitor</id>
-                <goals>
-                  <goal>monitor</goal>
                 </goals>
               </execution>
             </executions>
