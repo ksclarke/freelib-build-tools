@@ -29,7 +29,7 @@
     <gpg.plugin.version>1.6</gpg.plugin.version>
     <flatten.plugin.version>1.2.7</flatten.plugin.version>
     <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
-    <nexus.staging.plugin.version>1.6.8</nexus.staging.plugin.version>
+    <nexus.staging.plugin.version>1.6.13</nexus.staging.plugin.version>
     <maven.filtering.version>3.2.0</maven.filtering.version>
     <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
     <maven.failsafe.plugin.version>2.22.2</maven.failsafe.plugin.version>
