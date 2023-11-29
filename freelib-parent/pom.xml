@@ -20,16 +20,16 @@
 
     <!-- Dependencies managed through this parent project -->
     <junit.version>4.13.2</junit.version>
-    <slf4j.version>1.7.36</slf4j.version>
+    <slf4j.version>2.0.0</slf4j.version>
     <xmlunit.version>1.6</xmlunit.version>
     <logback.version>1.4.12</logback.version>
 
     <!-- Maven plug-in dependencies managed through this parent project -->
-    <maven.version>3.8.5</maven.version>
+    <maven.version>3.8.6</maven.version>
     <gpg.plugin.version>1.6</gpg.plugin.version>
     <flatten.plugin.version>1.2.7</flatten.plugin.version>
     <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
-    <nexus.staging.plugin.version>1.6.8</nexus.staging.plugin.version>
+    <nexus.staging.plugin.version>1.6.13</nexus.staging.plugin.version>
     <maven.filtering.version>3.2.0</maven.filtering.version>
     <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
     <maven.failsafe.plugin.version>2.22.2</maven.failsafe.plugin.version>
@@ -43,7 +43,7 @@
     <properties.maven.plugin.version>1.1.0</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
     <formatter.plugin.version>2.18.0</formatter.plugin.version>
-    <freelib.maven.version>0.3.1</freelib.maven.version>
+    <freelib.maven.version>0.4.6</freelib.maven.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
     <snyk.plugin.version>2.1.1</snyk.plugin.version>
 
@@ -55,14 +55,14 @@
     <maven.test.skip>false</maven.test.skip>
 
     <!-- PMD plugin configuration overrides the older version to use the latest version of PMD -->
-    <pmd.plugin.version>3.16.0</pmd.plugin.version>
-    <pmd.version>6.44.0</pmd.version>
+    <pmd.plugin.version>3.17.0</pmd.plugin.version>
+    <pmd.version>6.48.0</pmd.version>
 
     <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>src/main/tools/checkstyle</config_loc>
     <maven.checkstyle.version>3.1.2</maven.checkstyle.version>
-    <checkstyle.version>10.1</checkstyle.version>
+    <checkstyle.version>10.3.2</checkstyle.version>
 
     <!-- Jacoco configuration -->
     <jacoco.dataFile>${project.build.directory}/jacoco.exec</jacoco.dataFile>
@@ -76,13 +76,17 @@
         <artifactId>slf4j-api</artifactId>
         <version>${slf4j.version}</version>
       </dependency>
-      <!-- Below dependencies are only used for testing -->
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
       <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
         <version>${logback.version}</version>
-        <scope>test</scope>
       </dependency>
+      <!-- Below dependencies are only used for testing -->
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
@@ -205,7 +209,7 @@
           <version>${build.helper.maven.plugin.version}</version>
           <configuration>
             <portNames>
-              <portName>http.test.port</portName>
+              <portName>test.http.port</portName>
             </portNames>
           </configuration>
           <executions>
@@ -651,6 +655,26 @@
       </properties>
     </profile>
     <profile>
+      <id>java18</id>
+      <activation>
+        <jdk>18</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.release>18</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/18/docs/api/</javadocs.jdk.url>
+      </properties>
+    </profile>
+    <profile>
+      <id>java19</id>
+      <activation>
+        <jdk>19</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.release>19</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/19/docs/api/</javadocs.jdk.url>
+      </properties>
+    </profile>
+    <profile>
       <id>snyk-check</id>
       <activation>
         <property>
@@ -668,12 +692,6 @@
                 <id>snyk-test</id>
                 <goals>
                   <goal>test</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>snyk-monitor</id>
-                <goals>
-                  <goal>monitor</goal>
                 </goals>
               </execution>
             </executions>
