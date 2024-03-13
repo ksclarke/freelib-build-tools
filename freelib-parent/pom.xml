@@ -41,11 +41,11 @@
     <maven.dependency.analyzer.version>1.12.0</maven.dependency.analyzer.version>
     <build.helper.maven.plugin.version>3.3.0</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.1.0</properties.maven.plugin.version>
-    <maven.compiler.plugin.version>3.10.1</maven.compiler.plugin.version>
-    <formatter.plugin.version>2.18.0</formatter.plugin.version>
-    <freelib.maven.version>0.4.6</freelib.maven.version>
+    <maven.compiler.plugin.version>3.12.1</maven.compiler.plugin.version>
+    <formatter.plugin.version>2.23.0</formatter.plugin.version>
+    <freelib.maven.version>0.4.7</freelib.maven.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
-    <snyk.plugin.version>2.1.1</snyk.plugin.version>
+    <snyk.plugin.version>2.2.0</snyk.plugin.version>
 
     <!-- Configure the project's character encodings -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
