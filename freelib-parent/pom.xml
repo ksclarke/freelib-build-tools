@@ -675,6 +675,26 @@
       </properties>
     </profile>
     <profile>
+      <id>java20</id>
+      <activation>
+        <jdk>20</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.release>20</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/20/docs/api/</javadocs.jdk.url>
+      </properties>
+    </profile>
+    <profile>
+      <id>java21</id>
+      <activation>
+        <jdk>21</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.release>21</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/21/docs/api/</javadocs.jdk.url>
+      </properties>
+    </profile>
+    <profile>
       <id>snyk-check</id>
       <activation>
         <property>
