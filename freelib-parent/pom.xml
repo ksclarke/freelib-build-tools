@@ -144,15 +144,6 @@
             </execution>
           </executions>
         </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>${maven.compiler.plugin.version}</version>
-          <configuration>
-            <generatedSourcesDirectory>src/main/generated</generatedSourcesDirectory>
-            <generatedTestSourcesDirectory>src/test/generated</generatedTestSourcesDirectory>
-          </configuration>
-        </plugin>
         <!-- Does code analysis -->
         <!--<![CDATA[
           Disable PMD plug-in deprecation warnings by running Maven (mvn) with the following property:
@@ -220,7 +211,23 @@
                 <goal>reserve-network-port</goal>
               </goals>
             </execution>
+            <execution>
+              <phase>generate-sources</phase>
+              <goals>
+                <goal>add-source</goal>
+              </goals>
+              <configuration>
+                <sources>
+                  <source>src/main/generated</source>
+                </sources>
+              </configuration>
+            </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven.compiler.plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
