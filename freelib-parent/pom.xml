@@ -62,7 +62,7 @@
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>src/main/tools/checkstyle</config_loc>
     <maven.checkstyle.version>3.3.1</maven.checkstyle.version>
-    <checkstyle.version>10.14.1</checkstyle.version>
+    <checkstyle.version>10.14.2</checkstyle.version>
 
     <!-- Jacoco configuration -->
     <jacoco.dataFile>${project.build.directory}/jacoco.exec</jacoco.dataFile>
