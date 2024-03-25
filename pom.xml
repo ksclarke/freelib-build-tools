@@ -55,7 +55,7 @@
 
     <revision>0.0.0-SNAPSHOT</revision>
     <maven.test.skip>true</maven.test.skip>
-    <gpg.plugin.version>1.5</gpg.plugin.version>
+    <gpg.plugin.version>3.2.1</gpg.plugin.version>
     <flatten.plugin.version>1.6.0</flatten.plugin.version>
     <maven.source.plugin.version>3.3.0</maven.source.plugin.version>
     <nexus.staging.plugin.version>1.6.8</nexus.staging.plugin.version>
