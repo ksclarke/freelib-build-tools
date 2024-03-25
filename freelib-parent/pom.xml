@@ -38,7 +38,7 @@
     <maven.resources.plugin.version>3.2.0</maven.resources.plugin.version>
     <maven.enforcer.plugin.version>3.4.1</maven.enforcer.plugin.version>
     <maven.dependency.plugin.version>3.3.0</maven.dependency.plugin.version>
-    <maven.dependency.analyzer.version>1.12.0</maven.dependency.analyzer.version>
+    <maven.dependency.analyzer.version>1.13.2</maven.dependency.analyzer.version>
     <build.helper.maven.plugin.version>3.3.0</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.2.1</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.12.1</maven.compiler.plugin.version>
