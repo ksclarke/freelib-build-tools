@@ -41,7 +41,7 @@
     <maven.dependency.analyzer.version>1.13.2</maven.dependency.analyzer.version>
     <build.helper.maven.plugin.version>3.5.0</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.2.1</properties.maven.plugin.version>
-    <maven.compiler.plugin.version>3.12.1</maven.compiler.plugin.version>
+    <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
     <formatter.plugin.version>2.23.0</formatter.plugin.version>
     <freelib.maven.version>0.4.7</freelib.maven.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
