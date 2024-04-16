@@ -12,7 +12,7 @@
   <properties>
     <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
     <checkstyle.plugin.version>3.3.1</checkstyle.plugin.version>
-    <checkstyle.version>10.14.2</checkstyle.version>
+    <checkstyle.version>10.15.0</checkstyle.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
