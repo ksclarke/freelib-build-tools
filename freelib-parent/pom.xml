@@ -66,7 +66,7 @@
 
     <!-- Jacoco configuration -->
     <jacoco.dataFile>${project.build.directory}/jacoco.exec</jacoco.dataFile>
-    <jacoco.maven.plugin.version>0.8.2</jacoco.maven.plugin.version>
+    <jacoco.maven.plugin.version>0.8.12</jacoco.maven.plugin.version>
   </properties>
 
   <dependencyManagement>
