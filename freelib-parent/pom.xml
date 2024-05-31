@@ -38,7 +38,7 @@
     <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
     <maven.enforcer.plugin.version>3.4.1</maven.enforcer.plugin.version>
     <maven.dependency.plugin.version>3.6.1</maven.dependency.plugin.version>
-    <maven.dependency.analyzer.version>1.14.0</maven.dependency.analyzer.version>
+    <maven.dependency.analyzer.version>1.14.1</maven.dependency.analyzer.version>
     <build.helper.maven.plugin.version>3.6.0</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.2.1</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
@@ -62,7 +62,7 @@
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>src/main/tools/checkstyle</config_loc>
     <maven.checkstyle.version>3.3.1</maven.checkstyle.version>
-    <checkstyle.version>10.16.0</checkstyle.version>
+    <checkstyle.version>10.17.0</checkstyle.version>
 
     <!-- Jacoco configuration -->
     <jacoco.dataFile>${project.build.directory}/jacoco.exec</jacoco.dataFile>
