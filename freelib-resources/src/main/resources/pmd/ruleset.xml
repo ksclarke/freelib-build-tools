@@ -16,7 +16,7 @@
   <rule ref="category/java/bestpractices.xml/UnusedPrivateMethod">
     <properties>
       <property name="ignoredAnnotations"
-        value="com.fasterxml.jackson.annotation.JsonSetter|com.fasterxml.jackson.annotation.JsonGetter" />
+        value="com.fasterxml.jackson.annotation.JsonSetter,com.fasterxml.jackson.annotation.JsonGetter" />
     </properties>
   </rule>
   <rule ref="category/java/bestpractices.xml/ForLoopVariableCount">
@@ -27,7 +27,7 @@
 
   <rule ref="category/java/codestyle.xml">
     <exclude name="OnlyOneReturn" />
-    <exclude name="DefaultPackage" />
+    <exclude name="CommentDefaultAccessModifier" />
     <exclude name="CallSuperInConstructor" /> <!-- Default super is handled by default -->
     <exclude name="ConfusingTernary" /> <!-- It makes more sense to ask if something isn't null, IMHO -->
     <exclude name="PrematureDeclaration" /> <!-- Sometimes useful, but more often than not a false positive -->
@@ -77,7 +77,10 @@
     <exclude name="LawOfDemeter" />
     <exclude name="LoosePackageCoupling" />
     <exclude name="UselessOverridingMethod" />
+    <exclude name="SimplifyBooleanReturns" />
+    <exclude name="DataClass" />
   </rule>
+
   <rule ref="category/java/design.xml/TooManyMethods">
     <properties>
       <property name="maxmethods" value="20" />
@@ -94,7 +97,7 @@
 
   <rule ref="category/java/errorprone.xml">
     <exclude name="AssignmentInOperand" />
-    <exclude name="DataflowAnomalyAnalysis" />
+    <exclude name="InvalidLogMessageFormat" />
   </rule>
 
   <rule ref="category/java/performance.xml">
