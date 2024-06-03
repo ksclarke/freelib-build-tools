@@ -42,7 +42,7 @@
     <build.helper.maven.plugin.version>3.6.0</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.2.1</properties.maven.plugin.version>
     <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
-    <formatter.plugin.version>2.23.0</formatter.plugin.version>
+    <formatter.plugin.version>2.24.0</formatter.plugin.version>
     <freelib.maven.version>0.4.7</freelib.maven.version>
     <codacy.plugin.version>1.2.0</codacy.plugin.version>
     <snyk.plugin.version>2.2.0</snyk.plugin.version>
