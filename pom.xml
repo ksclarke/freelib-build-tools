@@ -59,7 +59,7 @@
     <flatten.plugin.version>1.6.0</flatten.plugin.version>
     <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
     <nexus.staging.plugin.version>1.6.13</nexus.staging.plugin.version>
-    <maven.javadoc.plugin.version>3.6.3</maven.javadoc.plugin.version>
+    <maven.javadoc.plugin.version>3.7.0</maven.javadoc.plugin.version>
     <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
     <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
     <snyk.plugin.version>2.2.0</snyk.plugin.version>
