@@ -14,7 +14,7 @@ Projects wanting to take advantage of `freelib-build-tools`' simplified configur
       <version>8.0.9</version>
     </parent>
 
-Once this is done, all the configuration options in `freelib-parent`, including the resources from `freelib-resources`, will be available to the project. One can add them to the child project simply by referencing the plugins, etc., defined in the parent project. To see an example of how this is done, see [freelib-utils](https://github.com/ksclarke/freelib-utils)'s POM file.
+Once this is done, all the configuration options in `freelib-parent`, including the resources from `freelib-resources`, will be available to the project. One can add them to the child project by referencing the plugins, etc., defined in the parent project. To see an example of how this is done, see the [FreeLib-Utils POM file](https://github.com/ksclarke/freelib-utils/blob/main/pom.xml#L127-L132).
 
 Note that freelib-build-tools is primarily intended for FreeLibrary projects so some things may not be generally useful to other projects (e.g. Javadoc CSS files). Even if one does not use the freelib-build-tools project directly, there may be some tricks, tools, and conventions here that will prove useful in the creation of one's own "build tools" project.
 
@@ -24,7 +24,7 @@ This project now uses the [action-maven-publish](https://github.com/marketplace/
 
 There are several build variables that can be set as Secrets in your project's GitHub configuration:
 
-Secret and value                   | Optional
+Secret and value                   | Optional?
 -----------------------------------|------------------------------------
 MAVEN_CACHE_KEY="[string]"         | yes
 AUTORELEASE_ARTIFACT="[boolean]"   | yes
