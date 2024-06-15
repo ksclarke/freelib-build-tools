@@ -1,10 +1,12 @@
-# freelib-build-tools <br/>![Maven Build](https://github.com/ksclarke/freelib-build-tools/workflows/Maven%20PR%20Build/badge.svg) [![Known Vulnerabilities](https://snyk.io/test/github/ksclarke/freelib-build-tools/badge.svg)](https://snyk.io/test/github/ksclarke/freelib-build-tools) [![Maven Central](https://img.shields.io/maven-central/v/info.freelibrary/freelib-build-tools?colorB=brightgreen)](https://search.maven.org/artifact/info.freelibrary/freelib-build-tools)
+# freelib-build-tools <br/>![Maven Build](https://github.com/ksclarke/freelib-build-tools/workflows/Maven%20PR%20Build/badge.svg) [![Maven Central](https://img.shields.io/maven-central/v/info.freelibrary/freelib-build-tools?colorB=brightgreen)](https://search.maven.org/artifact/info.freelibrary/freelib-build-tools)
 
 ### Introduction
 
 This project is comprised of two parts. The first part, `freelib-resources`, contains [Checkstyle](http://maven.apache.org/plugins/maven-checkstyle-plugin/) configuration files, Code Formatter settings for Eclipse, PMD rules, etc. The second part, `freelib-parent`, contains a set of dependencies, plugins, and other configuration options to simplify the creation of new Maven projects. The second part also makes using the first's resources much easier because it pulls them in and uses them by default when a new project is configured.
 
 ### Using this project
+
+This project requires a JDK version of 17 or higher. Only the last two LTS JDK releases will be supported.
 
 Projects wanting to take advantage of `freelib-build-tools`' simplified configuration options can configure `freelib-parent` as their project's parent. To do this, add the following as the last element in the POM's root element:
 
