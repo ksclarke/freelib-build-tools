@@ -1,4 +1,4 @@
-# freelib-build-tools <br/>![Maven Build](https://github.com/ksclarke/freelib-build-tools/workflows/Maven%20PR%20Build/badge.svg) [![Maven Central](https://img.shields.io/maven-central/v/info.freelibrary/freelib-build-tools?colorB=brightgreen)](https://search.maven.org/artifact/info.freelibrary/freelib-build-tools)
+# freelib-build-tools <br/>[![Project Status: Active – The project is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active) ![Maven Build](https://github.com/ksclarke/freelib-build-tools/workflows/Maven%20PR%20Build/badge.svg) [![Maven Central](https://img.shields.io/maven-central/v/info.freelibrary/freelib-build-tools?colorB=brightgreen)](https://search.maven.org/artifact/info.freelibrary/freelib-build-tools)
 
 ### Introduction
 
