@@ -36,7 +36,5 @@ jobs:
         run: |
               mvn -V --no-transfer-progress --batch-mode ${{ secrets.BUILD_PROPERTIES }} \
               -DlogLevel=DEBUG -DtestLogLevel=DEBUG \
-              -Drevision=${{ github.event.release.tag_name }} \
-              -Dautorelease.artifact=${{ env.AUTORELEASE_ARTIFACT }} \
               -Dorg.slf4j.simpleLogger.log.net.sourceforge.pmd=error \
               -Pfreelib-build-tools-synk-check clean verify
