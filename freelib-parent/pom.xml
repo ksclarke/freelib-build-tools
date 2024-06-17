@@ -37,7 +37,7 @@
     <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
     <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
     <maven.enforcer.plugin.version>3.5.0</maven.enforcer.plugin.version>
-    <maven.dependency.plugin.version>3.6.1</maven.dependency.plugin.version>
+    <maven.dependency.plugin.version>3.7.0</maven.dependency.plugin.version>
     <maven.dependency.analyzer.version>1.14.1</maven.dependency.analyzer.version>
     <build.helper.maven.plugin.version>3.6.0</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.2.1</properties.maven.plugin.version>
