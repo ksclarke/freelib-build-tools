@@ -992,6 +992,7 @@
                         <versionRange>[0.0.3,)</versionRange>
                         <goals>
                           <goal>generate-codes</goal>
+                          <goal>generate-media-types</goal>
                           <goal>read-logging-properties</goal>
                           <goal>set-cpumem-properties</goal>
                           <goal>set-uuid-property</goal>
