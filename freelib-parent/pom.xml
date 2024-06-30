@@ -431,9 +431,11 @@
             <includeTestSourceDirectory>true</includeTestSourceDirectory>
             <includeTestResources>true</includeTestResources>
             <includeResources>true</includeResources>
-            <resourceIncludes>**/*</resourceIncludes>
             <suppressionsLocation>src/main/tools/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
             <configLocation>src/main/tools/checkstyle/checkstyle.xml</configLocation>
+            <excludeGeneratedSources>true</excludeGeneratedSources>
+            <resourceExcludes>target/**,**/generated/**,**/META-INF/**</resourceExcludes>
+            <excludes>target/**,**/generated/**,**/MediaType.java,**/MessageCodes.java</excludes>
           </configuration>
           <dependencies>
             <dependency>
@@ -740,6 +742,104 @@
                 <arg>--fail-on=all</arg>
               </args>
             </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>sonar</id>
+      <properties>
+        <sonar.organization>ksclarke</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.sources>src/main/java</sonar.sources>
+        <sonar.tests>src/test/java</sonar.tests>
+        <sonar.java.binaries>target/classes</sonar.java.binaries>
+        <sonar.java.test.binaries>target/test-classes</sonar.java.test.binaries>
+        <sonar.checkstyle.reportPaths>target/checkstyle-result.xml</sonar.checkstyle.reportPaths>
+        <sonar.java.pmd.reportPaths>target/pmd.xml</sonar.java.pmd.reportPaths>
+
+        <!-- The version of the sonar-maven-plugin to use -->
+        <sonar.maven.version>4.0.0.4121</sonar.maven.version>
+
+        <!-- Limit Sonar suggestions to our minimum JDK version -->
+        <sonar.java.source>17</sonar.java.source>
+        <sonar.target.source>17</sonar.target.source>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>${jacoco.maven.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>default-prepare-agent</id>
+                <goals>
+                  <goal>prepare-agent</goal>
+                </goals>
+                <configuration>
+                  <destFile>${jacoco.dataFile}</destFile>
+                  <propertyName>jacoco.agent.arg</propertyName>
+                  <append>true</append>
+                  <excludes>
+                    <exclude>src/test/java/**/*</exclude>
+                  </excludes>
+                </configuration>
+              </execution>
+              <execution>
+                <id>default-prepare-agent-integration</id>
+                <goals>
+                  <goal>prepare-agent-integration</goal>
+                </goals>
+                <configuration>
+                  <destFile>${jacoco.dataFile}</destFile>
+                  <propertyName>jacoco.agent.arg</propertyName>
+                  <append>true</append>
+                  <excludes>
+                    <exclude>src/test/java/**/*</exclude>
+                  </excludes>
+                </configuration>
+              </execution>
+              <execution>
+                <id>default-report</id>
+                <goals>
+                  <goal>report</goal>
+                </goals>
+                <phase>verify</phase>
+                <configuration>
+                  <dataFile>${jacoco.dataFile}</dataFile>
+                  <excludes>
+                    <exclude>src/test/java/**/*</exclude>
+                  </excludes>
+                </configuration>
+              </execution>
+              <execution>
+                <id>integration-report</id>
+                <goals>
+                  <goal>report-integration</goal>
+                </goals>
+                <phase>verify</phase>
+                <configuration>
+                  <dataFile>${jacoco.dataFile}</dataFile>
+                  <excludes>
+                    <exclude>src/test/java/**/*</exclude>
+                  </excludes>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>${sonar.maven.version}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>sonar</goal>
+                </goals>
+                <phase>verify</phase>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
