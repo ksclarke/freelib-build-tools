@@ -56,7 +56,7 @@
 
     <!-- PMD plugin configuration overrides the older version to use the latest version of PMD -->
     <pmd.plugin.version>3.24.0</pmd.plugin.version>
-    <pmd.version>7.3.0</pmd.version>
+    <pmd.version>7.4.0</pmd.version>
 
     <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
