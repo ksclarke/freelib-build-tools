@@ -25,48 +25,24 @@
     <logback.version>1.5.6</logback.version>
 
     <!-- Maven plug-in dependencies managed through this parent project -->
-    <maven.version>3.8.6</maven.version>
-    <gpg.plugin.version>3.2.5</gpg.plugin.version>
-    <flatten.plugin.version>1.6.0</flatten.plugin.version>
     <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
-    <nexus.staging.plugin.version>1.7.0</nexus.staging.plugin.version>
     <maven.filtering.version>3.3.2</maven.filtering.version>
-    <maven.install.plugin.version>3.1.2</maven.install.plugin.version>
-    <maven.failsafe.plugin.version>3.3.1</maven.failsafe.plugin.version>
-    <maven.javadoc.plugin.version>3.8.0</maven.javadoc.plugin.version>
-    <maven.surefire.plugin.version>3.3.1</maven.surefire.plugin.version>
+    <maven.javadoc.plugin.version>3.7.0</maven.javadoc.plugin.version>
     <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
-    <maven.enforcer.plugin.version>3.5.0</maven.enforcer.plugin.version>
-    <maven.dependency.plugin.version>3.7.1</maven.dependency.plugin.version>
     <maven.dependency.analyzer.version>1.14.1</maven.dependency.analyzer.version>
     <build.helper.maven.plugin.version>3.6.0</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.2.1</properties.maven.plugin.version>
-    <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
-    <formatter.plugin.version>2.24.1</formatter.plugin.version>
     <freelib.maven.version>0.5.2</freelib.maven.version>
-    <codacy.plugin.version>1.2.0</codacy.plugin.version>
-    <snyk.plugin.version>2.2.0</snyk.plugin.version>
-
-    <!-- Configure the project's character encodings -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <!-- We want to override the skip tests directive in our parent project -->
     <maven.test.skip>false</maven.test.skip>
 
-    <!-- PMD plugin configuration overrides the older version to use the latest version of PMD -->
-    <pmd.plugin.version>3.24.0</pmd.plugin.version>
-    <pmd.version>7.4.0</pmd.version>
-
     <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>src/main/tools/checkstyle</config_loc>
-    <maven.checkstyle.version>3.4.0</maven.checkstyle.version>
-    <checkstyle.version>10.17.0</checkstyle.version>
 
-    <!-- Jacoco configuration -->
-    <jacoco.dataFile>${project.build.directory}/jacoco.exec</jacoco.dataFile>
-    <jacoco.maven.plugin.version>0.8.12</jacoco.maven.plugin.version>
+    <!-- Ignores PMD deprecation warnings -->
+    <org.slf4j.simpleLogger.log.net.sourceforge.pmd>error</org.slf4j.simpleLogger.log.net.sourceforge.pmd>
   </properties>
 
   <dependencyManagement>
@@ -86,6 +62,7 @@
         <artifactId>logback-classic</artifactId>
         <version>${logback.version}</version>
       </dependency>
+
       <!-- Below dependencies are only used for testing -->
       <dependency>
         <groupId>junit</groupId>
@@ -105,32 +82,6 @@
   <build>
     <pluginManagement>
       <plugins>
-        <!-- This plugin is required to make the version persist to the POM on publishing -->
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>flatten-maven-plugin</artifactId>
-          <version>${flatten.plugin.version}</version>
-          <configuration>
-            <updatePomFile>true</updatePomFile>
-            <flattenMode>resolveCiFriendliesOnly</flattenMode>
-          </configuration>
-          <executions>
-            <execution>
-              <id>flatten</id>
-              <phase>process-resources</phase>
-              <goals>
-                <goal>flatten</goal>
-              </goals>
-            </execution>
-            <execution>
-              <id>flatten-clean</id>
-              <phase>clean</phase>
-              <goals>
-                <goal>clean</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
         <plugin>
           <groupId>info.freelibrary</groupId>
           <artifactId>freelib-maven-plugins</artifactId>
@@ -143,51 +94,6 @@
               </goals>
             </execution>
           </executions>
-        </plugin>
-        <!-- Does code analysis -->
-        <!--<![CDATA[
-          Disable PMD plug-in deprecation warnings by running Maven (mvn) with the following property:
-            -Dorg.slf4j.simpleLogger.log.net.sourceforge.pmd=error
-        ]]>-->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-pmd-plugin</artifactId>
-          <version>${pmd.plugin.version}</version>
-          <dependencies>
-            <dependency>
-              <groupId>net.sourceforge.pmd</groupId>
-              <artifactId>pmd-core</artifactId>
-              <version>${pmd.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>net.sourceforge.pmd</groupId>
-              <artifactId>pmd-java</artifactId>
-              <version>${pmd.version}</version>
-            </dependency>
-          </dependencies>
-          <configuration>
-            <linkXRef>false</linkXRef>
-            <analysisCache>true</analysisCache>
-            <analysisCacheLocation>target/pmd/pmd.cache</analysisCacheLocation>
-            <printFailingErrors>true</printFailingErrors>
-            <rulesets>
-              <ruleset>src/main/tools/pmd/ruleset.xml</ruleset>
-            </rulesets>
-            <targetJdk>${maven.compiler.source}</targetJdk>
-          </configuration>
-          <executions>
-            <execution>
-              <phase>verify</phase>
-              <goals>
-                <goal>check</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>${maven.install.plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -225,14 +131,7 @@
           </executions>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>${maven.compiler.plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
-          <version>${maven.dependency.plugin.version}</version>
           <dependencies>
             <dependency>
               <groupId>org.apache.maven.shared</groupId>
@@ -269,7 +168,6 @@
           </executions>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
           <version>${maven.resources.plugin.version}</version>
           <configuration>
@@ -349,113 +247,6 @@
           </executions>
         </plugin>
         <plugin>
-          <groupId>net.revelc.code.formatter</groupId>
-          <artifactId>formatter-maven-plugin</artifactId>
-          <version>${formatter.plugin.version}</version>
-          <configuration>
-            <configFile>src/main/tools/eclipse/freelibrary-formatter.xml</configFile>
-            <configJsFile>src/main/tools/eclipse/freelibrary-javascript-formatter.xml</configJsFile>
-          </configuration>
-          <executions>
-            <execution>
-              <phase>prepare-package</phase>
-              <goals>
-                <goal>format</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <version>${maven.enforcer.plugin.version}</version>
-          <executions>
-            <execution>
-              <id>enforce-no-snapshots</id>
-              <goals>
-                <goal>enforce</goal>
-              </goals>
-              <configuration>
-                <failFast>true</failFast>
-                <rules>
-                  <requireReleaseDeps>
-                    <onlyWhenRelease>false</onlyWhenRelease>
-                    <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
-                    <message>
-                      <![CDATA[Sorry, dependency snapshots are not allowed! To temporarily ignore this]]>
-                      <![CDATA[restriction add the following to the command line: -Denforcer.skip=true]]>
-                    </message>
-                  </requireReleaseDeps>
-                </rules>
-                <fail>true</fail>
-              </configuration>
-            </execution>
-            <execution>
-              <id>enforce-java</id>
-              <goals>
-                <goal>enforce</goal>
-              </goals>
-              <configuration>
-                <rules>
-                  <requireJavaVersion>
-                    <version>[17,)</version>
-                  </requireJavaVersion>
-                </rules>
-              </configuration>
-            </execution>
-            <execution>
-              <id>enforce-maven</id>
-              <goals>
-                <goal>enforce</goal>
-              </goals>
-              <configuration>
-                <rules>
-                  <requireMavenVersion>
-                    <version>[3.6.3,)</version>
-                  </requireMavenVersion>
-                </rules>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>${maven.checkstyle.version}</version>
-          <configuration>
-            <logViolationsToConsole>true</logViolationsToConsole>
-            <violationSeverity>warning</violationSeverity>
-            <failOnViolation>true</failOnViolation>
-            <failsOnError>true</failsOnError>
-            <consoleOutput>false</consoleOutput>
-            <includeTestSourceDirectory>true</includeTestSourceDirectory>
-            <includeTestResources>true</includeTestResources>
-            <includeResources>true</includeResources>
-            <suppressionsLocation>src/main/tools/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
-            <configLocation>src/main/tools/checkstyle/checkstyle.xml</configLocation>
-            <excludeGeneratedSources>true</excludeGeneratedSources>
-            <resourceExcludes>target/**,**/generated/**,**/META-INF/**</resourceExcludes>
-            <excludes>target/**,**/generated/**,**/MediaType.java,**/MessageCodes.java</excludes>
-          </configuration>
-          <dependencies>
-            <dependency>
-              <groupId>com.puppycrawl.tools</groupId>
-              <artifactId>checkstyle</artifactId>
-              <version>${checkstyle.version}</version>
-            </dependency>
-          </dependencies>
-          <executions>
-            <execution>
-              <id>checkstyle</id>
-              <phase>verify</phase>
-              <goals>
-                <goal>check</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>${maven.javadoc.plugin.version}</version>
           <dependencies>
@@ -495,72 +286,47 @@
             </execution>
           </executions>
         </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>${maven.surefire.plugin.version}</version>
-          <configuration>
-            <!-- Our integration tests shouldn't be run as unit tests -->
-            <excludes>
-              <exclude>**/*IT.java</exclude>
-              <exclude>**/*FT.java</exclude>
-              <exclude>**/*FfOnT.java</exclude>
-              <exclude>**/*FfOffT.java</exclude>
-              <exclude>**/*IntegrationTest.java</exclude>
-              <exclude>**/*FunctionalTest.java</exclude>
-              <exclude>**/*FeatureFlagTest.java</exclude>
-            </excludes>
-            <forkCount>3</forkCount>
-            <reuseForks>true</reuseForks>
-            <argLine>-XX:MaxMetaspaceSize=512m ${jacoco.agent.arg}</argLine>
-            <systemPropertyVariables>
-              <http.agent>Maven</http.agent>
-            </systemPropertyVariables>
-            <trimStackTrace>false</trimStackTrace>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-failsafe-plugin</artifactId>
-          <version>${maven.failsafe.plugin.version}</version>
-          <configuration>
-            <argLine>-XX:MaxMetaspaceSize=128m ${jacoco.agent.arg}</argLine>
-            <includes>
-              <include>**/*IT.java</include>
-              <include>**/*FT.java</include>
-              <include>**/*FfOnT.java</include>
-              <include>**/*FfOffT.java</include>
-              <include>**/*IntegrationTest.java</include>
-              <include>**/*FunctionalTest.java</include>
-              <include>**/*FeatureFlagTest.java</include>
-            </includes>
-            <excludes>
-              <exclude>**/*.xml</exclude>
-              <exclude>**/*.md</exclude>
-              <exclude>**/*Test.java</exclude>
-            </excludes>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>integration-test</goal>
-                <goal>verify</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
       </plugins>
     </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-      </plugin>
-    </plugins>
   </build>
 
   <!-- Profiles that should be inherited by child projects -->
   <profiles>
+    <!-- Configs only used when building the freelib-build-tools project itself -->
+    <profile>
+      <id>code-analysis</id>
+      <activation>
+        <file>
+          <exists>../freelib-resources</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-enforcer-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>net.revelc.code.formatter</groupId>
+            <artifactId>formatter-maven-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <rulesets>
+                <ruleset>../freelib-resources/src/main/resources/pmd/ruleset.xml</ruleset>
+              </rulesets>
+            </configuration>
+          </plugin>
+          <plugin>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <configuration>
+              <suppressionsLocation>../freelib-resources/src/main/resources/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+              <configLocation>../freelib-resources/src/main/resources/checkstyle/checkstyle.xml</configLocation>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
     <!-- Set the Maven compiler version based on system JDK -->
     <profile>
       <id>java8</id>
@@ -714,39 +480,6 @@
       </properties>
     </profile>
     <profile>
-      <id>snyk-check</id>
-      <activation>
-        <property>
-          <name>env.SNYK_TOKEN</name>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>io.snyk</groupId>
-            <artifactId>snyk-maven-plugin</artifactId>
-            <version>${snyk.plugin.version}</version>
-            <executions>
-              <execution>
-                <id>snyk-test</id>
-                <goals>
-                  <goal>test</goal>
-                </goals>
-              </execution>
-            </executions>
-            <configuration>
-              <apiToken>${env.SNYK_TOKEN}</apiToken>
-              <args>
-                <arg>--org=${env.FREELIBRARY_SNYK_ORG}</arg>
-                <arg>--all-projects</arg>
-                <arg>--fail-on=all</arg>
-              </args>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <id>sonar</id>
       <properties>
         <sonar.organization>ksclarke</sonar.organization>
@@ -770,63 +503,6 @@
           <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
-            <version>${jacoco.maven.plugin.version}</version>
-            <executions>
-              <execution>
-                <id>default-prepare-agent</id>
-                <goals>
-                  <goal>prepare-agent</goal>
-                </goals>
-                <configuration>
-                  <destFile>${jacoco.dataFile}</destFile>
-                  <propertyName>jacoco.agent.arg</propertyName>
-                  <append>true</append>
-                  <excludes>
-                    <exclude>src/test/java/**/*</exclude>
-                  </excludes>
-                </configuration>
-              </execution>
-              <execution>
-                <id>default-prepare-agent-integration</id>
-                <goals>
-                  <goal>prepare-agent-integration</goal>
-                </goals>
-                <configuration>
-                  <destFile>${jacoco.dataFile}</destFile>
-                  <propertyName>jacoco.agent.arg</propertyName>
-                  <append>true</append>
-                  <excludes>
-                    <exclude>src/test/java/**/*</exclude>
-                  </excludes>
-                </configuration>
-              </execution>
-              <execution>
-                <id>default-report</id>
-                <goals>
-                  <goal>report</goal>
-                </goals>
-                <phase>verify</phase>
-                <configuration>
-                  <dataFile>${jacoco.dataFile}</dataFile>
-                  <excludes>
-                    <exclude>src/test/java/**/*</exclude>
-                  </excludes>
-                </configuration>
-              </execution>
-              <execution>
-                <id>integration-report</id>
-                <goals>
-                  <goal>report-integration</goal>
-                </goals>
-                <phase>verify</phase>
-                <configuration>
-                  <dataFile>${jacoco.dataFile}</dataFile>
-                  <excludes>
-                    <exclude>src/test/java/**/*</exclude>
-                  </excludes>
-                </configuration>
-              </execution>
-            </executions>
           </plugin>
           <plugin>
             <groupId>org.sonarsource.scanner.maven</groupId>
@@ -844,109 +520,12 @@
         </plugins>
       </build>
     </profile>
-    <profile>
-      <id>code-coverage</id>
-      <activation>
-        <property>
-          <name>env.CODACY_API_TOKEN</name>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>${jacoco.maven.plugin.version}</version>
-            <executions>
-              <execution>
-                <id>default-prepare-agent</id>
-                <goals>
-                  <goal>prepare-agent</goal>
-                </goals>
-                <configuration>
-                  <destFile>${jacoco.dataFile}</destFile>
-                  <propertyName>jacoco.agent.arg</propertyName>
-                  <append>true</append>
-                  <excludes>
-                    <exclude>src/test/java/**/*</exclude>
-                  </excludes>
-                </configuration>
-              </execution>
-              <execution>
-                <id>default-prepare-agent-integration</id>
-                <goals>
-                  <goal>prepare-agent-integration</goal>
-                </goals>
-                <configuration>
-                  <destFile>${jacoco.dataFile}</destFile>
-                  <propertyName>jacoco.agent.arg</propertyName>
-                  <append>true</append>
-                  <excludes>
-                    <exclude>src/test/java/**/*</exclude>
-                  </excludes>
-                </configuration>
-              </execution>
-              <execution>
-                <id>default-report</id>
-                <goals>
-                  <goal>report</goal>
-                </goals>
-                <configuration>
-                  <dataFile>${jacoco.dataFile}</dataFile>
-                  <excludes>
-                    <exclude>src/test/java/**/*</exclude>
-                  </excludes>
-                </configuration>
-              </execution>
-              <execution>
-                <id>integration-report</id>
-                <goals>
-                  <goal>report-integration</goal>
-                </goals>
-                <configuration>
-                  <dataFile>${jacoco.dataFile}</dataFile>
-                  <excludes>
-                    <exclude>src/test/java/**/*</exclude>
-                  </excludes>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>com.gavinmogan</groupId>
-            <artifactId>codacy-maven-plugin</artifactId>
-            <version>${codacy.plugin.version}</version>
-            <configuration>
-              <apiToken>${env.CODACY_API_TOKEN}</apiToken>
-              <projectToken>${env.CODACY_PROJECT_TOKEN}</projectToken>
-              <coverageReportFile>${project.basedir}/target/site/jacoco/jacoco.xml</coverageReportFile>
-              <codacyApiBaseUrl>https://api.codacy.com</codacyApiBaseUrl>
-              <failOnMissingReportFile>false</failOnMissingReportFile>
-            </configuration>
-            <executions>
-              <execution>
-                <id>codacy-upload</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>coverage</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <!-- A default profile for when a profile required; it's a no-op here though -->
-    <profile>
-      <id>default</id>
-    </profile>
     <!-- The release-sign-artifacts profile allows for the publishing of project artifact -->
     <profile>
       <id>release</id>
       <build>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
             <version>${maven.source.plugin.version}</version>
             <executions>
@@ -959,7 +538,6 @@
             </executions>
           </plugin>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <version>${maven.javadoc.plugin.version}</version>
             <executions>
@@ -970,36 +548,6 @@
                 </goals>
               </execution>
             </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>${gpg.plugin.version}</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-                <configuration>
-                  <gpgArguments>
-                    <arg>--pinentry-mode</arg>
-                    <arg>loopback</arg>
-                  </gpgArguments>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>${nexus.staging.plugin.version}</version>
-            <extensions>true</extensions>
-            <configuration>
-              <serverId>ossrh</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-            </configuration>
           </plugin>
         </plugins>
       </build>
@@ -1024,7 +572,6 @@
                   <pluginExecutions>
                     <pluginExecution>
                       <pluginExecutionFilter>
-                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-install-plugin</artifactId>
                         <versionRange>[3.0.0,)</versionRange>
                         <goals>
@@ -1048,7 +595,6 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
-                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
                         <versionRange>[3.1.0,)</versionRange>
                         <goals>
@@ -1074,7 +620,6 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
-                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-scm-plugin</artifactId>
                         <versionRange>[1.11.2,)</versionRange>
                         <goals>
@@ -1132,7 +677,6 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
-                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-plugin-plugin</artifactId>
                         <versionRange>[3.5.2,)</versionRange>
                         <goals>
@@ -1211,7 +755,6 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
-                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-clean-plugin</artifactId>
                         <versionRange>[3.1.0,)</versionRange>
                         <goals>
@@ -1224,7 +767,6 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
-                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-pmd-plugin</artifactId>
                         <versionRange>[3.0.0,)</versionRange>
                         <goals>
@@ -1238,7 +780,6 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
-                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
                         <versionRange>[1.0.0,)</versionRange>
                         <goals>
@@ -1252,7 +793,6 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
-                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-enforcer-plugin</artifactId>
                         <versionRange>[1.0.0,)</versionRange>
                         <goals>
