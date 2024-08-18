@@ -2,6 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!-- Basic project metadata -->
   <groupId>info.freelibrary</groupId>
   <artifactId>freelib-build-tools</artifactId>
   <version>${revision}</version>
@@ -10,6 +11,7 @@
   <description>Build tools for FreeLibrary projects.</description>
   <url>https://github.com/ksclarke/freelib-build-tools</url>
 
+  <!-- The license for the freelib-build-tools project -->
   <licenses>
     <license>
       <name>Mozilla Public License 2.0 (MPL-2.0)</name>
@@ -17,22 +19,26 @@
     </license>
   </licenses>
 
+  <!-- The project's Git/GitHub configuration -->
   <scm>
     <connection>scm:git:git@github.com:ksclarke/freelib-build-tools.git</connection>
     <developerConnection>scm:git:git@github.com:ksclarke/freelib-build-tools.git</developerConnection>
     <url>git@github.com:ksclarke/freelib-build-tools.git</url>
   </scm>
 
+  <!-- The project's issue tracking location -->
   <issueManagement>
     <system>GitHub</system>
     <url>https://github.com/ksclarke/freelib-build-tools/issues</url>
   </issueManagement>
 
+  <!-- The project's responsible organization -->
   <organization>
     <name>FreeLibrary</name>
     <url>http://projects.freelibrary.info</url>
   </organization>
 
+  <!-- The primary developers on a project -->
   <developers>
     <developer>
       <email>ksclarke@gmail.com</email>
@@ -49,145 +55,408 @@
     <!-- Whether artifacts should be auto-released on OSSRH -->
     <autorelease.artifact>false</autorelease.artifact>
 
+    <!-- By default we skip the legacy site building plugin -->
     <maven.site.skip>true</maven.site.skip>
     <maven.site.deploy.skip>true</maven.site.deploy.skip>
 
-    <revision>0.0.0-SNAPSHOT</revision>
+    <!-- Whether tests should be skipped by defailt -->
     <maven.test.skip>true</maven.test.skip>
-    <gpg.plugin.version>3.2.5</gpg.plugin.version>
-    <flatten.plugin.version>1.6.0</flatten.plugin.version>
-    <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
-    <nexus.staging.plugin.version>1.7.0</nexus.staging.plugin.version>
-    <maven.javadoc.plugin.version>3.8.0</maven.javadoc.plugin.version>
-    <maven.surefire.plugin.version>3.3.1</maven.surefire.plugin.version>
-    <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
-    <snyk.plugin.version>2.2.0</snyk.plugin.version>
 
+    <!-- Plugin versions -->
+    <flatten.plugin.version>1.6.0</flatten.plugin.version>
+    <maven.surefire.plugin.version>3.3.0</maven.surefire.plugin.version>
+    <maven.failsafe.plugin.version>3.3.0</maven.failsafe.plugin.version>
+    <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
+    <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+    <maven.jar.plugin.version>3.4.2</maven.jar.plugin.version>
+    <maven.install.plugin.version>3.1.2</maven.install.plugin.version>
+    <maven.site.plugin.version>3.12.1</maven.site.plugin.version>
+    <maven.dependency.plugin.version>3.7.1</maven.dependency.plugin.version>
+    <maven.enforcer.plugin.version>3.5.0</maven.enforcer.plugin.version>
+    <formatter.plugin.version>2.24.1</formatter.plugin.version>
+
+    <maven.checkstyle.version>3.4.0</maven.checkstyle.version>
+    <checkstyle.version>10.17.0</checkstyle.version>
+
+    <!-- A dynamic argument that can be used by CI when releasing a new version -->
+    <revision>0.0.0-SNAPSHOT</revision>
+
+    <!-- Jacoco configuration -->
+    <jacoco.dataFile>${project.build.directory}/jacoco.exec</jacoco.dataFile>
+    <jacoco.maven.plugin.version>0.8.12</jacoco.maven.plugin.version>
+
+    <!-- PMD plugin configuration overrides the older version to use the latest version of PMD -->
+    <pmd.plugin.version>3.23.0</pmd.plugin.version>
+    <pmd.version>7.2.0</pmd.version>
+
+    <!-- Character encodings for the build and reporting processes -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
 
   <modules>
+    <!-- A module of shared project resources (e.g., plugin configuration files) -->
     <module>freelib-resources</module>
+    <!-- A module with a parent pom that can be used as a template for other projects -->
     <module>freelib-parent</module>
   </modules>
 
   <build>
+    <pluginManagement>
+      <plugins>
+        <!-- Configures the plugin that allows CI use of 'revision' property -->
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>flatten-maven-plugin</artifactId>
+          <version>${flatten.plugin.version}</version>
+          <configuration>
+            <updatePomFile>true</updatePomFile>
+            <flattenMode>resolveCiFriendliesOnly</flattenMode>
+          </configuration>
+          <executions>
+            <execution>
+              <id>flatten</id>
+              <phase>process-resources</phase>
+              <goals>
+                <goal>flatten</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>flatten-clean</id>
+              <phase>clean</phase>
+              <goals>
+                <goal>clean</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- Configures the Maven dependeny analyzing plugin -->
+        <plugin>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>${maven.dependency.plugin.version}</version>
+        </plugin>
+        <!-- Configure the unit test plugin -->
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven.surefire.plugin.version}</version>
+          <configuration>
+            <!-- Our integration and functional tests shouldn't be run as unit tests -->
+            <excludes>
+              <exclude>**/*IT.java</exclude>
+              <exclude>**/*FT.java</exclude>
+              <exclude>**/*FfOnT.java</exclude>
+              <exclude>**/*FfOffT.java</exclude>
+              <exclude>**/*IntegrationTest.java</exclude>
+              <exclude>**/*FunctionalTest.java</exclude>
+              <exclude>**/*FeatureFlagTest.java</exclude>
+            </excludes>
+            <forkCount>3</forkCount>
+            <reuseForks>true</reuseForks>
+            <argLine>-XX:MaxMetaspaceSize=512m ${jacoco.agent.arg}</argLine>
+            <systemPropertyVariables>
+              <http.agent>Maven</http.agent>
+            </systemPropertyVariables>
+            <trimStackTrace>false</trimStackTrace>
+            <skipTests>${maven.test.skip}</skipTests>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>${maven.failsafe.plugin.version}</version>
+          <configuration>
+            <argLine>-XX:MaxMetaspaceSize=128m ${jacoco.agent.arg}</argLine>
+            <includes>
+              <include>**/*IT.java</include>
+              <include>**/*FT.java</include>
+              <include>**/*FfOnT.java</include>
+              <include>**/*FfOffT.java</include>
+              <include>**/*IntegrationTest.java</include>
+              <include>**/*FunctionalTest.java</include>
+              <include>**/*FeatureFlagTest.java</include>
+            </includes>
+            <excludes>
+              <exclude>**/*.xml</exclude>
+              <exclude>**/*.md</exclude>
+              <exclude>**/*Test.java</exclude>
+            </excludes>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>integration-test</goal>
+                <goal>verify</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- Configure the build enforcer plugin -->
+        <plugin>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>${maven.enforcer.plugin.version}</version>
+          <executions>
+            <execution>
+              <id>enforce-no-snapshots</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <failFast>true</failFast>
+                <rules>
+                  <requireReleaseDeps>
+                    <onlyWhenRelease>false</onlyWhenRelease>
+                    <failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
+                    <message>
+                      <![CDATA[Sorry, dependency snapshots are not allowed! To temporarily ignore this]]>
+                      <![CDATA[restriction add the following to the command line: -Denforcer.skip=true]]>
+                    </message>
+                  </requireReleaseDeps>
+                </rules>
+                <fail>true</fail>
+              </configuration>
+            </execution>
+            <execution>
+              <id>enforce-java</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <requireJavaVersion>
+                    <version>[17,)</version>
+                  </requireJavaVersion>
+                </rules>
+              </configuration>
+            </execution>
+            <execution>
+              <id>enforce-maven</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+              <configuration>
+                <rules>
+                  <requireMavenVersion>
+                    <version>[3.6.3,)</version>
+                  </requireMavenVersion>
+                </rules>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- Configure the Jacoco code coverage plugin -->
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco.maven.plugin.version}</version>
+          <executions>
+            <execution>
+              <id>default-prepare-agent</id>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+              <configuration>
+                <destFile>${jacoco.dataFile}</destFile>
+                <propertyName>jacoco.agent.arg</propertyName>
+                <append>true</append>
+                <excludes>
+                  <exclude>src/test/java/**/*</exclude>
+                </excludes>
+              </configuration>
+            </execution>
+            <execution>
+              <id>default-prepare-agent-integration</id>
+              <goals>
+                <goal>prepare-agent-integration</goal>
+              </goals>
+              <configuration>
+                <destFile>${jacoco.dataFile}</destFile>
+                <propertyName>jacoco.agent.arg</propertyName>
+                <append>true</append>
+                <excludes>
+                  <exclude>src/test/java/**/*</exclude>
+                </excludes>
+              </configuration>
+            </execution>
+            <execution>
+              <id>default-report</id>
+              <goals>
+                <goal>report</goal>
+              </goals>
+              <phase>verify</phase>
+              <configuration>
+                <dataFile>${jacoco.dataFile}</dataFile>
+                <excludes>
+                  <exclude>src/test/java/**/*</exclude>
+                </excludes>
+              </configuration>
+            </execution>
+            <execution>
+              <id>integration-report</id>
+              <goals>
+                <goal>report-integration</goal>
+              </goals>
+              <phase>verify</phase>
+              <configuration>
+                <dataFile>${jacoco.dataFile}</dataFile>
+                <excludes>
+                  <exclude>src/test/java/**/*</exclude>
+                </excludes>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- Configure the Maven Jar installing plugin -->
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>${maven.install.plugin.version}</version>
+        </plugin>
+        <!-- Configure the resources handling plugin -->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${maven.resources.plugin.version}</version>
+        </plugin>
+        <!-- Configure the Maven compiler plugin -->
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven.compiler.plugin.version}</version>
+        </plugin>
+        <!-- Configure the Jar building plugin -->
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${maven.jar.plugin.version}</version>
+        </plugin>
+        <!-- Configure the code formatting plugin -->
+        <plugin>
+          <groupId>net.revelc.code.formatter</groupId>
+          <artifactId>formatter-maven-plugin</artifactId>
+          <version>${formatter.plugin.version}</version>
+          <configuration>
+            <configFile>src/main/tools/eclipse/freelibrary-formatter.xml</configFile>
+            <configJsFile>src/main/tools/eclipse/freelibrary-javascript-formatter.xml</configJsFile>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>prepare-package</phase>
+              <goals>
+                <goal>format</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- Configure the PMD code analysis plugin -->
+        <plugin>
+          <artifactId>maven-pmd-plugin</artifactId>
+          <version>${pmd.plugin.version}</version>
+          <dependencies>
+            <dependency>
+              <groupId>net.sourceforge.pmd</groupId>
+              <artifactId>pmd-core</artifactId>
+              <version>${pmd.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>net.sourceforge.pmd</groupId>
+              <artifactId>pmd-java</artifactId>
+              <version>${pmd.version}</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <linkXRef>false</linkXRef>
+            <analysisCache>true</analysisCache>
+            <analysisCacheLocation>target/pmd/pmd.cache</analysisCacheLocation>
+            <printFailingErrors>true</printFailingErrors>
+            <rulesets>
+              <ruleset>src/main/tools/pmd/ruleset.xml</ruleset>
+            </rulesets>
+            <targetJdk>${maven.compiler.source}</targetJdk>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>verify</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- Configure the Checkstyle code style plugin -->
+        <plugin>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>${maven.checkstyle.version}</version>
+          <configuration>
+            <logViolationsToConsole>true</logViolationsToConsole>
+            <violationSeverity>warning</violationSeverity>
+            <failOnViolation>true</failOnViolation>
+            <failsOnError>true</failsOnError>
+            <consoleOutput>false</consoleOutput>
+            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+            <includeTestResources>true</includeTestResources>
+            <includeResources>true</includeResources>
+            <suppressionsLocation>src/main/tools/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+            <configLocation>src/main/tools/checkstyle/checkstyle.xml</configLocation>
+            <excludeGeneratedSources>true</excludeGeneratedSources>
+            <resourceExcludes>target/**,**/generated/**,**/META-INF/**</resourceExcludes>
+            <excludes>target/**,**/generated/**,**/MediaType.java,**/MessageCodes.java</excludes>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle</artifactId>
+              <version>${checkstyle.version}</version>
+            </dependency>
+          </dependencies>
+          <executions>
+            <execution>
+              <id>checkstyle</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <!-- Configure the build to skip the legacy site plugin -->
+        <plugin>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>${maven.site.plugin.version}</version>
+          <configuration>
+            <skip>true</skip>
+            <skipDeploy>true</skipDeploy>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
     <plugins>
       <!-- This plugin is required to make 'revision' persist to the POM on publishing -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>flatten-maven-plugin</artifactId>
-        <version>${flatten.plugin.version}</version>
-        <configuration>
-          <updatePomFile>true</updatePomFile>
-          <flattenMode>resolveCiFriendliesOnly</flattenMode>
-        </configuration>
-        <executions>
-          <execution>
-            <id>flatten</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>flatten</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>flatten.clean</id>
-            <phase>clean</phase>
-            <goals>
-              <goal>clean</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
+      <!-- This plugin runs any tests found in the project -->
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>${maven.surefire.plugin.version}</version>
-        <configuration>
-          <skipTests>${maven.test.skip}</skipTests>
-        </configuration>
+      </plugin>
+      <!-- The plugin runs code analysis and coverage tests -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
       </plugin>
     </plugins>
-    <pluginManagement>
-      <plugins>
-        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build 
-          itself. -->
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>flatten-maven-plugin</artifactId>
-                    <versionRange>[1.1.0,)</versionRange>
-                    <goals>
-                      <goal>flatten</goal>
-                      <goal>clean</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore></ignore>
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
   </build>
 
   <profiles>
-    <profile>
-      <id>snyk-check</id>
-      <activation>
-        <property>
-          <name>env.SNYK_TOKEN</name>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>io.snyk</groupId>
-            <artifactId>snyk-maven-plugin</artifactId>
-            <version>${snyk.plugin.version}</version>
-            <executions>
-              <execution>
-                <id>snyk-test</id>
-                <goals>
-                  <goal>test</goal>
-                </goals>
-              </execution>
-            </executions>
-            <configuration>
-              <apiToken>${env.SNYK_TOKEN}</apiToken>
-              <args>
-                <arg>--org=${env.FREELIBRARY_SNYK_ORG}</arg>
-                <arg>--all-projects</arg>
-                <arg>--fail-on=all</arg>
-              </args>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>default</id>
-    </profile>
-    <profile>
-      <id>deploy</id>
-    </profile>
+    <!-- This profile configures the build artifact release -->
     <profile>
       <id>release</id>
+      <properties>
+        <gpg.plugin.version>3.2.4</gpg.plugin.version>
+        <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
+        <nexus.staging.plugin.version>1.7.0</nexus.staging.plugin.version>
+        <maven.javadoc.plugin.version>3.7.0</maven.javadoc.plugin.version>
+      </properties>
       <build>
         <plugins>
+          <!-- This plugin creates a source jar to upload with the build artifact -->
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
             <version>${maven.source.plugin.version}</version>
             <executions>
@@ -199,8 +468,8 @@
               </execution>
             </executions>
           </plugin>
+          <!-- This plugin attaches a Javadocs jar to upload with the build artifact -->
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
             <version>${maven.javadoc.plugin.version}</version>
             <executions>
@@ -212,8 +481,8 @@
               </execution>
             </executions>
           </plugin>
+          <!-- This plugin signs the Jar files uploaded during the release process -->
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
             <version>${gpg.plugin.version}</version>
             <executions>
@@ -232,6 +501,7 @@
               </execution>
             </executions>
           </plugin>
+          <!-- This plugin handles the Jar uploads to a centralized Maven repository -->
           <plugin>
             <groupId>org.sonatype.plugins</groupId>
             <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -248,6 +518,7 @@
     </profile>
   </profiles>
 
+  <!-- Locations to which to publish build artifacts -->
   <distributionManagement>
     <repository>
       <id>ossrh</id>
