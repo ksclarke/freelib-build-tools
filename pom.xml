@@ -426,6 +426,15 @@
     </pluginManagement>
 
     <plugins>
+      <!-- This plugin checks the build environment for expected requirements -->
+      <plugin>
+        <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+      <!-- This plugin formats the code according to project standards -->
+      <plugin>
+        <groupId>net.revelc.code.formatter</groupId>
+        <artifactId>formatter-maven-plugin</artifactId>
+      </plugin>
       <!-- This plugin is required to make 'revision' persist to the POM on publishing -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -444,6 +453,34 @@
   </build>
 
   <profiles>
+    <!-- Configs only used when building the freelib-build-tools project itself -->
+    <profile>
+      <id>code-analysis</id>
+      <activation>
+        <file>
+          <exists>freelib-resources</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <rulesets>
+                <ruleset>freelib-resources/src/main/resources/pmd/ruleset.xml</ruleset>
+              </rulesets>
+            </configuration>
+          </plugin>
+          <plugin>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <configuration>
+              <suppressionsLocation>freelib-resources/src/main/resources/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+              <configLocation>freelib-resources/src/main/resources/checkstyle/checkstyle.xml</configLocation>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
     <!-- This profile configures the build artifact release -->
     <profile>
       <id>release</id>
