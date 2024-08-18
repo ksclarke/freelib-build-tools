@@ -440,10 +440,47 @@
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
       </plugin>
+      <!-- This plugin runs some environment checks to enforce requirements -->
+      <plugin>
+        <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
+      <!-- This plugin formats the code in a standardized way -->
+      <plugin>
+        <groupId>net.revelc.code.formatter</groupId>
+        <artifactId>formatter-maven-plugin</artifactId>
+      </plugin>
     </plugins>
   </build>
 
   <profiles>
+    <!-- Configs only used when building the freelib-build-tools project itself -->
+    <profile>
+      <id>code-analysis</id>
+      <activation>
+        <file>
+          <exists>freelib-resources</exists>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <rulesets>
+                <ruleset>freelib-resources/src/main/resources/pmd/ruleset.xml</ruleset>
+              </rulesets>
+            </configuration>
+          </plugin>
+          <plugin>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <configuration>
+              <suppressionsLocation>freelib-resources/src/main/resources/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+              <configLocation>freelib-resources/src/main/resources/checkstyle/checkstyle.xml</configLocation>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
     <!-- This profile configures the build artifact release -->
     <profile>
       <id>release</id>
