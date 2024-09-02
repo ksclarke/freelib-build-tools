@@ -86,7 +86,7 @@
     <jacoco.maven.plugin.version>0.8.12</jacoco.maven.plugin.version>
 
     <!-- PMD plugin configuration overrides the older version to use the latest version of PMD -->
-    <pmd.plugin.version>3.24.0</pmd.plugin.version>
+    <pmd.plugin.version>3.25.0</pmd.plugin.version>
     <pmd.version>7.4.0</pmd.version>
 
     <!-- Character encodings for the build and reporting processes -->
