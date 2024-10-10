@@ -572,6 +572,7 @@
                   <pluginExecutions>
                     <pluginExecution>
                       <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-install-plugin</artifactId>
                         <versionRange>[3.0.0,)</versionRange>
                         <goals>
@@ -595,6 +596,7 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
                         <versionRange>[3.1.0,)</versionRange>
                         <goals>
@@ -620,6 +622,7 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-scm-plugin</artifactId>
                         <versionRange>[1.11.2,)</versionRange>
                         <goals>
@@ -677,6 +680,7 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-plugin-plugin</artifactId>
                         <versionRange>[3.5.2,)</versionRange>
                         <goals>
@@ -755,6 +759,7 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-clean-plugin</artifactId>
                         <versionRange>[3.1.0,)</versionRange>
                         <goals>
@@ -767,6 +772,7 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-pmd-plugin</artifactId>
                         <versionRange>[3.0.0,)</versionRange>
                         <goals>
@@ -780,6 +786,7 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
                         <versionRange>[1.0.0,)</versionRange>
                         <goals>
@@ -793,6 +800,7 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-enforcer-plugin</artifactId>
                         <versionRange>[1.0.0,)</versionRange>
                         <goals>
@@ -824,6 +832,20 @@
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
   </distributionManagement>
+
+  <!-- Where we pull snapshots from -->
+  <repositories>
+    <repository>
+      <id>ossrh-snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
   <parent>
     <groupId>info.freelibrary</groupId>
