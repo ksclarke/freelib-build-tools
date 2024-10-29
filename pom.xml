@@ -75,7 +75,7 @@
     <maven.enforcer.plugin.version>3.5.0</maven.enforcer.plugin.version>
     <formatter.plugin.version>2.24.1</formatter.plugin.version>
 
-    <maven.checkstyle.version>3.5.0</maven.checkstyle.version>
+    <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
     <checkstyle.version>10.18.2</checkstyle.version>
 
     <!-- A dynamic argument that can be used by CI when releasing a new version -->
