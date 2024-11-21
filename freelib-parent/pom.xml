@@ -492,7 +492,7 @@
         <sonar.java.pmd.reportPaths>target/pmd.xml</sonar.java.pmd.reportPaths>
 
         <!-- The version of the sonar-maven-plugin to use -->
-        <sonar.maven.version>4.0.0.4121</sonar.maven.version>
+        <sonar.maven.version>5.0.0.4389</sonar.maven.version>
 
         <!-- Limit Sonar suggestions to our minimum JDK version -->
         <sonar.java.source>17</sonar.java.source>
