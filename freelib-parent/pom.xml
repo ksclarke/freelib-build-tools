@@ -40,9 +40,6 @@
     <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>src/main/tools/checkstyle</config_loc>
-
-    <!-- Ignores PMD deprecation warnings -->
-    <org.slf4j.simpleLogger.log.net.sourceforge.pmd>error</org.slf4j.simpleLogger.log.net.sourceforge.pmd>
   </properties>
 
   <dependencyManagement>
