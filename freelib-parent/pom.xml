@@ -6,6 +6,7 @@
   <name>FreeLibrary Parent Project</name>
   <description>A Parent POM for FreeLibrary Projects</description>
   <packaging>pom</packaging>
+  <url>https://github.com/ksclarke/freelib-build-tools</url>
 
   <properties>
     <!-- Do not, by default, overwrite possibly modified local GitHub Actions -->
@@ -505,6 +506,13 @@
             <groupId>org.sonarsource.scanner.maven</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
             <version>${sonar.maven.version}</version>
+            <dependencies>
+                <dependency>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                    <version>${logback.version}</version>
+                </dependency>
+            </dependencies>
             <executions>
               <execution>
                 <goals>
