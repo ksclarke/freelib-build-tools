@@ -7,6 +7,7 @@
 
   <name>FreeLibrary Build Resources</name>
   <description>Resources, like Checkstyle rules and site templates, for FreeLibrary projects.</description>
+  <url>https://github.com/ksclarke/freelib-build-tools</url>
 
   <build>
     <plugins>
