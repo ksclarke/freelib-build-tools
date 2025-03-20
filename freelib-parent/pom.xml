@@ -478,6 +478,26 @@
       </properties>
     </profile>
     <profile>
+      <id>java23</id>
+      <activation>
+        <jdk>23</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.release>23</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/23/docs/api/</javadocs.jdk.url>
+      </properties>
+    </profile>
+    <profile>
+      <id>java24</id>
+      <activation>
+        <jdk>24</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.release>24</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/24/docs/api/</javadocs.jdk.url>
+      </properties>
+    </profile>
+    <profile>
       <id>sonar</id>
       <properties>
         <sonar.organization>ksclarke</sonar.organization>

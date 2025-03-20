@@ -48,5 +48,4 @@ jobs:
           MAVEN_GPG_KEY: ${{ secrets.BUILD_KEY }}
         run: |
           mvn -V -ntp -B clean deploy -Prelease -DlogLevel=DEBUG -DtestLogLevel=DEBUG \
-          -Drevision=${{ github.event.release.tag_name }} \
-          -Dautorelease.artifact=${{ env.AUTORELEASE_ARTIFACT }}
+          -Drevision=${{ github.event.release.tag_name }} -Dautorelease.artifact=${{ env.AUTORELEASE_ARTIFACT }}
