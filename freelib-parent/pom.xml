@@ -6,6 +6,7 @@
   <name>FreeLibrary Parent Project</name>
   <description>A Parent POM for FreeLibrary Projects</description>
   <packaging>pom</packaging>
+  <url>https://github.com/ksclarke/freelib-build-tools</url>
 
   <properties>
     <!-- Do not, by default, overwrite possibly modified local GitHub Actions -->
@@ -20,14 +21,14 @@
 
     <!-- Dependencies managed through this parent project -->
     <junit.version>4.13.2</junit.version>
-    <slf4j.version>2.0.16</slf4j.version>
+    <slf4j.version>2.0.17</slf4j.version>
     <xmlunit.version>1.6</xmlunit.version>
-    <logback.version>1.5.12</logback.version>
+    <logback.version>1.5.17</logback.version>
 
     <!-- Maven plug-in dependencies managed through this parent project -->
     <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
     <maven.filtering.version>3.4.0</maven.filtering.version>
-    <maven.javadoc.plugin.version>3.11.1</maven.javadoc.plugin.version>
+    <maven.javadoc.plugin.version>3.11.2</maven.javadoc.plugin.version>
     <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
     <maven.dependency.analyzer.version>1.15.1</maven.dependency.analyzer.version>
     <build.helper.maven.plugin.version>3.6.0</build.helper.maven.plugin.version>
@@ -40,9 +41,6 @@
     <!-- Location used for finding the unpacked checkstyle-suppressions.xml file -->
     <!-- It's a built-in configuration for eclipse-cs tool; make it work with Maven -->
     <config_loc>src/main/tools/checkstyle</config_loc>
-
-    <!-- Ignores PMD deprecation warnings -->
-    <org.slf4j.simpleLogger.log.net.sourceforge.pmd>error</org.slf4j.simpleLogger.log.net.sourceforge.pmd>
   </properties>
 
   <dependencyManagement>
@@ -508,6 +506,13 @@
             <groupId>org.sonarsource.scanner.maven</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
             <version>${sonar.maven.version}</version>
+            <dependencies>
+                <dependency>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                    <version>${logback.version}</version>
+                </dependency>
+            </dependencies>
             <executions>
               <execution>
                 <goals>
