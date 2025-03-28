@@ -332,6 +332,7 @@
         <jdk>1.8</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <javadocs.jdk.url>https://docs.oracle.com/javase/8/docs/api/</javadocs.jdk.url>
@@ -343,6 +344,7 @@
         <jdk>9</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>9</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/javase/9/docs/api/</javadocs.jdk.url>
       </properties>
@@ -353,6 +355,7 @@
         <jdk>10</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>10</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/javase/10/docs/api/</javadocs.jdk.url>
       </properties>
@@ -363,6 +366,7 @@
         <jdk>11</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>11</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/11/docs/api/</javadocs.jdk.url>
       </properties>
@@ -373,6 +377,7 @@
         <jdk>12</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>12</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/12/docs/api/</javadocs.jdk.url>
       </properties>
@@ -383,6 +388,7 @@
         <jdk>13</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>13</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/13/docs/api/</javadocs.jdk.url>
       </properties>
@@ -393,6 +399,7 @@
         <jdk>14</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>14</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/14/docs/api/</javadocs.jdk.url>
       </properties>
@@ -403,6 +410,7 @@
         <jdk>15</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>15</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/15/docs/api/</javadocs.jdk.url>
       </properties>
@@ -413,6 +421,7 @@
         <jdk>16</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>16</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/16/docs/api/</javadocs.jdk.url>
       </properties>
@@ -423,6 +432,7 @@
         <jdk>17</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>17</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/17/docs/api/</javadocs.jdk.url>
       </properties>
@@ -433,6 +443,7 @@
         <jdk>18</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>18</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/18/docs/api/</javadocs.jdk.url>
       </properties>
@@ -443,6 +454,7 @@
         <jdk>19</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>19</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/19/docs/api/</javadocs.jdk.url>
       </properties>
@@ -453,6 +465,7 @@
         <jdk>20</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>20</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/20/docs/api/</javadocs.jdk.url>
       </properties>
@@ -463,6 +476,7 @@
         <jdk>21</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>21</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/21/docs/api/</javadocs.jdk.url>
       </properties>
@@ -473,6 +487,7 @@
         <jdk>22</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>22</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/22/docs/api/</javadocs.jdk.url>
       </properties>
@@ -483,6 +498,7 @@
         <jdk>23</jdk>
       </activation>
       <properties>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>23</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/23/docs/api/</javadocs.jdk.url>
       </properties>
@@ -490,9 +506,14 @@
     <profile>
       <id>java24</id>
       <activation>
-        <jdk>24</jdk>
+        <!-- Switch to using 'property' so GraalVM and standard JDKs are picked up -->
+        <property>
+          <name>java.version</name>
+          <value>24</value>
+        </property>
       </activation>
       <properties>
+        <jacoco.skip>true</jacoco.skip>
         <maven.compiler.release>24</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/24/docs/api/</javadocs.jdk.url>
       </properties>
@@ -527,11 +548,11 @@
             <artifactId>sonar-maven-plugin</artifactId>
             <version>${sonar.maven.version}</version>
             <dependencies>
-                <dependency>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-classic</artifactId>
-                    <version>${logback.version}</version>
-                </dependency>
+              <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+              </dependency>
             </dependencies>
             <executions>
               <execution>
