@@ -370,6 +370,8 @@
               <ruleset>src/main/tools/pmd/ruleset.xml</ruleset>
             </rulesets>
             <targetJdk>${maven.compiler.source}</targetJdk>
+            <format>xml</format>
+            <skipEmptyReport>true</skipEmptyReport>
           </configuration>
           <executions>
             <execution>
