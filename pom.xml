@@ -83,7 +83,7 @@
 
     <!-- Jacoco configuration -->
     <jacoco.dataFile>${project.build.directory}/jacoco.exec</jacoco.dataFile>
-    <jacoco.maven.plugin.version>0.8.12</jacoco.maven.plugin.version>
+    <jacoco.maven.plugin.version>0.8.13</jacoco.maven.plugin.version>
 
     <!-- PMD plugin configuration overrides the older version to use the latest version of PMD -->
     <pmd.plugin.version>3.26.0</pmd.plugin.version>
