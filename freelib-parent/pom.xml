@@ -31,7 +31,7 @@
     <maven.javadoc.plugin.version>3.11.2</maven.javadoc.plugin.version>
     <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
     <maven.dependency.analyzer.version>1.16.0</maven.dependency.analyzer.version>
-    <build.helper.maven.plugin.version>3.6.0</build.helper.maven.plugin.version>
+    <build.helper.maven.plugin.version>3.6.1</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.2.1</properties.maven.plugin.version>
     <freelib.maven.version>0.5.2</freelib.maven.version>
 
