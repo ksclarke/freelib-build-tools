@@ -76,7 +76,7 @@
     <formatter.plugin.version>2.26.0</formatter.plugin.version>
 
     <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
-    <checkstyle.version>10.25.1</checkstyle.version>
+    <checkstyle.version>10.26.1</checkstyle.version>
 
     <!-- A dynamic argument that can be used by CI when releasing a new version -->
     <revision>0.0.0-SNAPSHOT</revision>
