@@ -129,7 +129,7 @@
             </execution>
           </executions>
         </plugin>
-        <!-- Configures the Maven dependeny analyzing plugin -->
+        <!-- Configures the Maven dependence analyzing plugin -->
         <plugin>
           <artifactId>maven-dependency-plugin</artifactId>
           <version>${maven.dependency.plugin.version}</version>
@@ -545,26 +545,11 @@
             <artifactId>central-publishing-maven-plugin</artifactId>
             <version>${central.publishing.plugin}</version>
             <extensions>true</extensions>
-            <configuration>
-              <serverId>ossrh</serverId>
-            </configuration>
           </plugin>
         </plugins>
       </build>
     </profile>
   </profiles>
-
-  <!-- Locations to which to publish build artifacts -->
-  <distributionManagement>
-    <repository>
-      <id>ossrh</id>
-      <url>https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/</url>
-    </repository>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
 
 </project>
 
