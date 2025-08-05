@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0">
   <modelVersion>4.0.0</modelVersion>
 
   <!-- Basic project metadata -->
@@ -63,31 +62,31 @@
     <maven.test.skip>true</maven.test.skip>
 
     <!-- Plugin versions -->
-    <flatten.plugin.version>1.7.0</flatten.plugin.version>
-    <maven.surefire.plugin.version>3.5.2</maven.surefire.plugin.version>
-    <maven.failsafe.plugin.version>3.5.2</maven.failsafe.plugin.version>
+    <flatten.plugin.version>1.7.2</flatten.plugin.version>
+    <maven.surefire.plugin.version>3.5.3</maven.surefire.plugin.version>
+    <maven.failsafe.plugin.version>3.5.3</maven.failsafe.plugin.version>
     <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
     <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
     <maven.jar.plugin.version>3.4.2</maven.jar.plugin.version>
     <maven.install.plugin.version>3.1.4</maven.install.plugin.version>
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
     <maven.dependency.plugin.version>3.8.1</maven.dependency.plugin.version>
-    <maven.enforcer.plugin.version>3.5.0</maven.enforcer.plugin.version>
+    <maven.enforcer.plugin.version>3.6.1</maven.enforcer.plugin.version>
     <formatter.plugin.version>2.26.0</formatter.plugin.version>
 
     <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
-    <checkstyle.version>10.21.4</checkstyle.version>
+    <checkstyle.version>10.26.1</checkstyle.version>
 
     <!-- A dynamic argument that can be used by CI when releasing a new version -->
     <revision>0.0.0-SNAPSHOT</revision>
 
     <!-- Jacoco configuration -->
     <jacoco.dataFile>${project.build.directory}/jacoco.exec</jacoco.dataFile>
-    <jacoco.maven.plugin.version>0.8.12</jacoco.maven.plugin.version>
+    <jacoco.maven.plugin.version>0.8.13</jacoco.maven.plugin.version>
 
     <!-- PMD plugin configuration overrides the older version to use the latest version of PMD -->
-    <pmd.plugin.version>3.26.0</pmd.plugin.version>
-    <pmd.version>7.12.0</pmd.version>
+    <pmd.plugin.version>3.27.0</pmd.plugin.version>
+    <pmd.version>7.16.0</pmd.version>
 
     <!-- Character encodings for the build and reporting processes -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -151,7 +150,7 @@
               <exclude>**/*FeatureFlagTest.java</exclude>
             </excludes>
             <forkCount>3</forkCount>
-            <reuseForks>true</reuseForks>
+            <reuseForks>false</reuseForks>
             <argLine>-XX:MaxMetaspaceSize=512m ${jacoco.agent.arg}</argLine>
             <systemPropertyVariables>
               <http.agent>Maven</http.agent>
@@ -490,10 +489,10 @@
     <profile>
       <id>release</id>
       <properties>
-        <gpg.plugin.version>3.2.7</gpg.plugin.version>
+        <gpg.plugin.version>3.2.8</gpg.plugin.version>
         <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
-        <nexus.staging.plugin.version>1.7.0</nexus.staging.plugin.version>
         <maven.javadoc.plugin.version>3.11.2</maven.javadoc.plugin.version>
+        <central.publishing.plugin>0.8.0</central.publishing.plugin>
       </properties>
       <build>
         <plugins>
@@ -542,14 +541,12 @@
           </plugin>
           <!-- This plugin handles the Jar uploads to a centralized Maven repository -->
           <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>${nexus.staging.plugin.version}</version>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <version>${central.publishing.plugin}</version>
             <extensions>true</extensions>
             <configuration>
               <serverId>ossrh</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>${autorelease.artifact}</autoReleaseAfterClose>
             </configuration>
           </plugin>
         </plugins>
@@ -561,11 +558,11 @@
   <distributionManagement>
     <repository>
       <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+      <url>https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/</url>
     </repository>
     <snapshotRepository>
       <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 
