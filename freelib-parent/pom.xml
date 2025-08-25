@@ -28,7 +28,7 @@
     <!-- Maven plug-in dependencies managed through this parent project -->
     <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
     <maven.filtering.version>3.4.0</maven.filtering.version>
-    <maven.javadoc.plugin.version>3.11.2</maven.javadoc.plugin.version>
+    <maven.javadoc.plugin.version>3.11.3</maven.javadoc.plugin.version>
     <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
     <maven.dependency.analyzer.version>1.16.0</maven.dependency.analyzer.version>
     <build.helper.maven.plugin.version>3.6.1</build.helper.maven.plugin.version>
