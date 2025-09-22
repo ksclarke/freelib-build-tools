@@ -72,7 +72,7 @@
     <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
     <maven.dependency.plugin.version>3.8.1</maven.dependency.plugin.version>
     <maven.enforcer.plugin.version>3.6.1</maven.enforcer.plugin.version>
-    <formatter.plugin.version>2.27.0</formatter.plugin.version>
+    <formatter.plugin.version>2.29.0</formatter.plugin.version>
 
     <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
     <checkstyle.version>11.0.1</checkstyle.version>
@@ -491,7 +491,7 @@
       <properties>
         <gpg.plugin.version>3.2.8</gpg.plugin.version>
         <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
-        <maven.javadoc.plugin.version>3.11.3</maven.javadoc.plugin.version>
+        <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
         <central.publishing.plugin>0.8.0</central.publishing.plugin>
       </properties>
       <build>
