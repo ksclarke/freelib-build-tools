@@ -492,7 +492,7 @@
         <gpg.plugin.version>3.2.8</gpg.plugin.version>
         <maven.source.plugin.version>3.3.1</maven.source.plugin.version>
         <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
-        <central.publishing.plugin>0.8.0</central.publishing.plugin>
+        <central.publishing.plugin>0.9.0</central.publishing.plugin>
       </properties>
       <build>
         <plugins>
