@@ -105,6 +105,7 @@
           <configuration>
             <portNames>
               <portName>test.http.port</portName>
+              <portName>http.port</portName>
             </portNames>
           </configuration>
           <executions>
