@@ -603,13 +603,9 @@
 
   <!-- Locations to which to publish build artifacts -->
   <distributionManagement>
-    <repository>
-      <id>ossrh</id>
-      <url>https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/</url>
-    </repository>
     <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/freelibrary/jiiify-presentation</url>
     </snapshotRepository>
   </distributionManagement>
 
