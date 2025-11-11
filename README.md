@@ -13,7 +13,7 @@ Projects wanting to take advantage of `freelib-build-tools`' simplified configur
     <parent>
       <groupId>info.freelibrary</groupId>
       <artifactId>freelib-parent</artifactId>
-      <version>11.0.0</version>
+      <version>13.0.1</version>
     </parent>
 
 Once this is done, all the configuration options in `freelib-parent`, including the resources from `freelib-resources`, will be available to the project. One can add them to the child project by referencing the plugins, etc., defined in the parent project. To see an example of how this is done, see the [FreeLib-Utils POM file](https://github.com/ksclarke/freelib-utils/blob/main/pom.xml#L127-L132).
@@ -28,8 +28,6 @@ There are several build variables that can be set as Secrets in your project's G
 
 Secret and value                   | Optional?
 -----------------------------------|------------------------------------
-MAVEN_CACHE_KEY="[string]"         | yes
-AUTORELEASE_ARTIFACT="[boolean]"   | yes
 SKIP_JAR_DEPLOYMENT="[boolean]"    | yes
 AUTO_PR_APPROVAL="[boolean]"       | yes
 BUILD_PROFILES="[string]"          | yes
