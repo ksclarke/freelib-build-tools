@@ -40,9 +40,8 @@
   <!-- The primary developers on a project -->
   <developers>
     <developer>
-      <email>my.projects@kevinclarke.info</email>
+      <email>code@lisforge.net</email>
       <name>Kevin S. Clarke</name>
-      <url>http://kevinclarke.info</url>
       <roles>
         <role>developer</role>
       </roles>
