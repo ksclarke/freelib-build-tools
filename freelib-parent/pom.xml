@@ -601,6 +601,14 @@
     </profile>
   </profiles>
 
+  <!-- Locations to which to publish build artifacts -->
+  <distributionManagement>
+    <snapshotRepository>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/freelibrary/jiiify-presentation</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <parent>
     <groupId>info.freelibrary</groupId>
     <artifactId>freelib-build-tools</artifactId>
