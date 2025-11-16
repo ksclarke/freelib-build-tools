@@ -40,7 +40,7 @@
   <!-- The primary developers on a project -->
   <developers>
     <developer>
-      <email>ksclarke@gmail.com</email>
+      <email>my.projects@kevinclarke.info</email>
       <name>Kevin S. Clarke</name>
       <url>http://kevinclarke.info</url>
       <roles>
@@ -311,7 +311,7 @@
           <artifactId>maven-install-plugin</artifactId>
           <version>${maven.install.plugin.version}</version>
         </plugin>
-        <!-- Configure the resources handling plugin -->
+        <!-- Configure the resource handling plugin -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>${maven.resources.plugin.version}</version>
