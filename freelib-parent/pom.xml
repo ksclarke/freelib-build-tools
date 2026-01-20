@@ -32,7 +32,7 @@
     <maven.resources.plugin.version>3.4.0</maven.resources.plugin.version>
     <maven.dependency.analyzer.version>1.16.0</maven.dependency.analyzer.version>
     <build.helper.maven.plugin.version>3.6.1</build.helper.maven.plugin.version>
-    <properties.maven.plugin.version>1.2.1</properties.maven.plugin.version>
+    <properties.maven.plugin.version>1.3.0</properties.maven.plugin.version>
     <freelib.maven.version>0.5.2</freelib.maven.version>
 
     <!-- We want to override the skip tests directive in our parent project -->
