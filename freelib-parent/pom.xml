@@ -514,9 +514,24 @@
         </property>
       </activation>
       <properties>
-        <jacoco.skip>true</jacoco.skip>
+        <jacoco.skip>false</jacoco.skip>
         <maven.compiler.release>24</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/24/docs/api/</javadocs.jdk.url>
+      </properties>
+    </profile>
+    <profile>
+      <id>java25</id>
+      <activation>
+        <!-- Switch to using 'property' so GraalVM and standard JDKs are picked up -->
+        <property>
+          <name>java.version</name>
+          <value>25</value>
+        </property>
+      </activation>
+      <properties>
+        <jacoco.skip>false</jacoco.skip>
+        <maven.compiler.release>25</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/25/docs/api/</javadocs.jdk.url>
       </properties>
     </profile>
     <profile>
