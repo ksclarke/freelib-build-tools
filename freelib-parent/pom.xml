@@ -507,11 +507,7 @@
     <profile>
       <id>java24</id>
       <activation>
-        <!-- Switch to using 'property' so GraalVM and standard JDKs are picked up -->
-        <property>
-          <name>java.version</name>
-          <value>24</value>
-        </property>
+        <jdk>[24,)</jdk>
       </activation>
       <properties>
         <jacoco.skip>false</jacoco.skip>
@@ -522,11 +518,7 @@
     <profile>
       <id>java25</id>
       <activation>
-        <!-- Switch to using 'property' so GraalVM and standard JDKs are picked up -->
-        <property>
-          <name>java.version</name>
-          <value>25</value>
-        </property>
+        <jdk>[25,)</jdk>
       </activation>
       <properties>
         <jacoco.skip>false</jacoco.skip>
