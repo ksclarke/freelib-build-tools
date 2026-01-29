@@ -74,7 +74,7 @@
     <formatter.plugin.version>2.29.0</formatter.plugin.version>
 
     <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
-    <checkstyle.version>12.3.0</checkstyle.version>
+    <checkstyle.version>13.0.0</checkstyle.version>
 
     <!-- A dynamic argument that can be used by CI when releasing a new version -->
     <revision>0.0.0-SNAPSHOT</revision>
@@ -220,7 +220,7 @@
               <configuration>
                 <rules>
                   <requireJavaVersion>
-                    <version>[17,)</version>
+                    <version>[21,)</version>
                   </requireJavaVersion>
                 </rules>
               </configuration>
@@ -233,7 +233,7 @@
               <configuration>
                 <rules>
                   <requireMavenVersion>
-                    <version>[3.6.3,)</version>
+                    <version>[3.8.6,)</version>
                   </requireMavenVersion>
                 </rules>
               </configuration>
