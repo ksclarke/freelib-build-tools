@@ -507,7 +507,7 @@
     <profile>
       <id>java24</id>
       <activation>
-        <jdk>[24,)</jdk>
+        <jdk>[24,25)</jdk>
       </activation>
       <properties>
         <jacoco.skip>false</jacoco.skip>
@@ -518,7 +518,7 @@
     <profile>
       <id>java25</id>
       <activation>
-        <jdk>[25,)</jdk>
+        <jdk>[25,26)</jdk>
       </activation>
       <properties>
         <jacoco.skip>false</jacoco.skip>
