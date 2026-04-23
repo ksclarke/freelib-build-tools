@@ -34,7 +34,7 @@
   <!-- The project's responsible organization -->
   <organization>
     <name>FreeLibrary</name>
-    <url>http://projects.freelibrary.info</url>
+    <url>https://projects.freelibrary.info</url>
   </organization>
 
   <!-- The primary developers on a project -->
@@ -53,11 +53,11 @@
     <!-- Whether artifacts should be auto-released on OSSRH -->
     <autorelease.artifact>false</autorelease.artifact>
 
-    <!-- By default we skip the legacy site building plugin -->
+    <!-- By default, we skip the legacy site building plugin -->
     <maven.site.skip>true</maven.site.skip>
     <maven.site.deploy.skip>true</maven.site.deploy.skip>
 
-    <!-- Whether tests should be skipped by defailt -->
+    <!-- Whether tests should be skipped by default -->
     <maven.test.skip>true</maven.test.skip>
 
     <!-- Plugin versions -->
