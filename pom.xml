@@ -61,16 +61,16 @@
     <maven.test.skip>true</maven.test.skip>
 
     <!-- Plugin versions -->
-    <flatten.plugin.version>1.7.3</flatten.plugin.version>
-    <maven.surefire.plugin.version>3.5.4</maven.surefire.plugin.version>
-    <maven.failsafe.plugin.version>3.5.4</maven.failsafe.plugin.version>
-    <maven.resources.plugin.version>3.4.0</maven.resources.plugin.version>
-    <maven.compiler.plugin.version>3.14.1</maven.compiler.plugin.version>
-    <maven.jar.plugin.version>3.5.0</maven.jar.plugin.version>
+    <flatten.plugin.version>1.8.0</flatten.plugin.version>
+    <maven.surefire.plugin.version>3.5.6</maven.surefire.plugin.version>
+    <maven.failsafe.plugin.version>3.5.6</maven.failsafe.plugin.version>
+    <maven.resources.plugin.version>3.5.0</maven.resources.plugin.version>
+    <maven.compiler.plugin.version>3.15.0</maven.compiler.plugin.version>
+    <maven.jar.plugin.version>3.5.1</maven.jar.plugin.version>
     <maven.install.plugin.version>3.1.4</maven.install.plugin.version>
-    <maven.site.plugin.version>3.21.0</maven.site.plugin.version>
-    <maven.dependency.plugin.version>3.9.0</maven.dependency.plugin.version>
-    <maven.enforcer.plugin.version>3.6.2</maven.enforcer.plugin.version>
+    <maven.site.plugin.version>3.22.0</maven.site.plugin.version>
+    <maven.dependency.plugin.version>3.11.0</maven.dependency.plugin.version>
+    <maven.enforcer.plugin.version>3.6.3</maven.enforcer.plugin.version>
     <formatter.plugin.version>2.29.0</formatter.plugin.version>
 
     <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
@@ -81,11 +81,11 @@
 
     <!-- Jacoco configuration -->
     <jacoco.dataFile>${project.build.directory}/jacoco.exec</jacoco.dataFile>
-    <jacoco.maven.plugin.version>0.8.14</jacoco.maven.plugin.version>
+    <jacoco.maven.plugin.version>0.8.15</jacoco.maven.plugin.version>
 
     <!-- PMD plugin configuration overrides the older version to use the latest version of PMD -->
     <pmd.plugin.version>3.28.0</pmd.plugin.version>
-    <pmd.version>7.23.0</pmd.version>
+    <pmd.version>7.26.0</pmd.version>
 
     <!-- Character encodings for the build and reporting processes -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -495,7 +495,7 @@
         <gpg.plugin.version>3.2.8</gpg.plugin.version>
         <maven.source.plugin.version>3.4.0</maven.source.plugin.version>
         <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
-        <central.publishing.plugin>0.10.0</central.publishing.plugin>
+        <central.publishing.plugin>0.11.0</central.publishing.plugin>
       </properties>
       <build>
         <plugins>
