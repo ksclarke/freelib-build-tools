@@ -150,6 +150,7 @@
             </excludes>
             <forkCount>3</forkCount>
             <reuseForks>false</reuseForks>
+            <!--suppress UnresolvedMavenProperty -->
             <argLine>-XX:MaxMetaspaceSize=512m ${jacoco.agent.arg}</argLine>
             <systemPropertyVariables>
               <http.agent>Maven</http.agent>
@@ -162,6 +163,7 @@
           <artifactId>maven-failsafe-plugin</artifactId>
           <version>${maven.failsafe.plugin.version}</version>
           <configuration>
+            <!--suppress UnresolvedMavenProperty -->
             <argLine>-XX:MaxMetaspaceSize=128m ${jacoco.agent.arg}</argLine>
             <includes>
               <include>**/*IT.java</include>
@@ -246,6 +248,7 @@
           <artifactId>jacoco-maven-plugin</artifactId>
           <version>${jacoco.maven.plugin.version}</version>
           <configuration>
+            <!--suppress UnresolvedMavenProperty -->
             <skip>${jacoco.skip}</skip>
           </configuration>
           <executions>
@@ -367,6 +370,7 @@
             <rulesets>
               <ruleset>src/main/tools/pmd/ruleset.xml</ruleset>
             </rulesets>
+            <!--suppress UnresolvedMavenProperty -->
             <targetJdk>${maven.compiler.source}</targetJdk>
             <format>xml</format>
             <skipEmptyReport>true</skipEmptyReport>
