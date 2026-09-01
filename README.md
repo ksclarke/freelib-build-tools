@@ -6,14 +6,14 @@ This project is comprised of two parts. The first part, `freelib-resources`, con
 
 ### Using this project
 
-This project requires a JDK version of 17 or higher. Only the last two LTS JDK releases will be supported.
+This project requires a JDK version of 21 or higher. Only the last two LTS JDK releases will be supported.
 
 Projects wanting to take advantage of `freelib-build-tools`' simplified configuration options can configure `freelib-parent` as their project's parent. To do this, add the following as the last element in the POM's root element:
 
     <parent>
       <groupId>info.freelibrary</groupId>
       <artifactId>freelib-parent</artifactId>
-      <version>13.0.2</version>
+      <version>14.0.7</version>
     </parent>
 
 Once this is done, all the configuration options in `freelib-parent`, including the resources from `freelib-resources`, will be available to the project. One can add them to the child project by referencing the plugins, etc., defined in the parent project. To see an example of how this is done, see the [FreeLib-Utils POM file](https://github.com/ksclarke/freelib-utils/blob/main/pom.xml#L127-L132).
