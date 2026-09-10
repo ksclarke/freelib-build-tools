@@ -71,7 +71,6 @@
     <maven.site.plugin.version>3.22.0</maven.site.plugin.version>
     <maven.dependency.plugin.version>3.11.0</maven.dependency.plugin.version>
     <maven.enforcer.plugin.version>3.6.3</maven.enforcer.plugin.version>
-    <formatter.plugin.version>2.29.0</formatter.plugin.version>
 
     <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
     <checkstyle.version>14.0.0</checkstyle.version>
@@ -328,24 +327,6 @@
           <artifactId>maven-jar-plugin</artifactId>
           <version>${maven.jar.plugin.version}</version>
         </plugin>
-        <!-- Configure the code formatting plugin -->
-        <plugin>
-          <groupId>net.revelc.code.formatter</groupId>
-          <artifactId>formatter-maven-plugin</artifactId>
-          <version>${formatter.plugin.version}</version>
-          <configuration>
-            <configFile>src/main/tools/eclipse/freelibrary-formatter.xml</configFile>
-            <configJsFile>src/main/tools/eclipse/freelibrary-javascript-formatter.xml</configJsFile>
-          </configuration>
-          <executions>
-            <execution>
-              <phase>prepare-package</phase>
-              <goals>
-                <goal>format</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
         <!-- Configure the PMD code analysis plugin -->
         <plugin>
           <artifactId>maven-pmd-plugin</artifactId>
@@ -436,11 +417,6 @@
       <!-- This plugin checks the build environment for expected requirements -->
       <plugin>
         <artifactId>maven-enforcer-plugin</artifactId>
-      </plugin>
-      <!-- This plugin formats the code according to project standards -->
-      <plugin>
-        <groupId>net.revelc.code.formatter</groupId>
-        <artifactId>formatter-maven-plugin</artifactId>
       </plugin>
       <!-- This plugin is required to make 'revision' persist to the POM on publishing -->
       <plugin>
