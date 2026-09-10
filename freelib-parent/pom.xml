@@ -203,7 +203,7 @@
               </goals>
               <configuration>
                 <outputDirectory>src/main/tools</outputDirectory>
-                <overwrite>true</overwrite>
+                <changeDetection>always</changeDetection>
                 <resources>
                   <resource>
                     <!-- Checkstyle resources are the only ones filtered -->
@@ -303,10 +303,6 @@
         <plugins>
           <plugin>
             <artifactId>maven-enforcer-plugin</artifactId>
-          </plugin>
-          <plugin>
-            <groupId>net.revelc.code.formatter</groupId>
-            <artifactId>formatter-maven-plugin</artifactId>
           </plugin>
           <plugin>
             <artifactId>maven-pmd-plugin</artifactId>
