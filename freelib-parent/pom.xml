@@ -334,6 +334,20 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <javadocs.jdk.url>https://docs.oracle.com/javase/8/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>8</targetJdk>
+              <jdkToolchain>
+                <version>[8,9)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java9</id>
@@ -345,6 +359,20 @@
         <maven.compiler.release>9</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/javase/9/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>9</targetJdk>
+              <jdkToolchain>
+                <version>[9,10)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java10</id>
@@ -356,6 +384,20 @@
         <maven.compiler.release>10</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/javase/10/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>10</targetJdk>
+              <jdkToolchain>
+                <version>[10,11)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java11</id>
@@ -367,6 +409,20 @@
         <maven.compiler.release>11</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/11/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>11</targetJdk>
+              <jdkToolchain>
+                <version>[1,12)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java12</id>
@@ -378,6 +434,20 @@
         <maven.compiler.release>12</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/12/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>12</targetJdk>
+              <jdkToolchain>
+                <version>[12,13)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java13</id>
@@ -389,6 +459,20 @@
         <maven.compiler.release>13</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/13/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>13</targetJdk>
+              <jdkToolchain>
+                <version>[13,14)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java14</id>
@@ -400,6 +484,20 @@
         <maven.compiler.release>14</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/14/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>14</targetJdk>
+              <jdkToolchain>
+                <version>[14,15)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java15</id>
@@ -411,6 +509,20 @@
         <maven.compiler.release>15</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/15/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>15</targetJdk>
+              <jdkToolchain>
+                <version>[15,16)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java16</id>
@@ -422,6 +534,20 @@
         <maven.compiler.release>16</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/16/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>16</targetJdk>
+              <jdkToolchain>
+                <version>[16,17)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java17</id>
@@ -433,6 +559,20 @@
         <maven.compiler.release>17</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/17/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>17</targetJdk>
+              <jdkToolchain>
+                <version>[17,18)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java18</id>
@@ -444,6 +584,20 @@
         <maven.compiler.release>18</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/18/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>18</targetJdk>
+              <jdkToolchain>
+                <version>[18,19)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java19</id>
@@ -455,6 +609,20 @@
         <maven.compiler.release>19</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/19/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>19</targetJdk>
+              <jdkToolchain>
+                <version>[19,20)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java20</id>
@@ -466,6 +634,20 @@
         <maven.compiler.release>20</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/20/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>20</targetJdk>
+              <jdkToolchain>
+                <version>[20,21)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java21</id>
@@ -477,6 +659,20 @@
         <maven.compiler.release>21</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/21/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>21</targetJdk>
+              <jdkToolchain>
+                <version>[21,22)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java22</id>
@@ -488,6 +684,20 @@
         <maven.compiler.release>22</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/22/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>22</targetJdk>
+              <jdkToolchain>
+                <version>[22,23)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java23</id>
@@ -499,6 +709,20 @@
         <maven.compiler.release>23</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/23/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>23</targetJdk>
+              <jdkToolchain>
+                <version>[23,24)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java24</id>
@@ -510,6 +734,20 @@
         <maven.compiler.release>24</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/24/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>24</targetJdk>
+              <jdkToolchain>
+                <version>[24,25)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java25</id>
@@ -521,6 +759,20 @@
         <maven.compiler.release>25</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/25/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>25</targetJdk>
+              <jdkToolchain>
+                <version>[25,26)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>java26</id>
@@ -532,6 +784,20 @@
         <maven.compiler.release>26</maven.compiler.release>
         <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/26/docs/api/</javadocs.jdk.url>
       </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>26</targetJdk>
+              <jdkToolchain>
+                <version>[26,27)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
     <profile>
       <id>sonar</id>
