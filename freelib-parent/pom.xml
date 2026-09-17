@@ -417,7 +417,7 @@
             <configuration>
               <targetJdk>11</targetJdk>
               <jdkToolchain>
-                <version>[1,12)</version>
+                <version>[11,12)</version>
               </jdkToolchain>
             </configuration>
           </plugin>
@@ -793,6 +793,31 @@
               <targetJdk>26</targetJdk>
               <jdkToolchain>
                 <version>[26,27)</version>
+              </jdkToolchain>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>java27</id>
+      <activation>
+        <jdk>[27,28)</jdk>
+      </activation>
+      <properties>
+        <jacoco.skip>false</jacoco.skip>
+        <maven.compiler.release>27</maven.compiler.release>
+        <javadocs.jdk.url>https://docs.oracle.com/en/java/javase/27/docs/api/</javadocs.jdk.url>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-pmd-plugin</artifactId>
+            <configuration>
+              <targetJdk>27</targetJdk>
+              <jdkToolchain>
+                <version>[27,28)</version>
               </jdkToolchain>
             </configuration>
           </plugin>
