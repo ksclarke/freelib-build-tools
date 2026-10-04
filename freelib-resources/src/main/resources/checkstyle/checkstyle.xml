@@ -67,7 +67,9 @@
         </module>
         <module name="SummaryJavadoc"/>
         <module name="JavadocParagraph"/>
-        <module name="JavadocTagContinuationIndentation"/>
+        <module name="JavadocTagContinuationIndentation">
+            <property name="offset" value="2"/>
+        </module>
         <module name="NeedBraces"/>
         <module name="LeftCurly"/>
         <module name="RightCurly"/>
