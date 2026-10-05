@@ -18,7 +18,8 @@
         <module name="RedundantModifier"/>
         <module name="UnusedImports"/>
         <module name="AvoidStarImport">
-            <property name="excludes" value="j2html.TagCreator,org.junit.Assert,info.freelibrary.util.Constants"/>
+            <property name="excludes"
+                      value="info.freelibrary.j2htmx.pico.TagCreator,org.junit.Assert,info.freelibrary.util.Constants"/>
         </module>
         <module name="ConstantName"/>
         <module name="EqualsHashCode"/>
