@@ -23,7 +23,7 @@
     <junit.version>4.13.2</junit.version>
     <slf4j.version>2.0.20</slf4j.version>
     <xmlunit.version>2.11.0</xmlunit.version>
-    <logback.version>1.6.4</logback.version>
+    <logback.version>1.6.5</logback.version>
 
     <!-- Maven plug-in dependencies managed through this parent project -->
     <maven.source.plugin.version>3.4.0</maven.source.plugin.version>
@@ -33,7 +33,8 @@
     <maven.dependency.analyzer.version>1.17.2</maven.dependency.analyzer.version>
     <build.helper.maven.plugin.version>3.6.2</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.3.1</properties.maven.plugin.version>
-    <freelib.maven.version>0.5.2</freelib.maven.version>
+    <freelib.maven.version>0.6.0</freelib.maven.version>
+    <sonar.maven.version>5.8.0.7211</sonar.maven.version>
 
     <!-- We want to override the skip tests directive in our parent project -->
     <maven.test.skip>false</maven.test.skip>
@@ -284,6 +285,11 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>${sonar.maven.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -836,9 +842,6 @@
         <sonar.checkstyle.reportPaths>target/checkstyle-result.xml</sonar.checkstyle.reportPaths>
         <sonar.java.pmd.reportPaths>target/pmd.xml</sonar.java.pmd.reportPaths>
 
-        <!-- The version of the sonar-maven-plugin to use -->
-        <sonar.maven.version>5.7.0.6970</sonar.maven.version>
-
         <!-- Limit Sonar suggestions to our minimum JDK version -->
         <sonar.java.source>17</sonar.java.source>
         <sonar.target.source>17</sonar.target.source>
@@ -852,12 +855,10 @@
           <plugin>
             <groupId>org.sonarsource.scanner.maven</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
-            <version>${sonar.maven.version}</version>
             <dependencies>
               <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
               </dependency>
             </dependencies>
             <executions>

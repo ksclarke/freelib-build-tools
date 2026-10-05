@@ -71,9 +71,13 @@
     <maven.site.plugin.version>3.22.0</maven.site.plugin.version>
     <maven.dependency.plugin.version>3.11.0</maven.dependency.plugin.version>
     <maven.enforcer.plugin.version>3.6.3</maven.enforcer.plugin.version>
-
+    <gpg.plugin.version>3.2.8</gpg.plugin.version>
+    <maven.source.plugin.version>3.4.0</maven.source.plugin.version>
+    <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
+    <central.publishing.plugin>0.11.0</central.publishing.plugin>
+    <versions.maven.plugin>2.22.0</versions.maven.plugin>
     <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
-    <checkstyle.version>14.1.0</checkstyle.version>
+    <checkstyle.version>14.3.0</checkstyle.version>
 
     <!-- A dynamic argument that can be used by CI when releasing a new version -->
     <revision>0.0.0-SNAPSHOT</revision>
@@ -81,6 +85,7 @@
     <!-- Jacoco configuration -->
     <jacoco.dataFile>${project.build.directory}/jacoco.exec</jacoco.dataFile>
     <jacoco.maven.plugin.version>0.8.15</jacoco.maven.plugin.version>
+    <jacoco.skip>false</jacoco.skip>
 
     <!-- PMD plugin configuration overrides the older version to use the latest version of PMD -->
     <pmd.plugin.version>3.28.0</pmd.plugin.version>
@@ -410,6 +415,28 @@
             <skipDeploy>true</skipDeploy>
           </configuration>
         </plugin>
+        <plugin>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>${gpg.plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.sonatype.central</groupId>
+          <artifactId>central-publishing-maven-plugin</artifactId>
+          <version>${central.publishing.plugin}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>${maven.javadoc.plugin.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>${maven.source.plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>${versions.maven.plugin}</version>
+        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -467,18 +494,11 @@
     <!-- This profile configures the build artifact release -->
     <profile>
       <id>release</id>
-      <properties>
-        <gpg.plugin.version>3.2.8</gpg.plugin.version>
-        <maven.source.plugin.version>3.4.0</maven.source.plugin.version>
-        <maven.javadoc.plugin.version>3.12.0</maven.javadoc.plugin.version>
-        <central.publishing.plugin>0.11.0</central.publishing.plugin>
-      </properties>
       <build>
         <plugins>
           <!-- This plugin creates a source jar to upload with the build artifact -->
           <plugin>
             <artifactId>maven-source-plugin</artifactId>
-            <version>${maven.source.plugin.version}</version>
             <executions>
               <execution>
                 <id>attach-sources</id>
@@ -491,7 +511,6 @@
           <!-- This plugin attaches a Javadocs jar to upload with the build artifact -->
           <plugin>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>${maven.javadoc.plugin.version}</version>
             <executions>
               <execution>
                 <id>attach-javadocs</id>
@@ -504,7 +523,6 @@
           <!-- This plugin signs the Jar files uploaded during the release process -->
           <plugin>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>${gpg.plugin.version}</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
@@ -522,11 +540,115 @@
           <plugin>
             <groupId>org.sonatype.central</groupId>
             <artifactId>central-publishing-maven-plugin</artifactId>
-            <version>${central.publishing.plugin}</version>
             <extensions>true</extensions>
             <configuration>
               <serverId>ossrh</serverId>
             </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>versions</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <configuration>
+              <ruleSet>
+                <!-- Ignore update possibilities that are not stable versions -->
+                <ignoreVersions>
+                  <ignoreVersion>
+                    <type>regex</type>
+                    <version>.*[-._](?i:alpha|beta|rc|cr|m|ea)[-._]?[0-9].*</version>
+                  </ignoreVersion>
+                  <ignoreVersion>
+                    <type>regex</type>
+                    <version>.*-SNAPSHOT</version>
+                  </ignoreVersion>
+                </ignoreVersions>
+              </ruleSet>
+            </configuration>
+            <executions>
+              <execution>
+                <id>display-property-updates</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>display-property-updates</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>dependencies</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <configuration>
+              <ruleSet>
+                <!-- Ignore update possibilities that are not stable versions -->
+                <ignoreVersions>
+                  <ignoreVersion>
+                    <type>regex</type>
+                    <version>.*[-._](?i:alpha|beta|rc|cr|m|ea)[-._]?[0-9].*</version>
+                  </ignoreVersion>
+                  <ignoreVersion>
+                    <type>regex</type>
+                    <version>.*-SNAPSHOT</version>
+                  </ignoreVersion>
+                </ignoreVersions>
+              </ruleSet>
+            </configuration>
+            <executions>
+              <execution>
+                <id>display-property-updates</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>display-property-updates</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>plugins</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <configuration>
+              <ruleSet>
+                <!-- Ignore update possibilities that are not stable versions -->
+                <ignoreVersions>
+                  <ignoreVersion>
+                    <type>regex</type>
+                    <version>.*[-._](?i:alpha|beta|rc|cr|m|ea)[-._]?[0-9].*</version>
+                  </ignoreVersion>
+                  <ignoreVersion>
+                    <type>regex</type>
+                    <version>.*-SNAPSHOT</version>
+                  </ignoreVersion>
+                </ignoreVersions>
+              </ruleSet>
+            </configuration>
+            <executions>
+              <execution>
+                <id>display-plugin-updates</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>display-plugin-updates</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
