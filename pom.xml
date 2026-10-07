@@ -387,7 +387,7 @@
             <configLocation>src/main/tools/checkstyle/checkstyle.xml</configLocation>
             <excludeGeneratedSources>true</excludeGeneratedSources>
             <resourceExcludes>target/**,**/generated/**,**/META-INF/**</resourceExcludes>
-            <excludes>target/**,**/generated/**,**/MediaType.java,**/MessageCodes.java</excludes>
+            <excludes>target/**,**/generated/**,**/MediaType.java,**/MessageCodes.java,**/UiCodes.java</excludes>
           </configuration>
           <dependencies>
             <dependency>
