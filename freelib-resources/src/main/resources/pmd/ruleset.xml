@@ -13,6 +13,9 @@
   <rule ref="category/java/bestpractices.xml">
     <exclude name="GuardLogStatement" />
     <exclude name="LooseCoupling" />
+    <exclude name="OnDemandImport" />
+    <exclude name="UnusedPrivateMethod" />
+    <exclude name="ForLoopVariableCount" />
   </rule>
   <rule ref="category/java/bestpractices.xml/UnusedPrivateMethod">
     <properties>
@@ -25,22 +28,26 @@
       <property name="maximumVariables" value="2" />
     </properties>
   </rule>
+  <rule ref="category/java/bestpractices.xml/OnDemandImport">
+    <properties>
+      <property name="allowStaticImportsFrom"
+                value="info.freelibrary.j2htmx.pico.TagCreator,org.junit.Assert,info.freelibrary.util.Constants" />
+    </properties>
+  </rule>
 
   <rule ref="category/java/codestyle.xml">
     <exclude name="OnlyOneReturn" />
+    <exclude name="ClassNamingConventions" />
+    <exclude name="LinguisticNaming" />
+    <exclude name="LongVariable" />
+    <exclude name="ShortVariable" />
+    <exclude name="ShortClassName" />
     <exclude name="CommentDefaultAccessModifier" />
     <exclude name="CallSuperInConstructor" /> <!-- Default super is handled by default -->
     <exclude name="ConfusingTernary" /> <!-- It makes more sense to ask if something isn't null, IMHO -->
     <exclude name="PrematureDeclaration" /> <!-- Sometimes useful, but more often than not a false positive -->
     <exclude name="UnnecessaryConstructor" /> <!-- Javadocs requires even default constructors to have docs -->
     <exclude name="AtLeastOneConstructor" /> <!-- Non-public classes can have default constructors -->
-    <exclude name="OnDemandImport" /> <!-- We allow a couple of pre-configured exceptions -->
-  </rule>
-  <rule ref="category/java/codestyle.xml/OnDemandImport">
-    <properties>
-      <property name="excludes"
-                value="info.freelibrary.j2htmx.pico.TagCreator,org.junit.Assert,info.freelibrary.util.Constants" />
-    </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/ClassNamingConventions">
     <properties>
@@ -86,6 +93,7 @@
     <exclude name="LawOfDemeter" />
     <exclude name="LoosePackageCoupling" />
     <exclude name="SimplifyBooleanReturns" />
+    <exclude name="TooManyMethods" />
     <exclude name="DataClass" />
   </rule>
   <rule ref="category/java/design.xml/TooManyMethods">
@@ -94,7 +102,9 @@
     </properties>
   </rule>
 
-  <rule ref="category/java/documentation.xml" />
+  <rule ref="category/java/documentation.xml">
+    <exclude name="CommentSize" />
+  </rule>
   <rule ref="category/java/documentation.xml/CommentSize">
     <properties>
       <property name="maxLines" value="30" />
