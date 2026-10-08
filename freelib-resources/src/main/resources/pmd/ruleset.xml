@@ -34,6 +34,13 @@
     <exclude name="PrematureDeclaration" /> <!-- Sometimes useful, but more often than not a false positive -->
     <exclude name="UnnecessaryConstructor" /> <!-- Javadocs requires even default constructors to have docs -->
     <exclude name="AtLeastOneConstructor" /> <!-- Non-public classes can have default constructors -->
+    <exclude name="OnDemandImport" /> <!-- We allow a couple of pre-configured exceptions -->
+  </rule>
+  <rule ref="category/java/codestyle.xml/OnDemandImport">
+    <properties>
+      <property name="excludes"
+                value="info.freelibrary.j2htmx.pico.TagCreator,org.junit.Assert,info.freelibrary.util.Constants" />
+    </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/ClassNamingConventions">
     <properties>
