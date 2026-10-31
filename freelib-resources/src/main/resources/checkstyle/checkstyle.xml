@@ -19,7 +19,11 @@
         <module name="UnusedImports"/>
         <module name="AvoidStarImport">
             <property name="excludes"
-                      value="info.freelibrary.j2htmx.pico.TagCreator,org.junit.Assert,info.freelibrary.util.Constants"/>
+                      value="info.freelibrary.j2htmx.pico.TagCreator,
+                      info.freelibrary.j2htmx.pico.attributes.Attr,
+                      org.junit.Assert,
+                      info.freelibrary.util.Constants,
+                      info.freelibrary.j2htmx.pico.tags.specialized"/>
         </module>
         <module name="ConstantName"/>
         <module name="EqualsHashCode"/>
