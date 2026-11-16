@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         java: [ "21" ]
-        maven: [ "3.8.6" ]
+        maven: [ "3.9.16" ]
         jdk: [ "temurin" ]
     env:
       AUTORELEASE_ARTIFACT: ${{ secrets.AUTORELEASE_ARTIFACT }}
