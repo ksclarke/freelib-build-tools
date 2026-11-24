@@ -34,7 +34,7 @@
     <build.helper.maven.plugin.version>3.8.0</build.helper.maven.plugin.version>
     <properties.maven.plugin.version>1.4.0</properties.maven.plugin.version>
     <freelib.maven.version>0.5.3</freelib.maven.version>
-    <sonar.maven.version>5.8.0.7211</sonar.maven.version>
+    <sonar.maven.version>5.9.0.7382</sonar.maven.version>
 
     <!-- We want to override the skip tests directive in our parent project -->
     <maven.test.skip>false</maven.test.skip>
